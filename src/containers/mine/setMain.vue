@@ -6,14 +6,14 @@
 				<li>
 					<router-link to="cardapply/p1">
 						<!-- <i class="icon icon-card"></i> -->
-						<lable>关于福宝</lable>
+						<label>关于福宝</label>
 						<i class="icon icon-right"></i>
 					</router-link>
 				</li>
 				<li>
 					<router-link to="cardapply/p1">
 						<!-- <i class="icon icon-set"></i> -->
-						<lable>版本号</lable>
+						<label>版本号</label>
 						<span>6.6.7</span>
 					</router-link>
 				</li>

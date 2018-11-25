@@ -6,6 +6,7 @@ const url = 'http://aaa.com'
 //用户注册和登录
 export default {
 	state: {
+		topName:"设置",
 		userInfo:{
 			phone:"132****3234",	//电话
 			verifiyCode:"",	//验证码 

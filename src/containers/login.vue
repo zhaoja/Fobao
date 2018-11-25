@@ -76,6 +76,13 @@
 
 		},
 		methods: {
+			hideConnect() {
+				document.querySelector('body').classList.add('hideConnect')
+			},
+			showConnect() {
+				document.querySelector('body').classList.remove('hideConnect')
+			},
+			
 			//输入电话号码验证
 			keyupInput(param) {
 
@@ -191,7 +198,10 @@
 			//			this.$store.dispatch("getTitle", "");
 		},
 		mounted() {
-
+			this.hideConnect()
+		},
+		beforeDestroy() {
+			this.showConnect()
 		},
 		watch: {
 
@@ -202,6 +212,6 @@
 
 </script>
 
-<style lang="scss">
-
+<style lang="scss" scoped>
+	
 </style>

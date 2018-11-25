@@ -1,13 +1,11 @@
 <template>
-	<div class="header">
-		<i class="icon icon-back" @click="$router.back(-1)"></i>
-		{{topName}}
+	<div>
+		404
 	</div>
 </template>
 
 <script>
 	export default {
-		props:['topName'],
 		data() {
 			return {
 				
@@ -19,4 +17,3 @@
 <style>
 
 </style>
- 

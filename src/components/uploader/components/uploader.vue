@@ -123,8 +123,9 @@
     }
 </script>
 <style>
-.vue-uploader {
+/* .vue-uploader {
     border: 1px solid #e5e5e5;
+		
 }
 .vue-uploader .file-list {
     padding: 10px 0px;
@@ -143,16 +144,17 @@
     position: relative;
     width: 100px;
     text-align: center;
-}
+} 
 .vue-uploader .file-list .file-item img{
     width: 80px;
     height: 80px;
     border: 1px solid #ececec;
-}
+
+
 .vue-uploader .file-list .file-item .file-remove {
     position: absolute;
     left: 191px;
-    /* display: none; */
+    display: none;
     top: -5px;
     width: 23px;
     height: 23px;
@@ -231,4 +233,5 @@
 .vue-uploader > input[type="file"] {
     display: none;
 }
+ */
 </style>

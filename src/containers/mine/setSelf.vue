@@ -5,21 +5,21 @@
 			<ul class="line2">
 				<li>
 					<router-link to=" ">
-						<lable>头像</lable>
+						<label>头像</label>
 						<img src="../../assets/images/person.png" alt="">
 						<i class="icon icon-right"></i>
 					</router-link>
 				</li>
 				<li>
 					<router-link to=" ">
-						<lable>姓名</lable>
+						<label>姓名</label>
 						<span>{{userInfo.name}}</span>
 						<i class="icon icon-right"></i>
 					</router-link>
 				</li>
 				<li>
 					<router-link to="/set/main">
-						<lable>手机号</lable>
+						<label>手机号</label>
 						<span>{{userInfo.phone}}</span>
 						<i class="icon icon-right"></i>
 					</router-link>
@@ -28,14 +28,14 @@
 			<ul class="line2">
 				<li>
 					<router-link to=" ">
-						<lable>身份证号</lable>
+						<label>身份证号</label>
 						<span>{{userInfo.idCard}}</span>
 						<i class="icon icon-right"></i>
 					</router-link>
 				</li>
 				<li>
 					<router-link to=" ">
-						<lable>养老助残卡号</lable>
+						<label>养老助残卡号</label>
 						<span>{{userInfo.oddCard}}</span>
 						<i class="icon icon-right"></i>
 					</router-link>

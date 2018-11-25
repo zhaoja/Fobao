@@ -5,7 +5,8 @@ const isProduction = process.env.NODE_ENV === 'production'
 const sourceMapEnabled = isProduction
   ? config.build.productionSourceMap
   : config.dev.cssSourceMap
-
+/*引入postcss-px2rem*/
+const px2rem = require('postcss-px2rem');
 module.exports = {
   loaders: utils.cssLoaders({
     sourceMap: sourceMapEnabled,
@@ -18,5 +19,8 @@ module.exports = {
     source: 'src',
     img: 'src',
     image: 'xlink:href'
+  },
+  postcss: function() { // 对px2rem进行配置
+    return [px2rem({remUnit: 37.5})];
   }
 }

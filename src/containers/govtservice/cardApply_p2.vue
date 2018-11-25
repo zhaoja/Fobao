@@ -1,9 +1,9 @@
 <template>
 	<div class="capply">
-		<ul>
-			<li>请注意：线上采集针对60-64岁京籍及常住北京的外埠老年</li>
-		</ul>
+		
 		<ul class="grayb">
+			<p>请注意：线上采集针对<span>60-64</span>岁京籍及常住北京的外埠老年</p>
+			 
 			<li>
 				<span>证件类型: </span>
 				<select class="mui-btn mui-btn-block" v-model="certificate.type" @change="certificateChange(certificate.type)">
@@ -47,6 +47,8 @@
 			return {
 				alert:'',
 				ifshow:false,
+				
+				
 			}
 		},
 		created() {

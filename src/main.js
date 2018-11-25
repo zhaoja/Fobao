@@ -7,7 +7,9 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 Vue.prototype.$http = axios
-import './scss/total.scss'
+import '@/assets/scss/image.scss'
+
+import 'lib-flexible'
 
 import cardApply from './models/cardApply'
 import user from './models/user'

@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 // 项目组件
 import Login from '@/containers/login'
+import Status404 from '@/components/Status404'
 
 import Home from '@/containers/home'
 import Mine from '@/containers/mine/mine'
@@ -22,14 +23,16 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+		{path:"*",name:"404",component:Status404},
 		{
 			path: '/',
 			name: '目录',
 			component: Layout,
 			children:[
-				{path:"",name:"首页",component:Home},
+				{path:"",redirect:'/index'},
 				{path:"/index",name:"首页",component:Home},
-				{path:"/mine",name:"我的",component:Mine}
+				{path:"/mine",name:"我的",component:Mine},
+				
 			]
 		},
 		{

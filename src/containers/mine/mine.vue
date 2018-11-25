@@ -8,28 +8,26 @@
 				<i class="icon icon-pen"></i>编辑资料
 			</router-link>	
 		</div>
-		<div class="longLines">
+		<div class="longLines" style="margin-top: 10px;">
 			<ul class="line1">
 				<li>
 					<router-link to="cardapply/p1">
 						<i class="icon icon-bell left"></i>
-						<span>系统消息</span>
+						<label>系统消息</label>
 						<i class="icon icon-right"></i>
 					</router-link>
 				</li>
 				<li>
 					<router-link to="cardapply/p1">
 						<i class="icon icon-card left"></i>
-						<span>关于福宝</span>
+						<label>关于福宝</label>
 						<i class="icon icon-right"></i>
 					</router-link>
 				</li>
 				<li>
-					<router-link to="set/main">
-						<i class="icon icon-set left"></i>
-						<span>版本号</span>
-						<i class="num">3.0.2</i>
-					</router-link>
+					<i class="icon icon-set left"></i>
+					<label>版本号</label>
+					<i class="num">3.0.2</i>
 				</li>
 			</ul>
 		</div>

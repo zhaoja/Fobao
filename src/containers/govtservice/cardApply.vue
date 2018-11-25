@@ -1,17 +1,24 @@
 <template>
 	<div class="cardContainer">
-		<Header/>
+		<Header :topName="topName"/>
 		<router-view/>
 	</div>
 </template>
 
 <script>
+	import { mapState } from 'vuex'
 	import Header from '../../components/Header.vue'
 	
 	export default {
 		components:{
 			Header
-		}
+		},
+		computed: {
+			...mapState({
+				topName: state => state.cardApply.topName,
+			})
+		},
+		
 	}
 </script>
 
@@ -21,6 +28,6 @@
 		width: 100%;
 		overflow: auto;
 		position: absolute;
-		/*background: #ffffff;*/
+		background: #ffffff;
 	}
 </style>

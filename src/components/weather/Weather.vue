@@ -1,10 +1,9 @@
 <template>
 		<div class="weather">
- 					<span>{{forecast.low}}</span>~
-					<span>{{forecast.high}}</span>℃
+ 					今日气温{{forecast.low}}
+					~{{forecast.high}}℃
 					<span>{{forecast.weather}}</span>
-					
-					当前<span>{{forecast.temp}} </span>℃
+					当前 <span>{{forecast.temp}} </span>℃
 					<!-- {{forecast.text}} -->
 					<!-- <span>{{forecast.temp}}℃</span> -->
 		   <!-- <img src="http://l.yimg.com/a/i/us/we/52/26.gif"/> -->
@@ -89,8 +88,10 @@
 </script>
 
 <style>
- 
-.wea_img {height: 150px;width: 100%;background-image: url(2.png);margin-bottom: 13px;}
+
+.wea_img {height: 150px;width: 100%;
+/*background-image: url(2.png);*/
+margin-bottom: 13px;}
 .a1 {background-position: 58px -12px}
 .a2 {background-position: -132px -12px}
 .a3 {background-position: -319px -12px}

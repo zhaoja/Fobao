@@ -7,18 +7,20 @@
 			</li>
 			<li>
 				<span>发证机关: </span>
-				<select class="mui-btn mui-btn-block" >
+				<select class="" >
 					<option name="" value="">--请选择--</option>
 					<option></option>
 				</select>
 			</li>
 			 
-			<li class="block" style="position: relative;">
+			<li class="block">
 				<div style="padding-left: 20px;">身份证照片: </div>
-				<uploader :src="'/api/test'" tips="证件正面照"></uploader>  
-				
-				<uploader :src="'/api/test'" tips="证件背面照"></uploader>  
-				 
+				<div class="list-uploader">
+					
+					<uploader :src="'/api/test'" tips="证件正面照"></uploader>  
+					
+					<uploader :src="'/api/test'" tips="证件背面照"></uploader>  
+				 </div>
 			</li>
 			<!-- 北京户籍 -->
 			<li class="block" v-if="bjhouse">
@@ -117,47 +119,54 @@
 	.block{
 		display: block !important;
 	}
-	
-	.operation-box{
-		line-height:0px !important
-		
-	}
-	 
-	.vue-uploader{
-		border-left: 0px!important;
-		border-right:0px!important;
-		border-bottom:0px!important;
-		.file-list .file-item{
-			width: 100% !important;
-			text-align: left !important;
-			img {
-				width: 200px !important;
-				height: 120px !important;
-				margin-left: 10px;
-			}
-			.file-name{
-				display: none !important;
-			}
-		}
-		.upload-func{
-			padding:5px !important;
-			button{
-				padding: 0px 8px !important;
-				height: 30px !important;
-				line-height: 30px !important;
-				font-size: 14px !important;
-			} 
-		}
-		.add {
-			width: 200px !important;
-			height: 120px !important;
-			margin-left: 10px; 
-			line-height: 120px !important; 
-// 			span{
-// 				display: none;
+// 	
+// 	.operation-box{
+// 		line-height:0px !important
+// 		
+// 	}
+	 .list-uploader{
+		 width: 100%;
+		 .vue-uploader{
+			 width: 49%;
+			 float: left;
+			 border:1px solid  #00AA00;
+		 }
+	 }
+// 	.vue-uploader{
+// 		border-left: 0px!important;
+// 		border-right:0px!important;
+// 		border-bottom:0px!important;
+// 		.file-list .file-item{
+// 			width: 100% !important;
+// 			text-align: left !important;
+// 			img {
+// 				width: 200px !important;
+// 				height: 120px !important;
+// 				margin-left: 10px;
 // 			}
-		}
-	}
+// 			.file-name{
+// 				display: none !important;
+// 			}
+// 		}
+// 		.upload-func{
+// 			padding:5px !important;
+// 			button{
+// 				padding: 0px 8px !important;
+// 				height: 30px !important;
+// 				line-height: 30px !important;
+// 				font-size: 14px !important;
+// 			} 
+// 		}
+// 		.add {
+// 			width: 100% !important;
+// 			height: 120px !important;
+// 			margin-left: 10px; 
+// 			line-height: 120px !important; 
+// // 			span{
+// // 				display: none;
+// // 			}
+// 		}
+// 	}
   
 	 
 

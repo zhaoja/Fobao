@@ -262,15 +262,15 @@ $font18:18px;
         background: #ffffff;
         height: 42px;
         padding: 0 15px;
-        font-size: 12px;
         color: #666666;
         display: flex;
         align-self: center;
         .news .weather {
+			font-size: 13px !;
             height: 100%;
             line-height: 40px;
-            font-size: 15px;
             margin-left: 10px;
+			color: $col6;
         }
         span {
             color: #FF4400;
@@ -301,10 +301,10 @@ $font18:18px;
                     width: 100%;
                 }
                 .big a {
-                    padding: 30px 10px
+                    padding: 26px 10px
                 }
                 a {
-                    padding: 14px 10px;
+                    padding: 10px 10px;
                 }
             }
             li {
@@ -325,15 +325,14 @@ $font18:18px;
                         }
                         span:nth-child(2) {
                             color: #999999;
-                            font-size: 10px;
-                            -webkit-transform: scale(0.89);
-                            display: block;
-                            -webkit-text-size-adjust: none;
-                            font-size: 10px;
-                            left: 0;
-                            position: absolute;
+                            font-size: 12px;
+                            // -webkit-transform: scale(0.89);
+                            // display: block;
+                            // -webkit-text-size-adjust: none;
+                            // left: 0;
+                            // position: absolute;
                             letter-spacing: -1px;
-                            padding-left: 8px;
+                            // padding-left: 8px;
                         }
                     }
                 }
@@ -351,26 +350,28 @@ $font18:18px;
 }
 
 .capply {
-    padding: 20px 22px;
-    font-size: 16px;
+    // padding: 20px 15px;
     color: #333333;
     ul {
-        margin: 0px 0 20px 0;
+        // margin: 0px 0 15px 0;
         li span {
             margin-left: 22px;
         }
     }
-    .oriangeb li {
-        height: 57px;
-        line-height: 57px;
-        background: rgba(254, 76, 64, 0.1);
-        margin-bottom: 14px;
-        width: 100%;
-        a {
-            width: 100%;
-            padding-left: 20px;
-        }
-    }
+    .oriangeb{
+		margin: 20px 22px;
+		 li {
+			height: 55px;
+			line-height: 55px;
+			background: rgba(254, 76, 64, 0.1);
+			margin-bottom: 15px;
+			width: 100%;
+			a {
+				width: 100%;
+				padding-left: 20px;
+			}
+		}
+	}
     li {
         display: flex;
         span {
@@ -379,7 +380,7 @@ $font18:18px;
         input,
         select {
             flex: 1;
-            height: 38px;
+            height: 35px;
             align-self: center;
             margin-right: 20px;
             padding-left: 10px;
@@ -387,24 +388,31 @@ $font18:18px;
         button {
             background: #FE4C40;
             color: #ffffff;
-            font-size: 16px;
             border-radius: 4px;
         }
+		select{background: $white;}
     }
-    .grayb li {
-        // min-height: 57px;
-        line-height: 57px;
-        background: rgba(245, 245, 245, 1);
-        margin-bottom: 14px;
-        width: 100%;
-        border-radius: 4px;
-        button {
-            width: 100%;
-            height: 57px;
-        }
-    }
+    .grayb {
+		margin: 20px 15px;
+		p{
+			margin-bottom: 20px;
+			span{
+				color: $orange;
+			}
+		}
+		li {
+			line-height: 50px;
+			background: rgba(245, 245, 245, 1);
+			margin-bottom: 15px;
+			width: 100%;
+			border-radius: 4px;
+			button {
+				width: 100%;
+				height: 50px;
+			}
+		}
+	}
     input {
-        font-size: 16px;
         background: transparent;
     }
 }
@@ -415,7 +423,6 @@ $font18:18px;
         background-size: 100% 100%;
         color: #F3F3F3;
         text-align: center;
-        height: 200px;
         position: relative;
         button{
             position: absolute;
@@ -445,6 +452,7 @@ $font18:18px;
             padding: 0 10px;
             font-size: 14px;
             line-height: 25px;
+			margin-bottom: 20px;
         }
     }
     .longLines {
@@ -544,9 +552,9 @@ $font18:18px;
 
 .icon-card2 {
     height: 45px;
-    width: 40px;
+    width: 45px;
     display: inline-block;
-    background-position-x: -70px;
+    background-position-x: -67px;
     background-position-y: -11px;
     background-size: 370px;
 }

@@ -1,7 +1,8 @@
 export default {
 	state: {
+		topName:"制卡申请",
 		certificate: {
-			name:'佳',
+			name:'',
 			cardtype:'',
 			cardnum:'',
 			cardunit:'',
@@ -25,7 +26,8 @@ export default {
 			economysorce:'',
 			income:'',
 			medicaltype:'',
-			selfcare:''
+			selfcare:'',
+			type:''
 		},
 		certificateType:[
 			{name:'内地居民身份证',value:''},

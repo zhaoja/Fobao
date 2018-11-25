@@ -60,7 +60,7 @@
 				{option:'邮编',type:'input',value:'请输入邮编',param: this.certificate.zipcode },
 				{option:'联系方式（手机号）',type:'input',value:'请输入手机号',param: this.certificate.phone },
 				{option:'紧急联系人',type:'input',value:'请输入紧急联系人',param: this.certificate.linkman },
-				{option:'紧急联系人手机号',type:'input',value:'请输入紧急联系人手机号',param: this.certificate.linkmanphone },
+				{option:'紧急联系人手机号',type:'input',value:'紧急联系人手机号',param: this.certificate.linkmanphone },
 				{option:'居住状况',type:'input',value:'请输入居住状况',param: this.certificate.juzhu_state },
 				{option:'文化程度',type:'input',value:'请输入文化程度',param: this.certificate.degree },
 				{option:'经济来源',type:'input',value:'请输入经济来源',param: this.certificate.economysorce },
