@@ -5,7 +5,7 @@
   "author": "zhaojia <332487429@qq.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js  --host 0.0.0.0",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js"
@@ -13,8 +13,10 @@
   "dependencies": {
     "axios": "^0.18.0",
     "lib-flexible": "^0.3.2",
+    "mint-ui": "^2.2.13",
     "npm": "^6.3.0",
     "vue": "^2.5.2",
+    "vue-awesome-mui": "^1.7.3",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },

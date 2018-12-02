@@ -1,24 +1,24 @@
 <template>
-	<div class="mine">
+	<div class="mine set">
 
 		<div class="longLines">
 			<ul class="line2">
 				<li>
-					<router-link to=" ">
+					<router-link to="">
 						<label>头像</label>
 						<img src="../../assets/images/person.png" alt="">
 						<i class="icon icon-right"></i>
 					</router-link>
 				</li>
 				<li>
-					<router-link to=" ">
+					<router-link :to="{path:'update',name:'信息修改' ,params:{name:'name',cname:'姓名'}}">
 						<label>姓名</label>
 						<span>{{userInfo.name}}</span>
 						<i class="icon icon-right"></i>
 					</router-link>
 				</li>
 				<li>
-					<router-link to="/set/main">
+					<router-link :to="{path:'update',name:'信息修改' ,params:{name:'phone',cname:'手机号'}}">
 						<label>手机号</label>
 						<span>{{userInfo.phone}}</span>
 						<i class="icon icon-right"></i>
@@ -27,16 +27,16 @@
 			</ul>
 			<ul class="line2">
 				<li>
-					<router-link to=" ">
+					<router-link :to="{path:'update',name:'信息修改' ,params:{name:'idCard',cname:'身份证号'}}">
 						<label>身份证号</label>
-						<span>{{userInfo.idCard}}</span>
+						<span>{{this.userInfo.idCard == ""?'未认证':'已认证'}}</span>
 						<i class="icon icon-right"></i>
 					</router-link>
 				</li>
 				<li>
-					<router-link to=" ">
+					<router-link :to="{path:'update',name:'信息修改' ,params:{name:'oddCard',cname:'养老助残卡号'}}">
 						<label>养老助残卡号</label>
-						<span>{{userInfo.oddCard}}</span>
+						<span>{{this.userInfo.oddCard == ""?'未认证':'已认证'}}</span>
 						<i class="icon icon-right"></i>
 					</router-link>
 				</li>
@@ -46,17 +46,22 @@
 </template>
 
 <script>
-	import {
-		mapState
-	} from "vuex";
+	import { mapState } from "vuex";
 
 	export default {
 		computed: {
 			...mapState({
 				userInfo: state => state.user.userInfo,
 			}),
-
-		} 
+		},
+		data() {
+			return {
+			 
+			}
+		},
+		mounted() {
+			 
+		}
 	}
 </script>
 

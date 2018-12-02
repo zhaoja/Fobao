@@ -13,11 +13,17 @@ import 'lib-flexible'
 
 import cardApply from './models/cardApply'
 import user from './models/user'
+import system from './models/system'
 /*  eslint-disable no-new */
 Vue.use(Vuex)
-// 基础滚动
-import sliderbasic from '@/components/slider/slider_basic'
-// new Vue(sliderbasic) // eslint-disable-line
+
+//mint-ui 地址：http://mint-ui.github.io/docs/#/zh-cn2
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+Vue.use(MintUI)
+
+import Mui from 'vue-awesome-mui';
+Vue.use(Mui);
 
 Vue.config.productionTip = false
  
@@ -26,10 +32,20 @@ Vue.config.productionTip = false
    modules: {
      cardApply: cardApply,
      user: user,
+     system: system,
  
    }
  })
- 
+ router.beforeEach((to, from, next) => {    
+    // chrome
+    document.body.scrollTop = 0
+    // firefox
+    document.documentElement.scrollTop = 0
+    // safari
+    window.pageYOffset = 0
+    next()
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

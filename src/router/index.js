@@ -3,21 +3,31 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 // 项目组件
 import Login from '@/containers/login'
+import Layout from '@/containers/Layout'
 import Status404 from '@/components/Status404'
 
 import Home from '@/containers/home'
 import Mine from '@/containers/mine/mine'
-import Set from '@/containers/mine/set'
-import SetMain from '@/containers/mine/setMain'
-import SetSelf from '@/containers/mine/setSelf'
 
-import Layout from '@/containers/Layout'
+import RumorCenter from '@/containers/rumorcenter/rumorCenter'
+import RumorDetail from '@/containers/rumorcenter/rumorDetail'
+
+import Set from '@/containers/mine/set'
+import SysMes from '@/containers/mine/sysMes'
+import AboutFB from '@/containers/mine/aboutFb'
+import SysMesDtails from '@/containers/mine/sysMesDtails'
+
+import SetSelf from '@/containers/mine/setSelf'
+import SetSelfUpdate from '@/containers/mine/setSelfUpdate'
+
+// 
 import CardApply from '@/containers/govtservice/cardApply'
 import CardApply1 from '@/containers/govtservice/cardApply_p1'
 import CardApply2 from '@/containers/govtservice/cardApply_p2'
 import CardApply3 from '@/containers/govtservice/cardApply_p3'
 import CardApply4 from '@/containers/govtservice/cardApply_p4'
-
+import Function from '@/containers/govtservice/function'
+// 
  
 Vue.use(Router)
 
@@ -31,8 +41,8 @@ export default new Router({
 			children:[
 				{path:"",redirect:'/index'},
 				{path:"/index",name:"首页",component:Home},
-				{path:"/mine",name:"我的",component:Mine},
-				
+				{path:"/rumorcenter",name:"辟谣中心",component:RumorCenter},
+				{path:"/mine",name:"我的",component:Mine}
 			]
 		},
 		{
@@ -46,12 +56,16 @@ export default new Router({
 			component:Set,
 			children:[
 				{path:"/set/self",name:"个人设置",component:SetSelf},
-				{path:"/set/main",name:"系统设置",component:SetMain},
-			]
-		},
-		{
+				{path:"/set/update",name:"信息修改",component:SetSelfUpdate},
+				
+				{path:"/set/sysMes",name:"系统消息",component:SysMes},
+				{path:"/set/sysMesDt",name:"系统消息详情",component:SysMesDtails},
+				{path:"/set/aboutFB",name:"关于福宝",component:AboutFB}
+			]    
+		},       
+		{      
 			path:"/cardapply",
-			name:"制卡申请",
+			// name:"制卡申请",
 			component:CardApply,
 			children:[
 				{path:"/cardapply/p1",name:"制卡申请1",component:CardApply1},
@@ -59,7 +73,19 @@ export default new Router({
 				{path:"/cardapply/p3",name:"制卡申请3",component:CardApply3},
 				{path:"/cardapply/p4",name:"制卡申请4",component:CardApply4},
 			]
-		}
-		
-  ]
+		},
+		{      
+			path:"/function",
+			name:"功能介绍",
+			component:Function,
+		},
+		{
+			path:"/rumorCenter/rumorDt",
+			name:"辟谣详情",
+			component:RumorDetail 
+		}, 
+  ],
+	scrollBehavior (to, from, savedPosition) {
+			return { x: 0, y: 0 }
+	}
 })

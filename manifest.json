@@ -112,8 +112,10 @@
         "LivePusher" : {
             "description" : "直播推流"
         },
-        "Payment" : {},
-        "Share" : {}
+        "Share" : {},
+        "Fingerprint" : {},
+        "OAuth" : {},
+        "Payment" : {}
     },
     "plus" : {
         "splashscreen" : {
@@ -197,6 +199,7 @@
                     "<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>",
                     "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
                     "<uses-permission android:name=\"android.permission.SEND_SMS\"/>",
+                    "<uses-permission android:name=\"android.permission.USE_FINGERPRINT\"/>",
                     "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
                     "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",

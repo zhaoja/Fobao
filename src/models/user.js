@@ -7,12 +7,13 @@ const url = 'http://aaa.com'
 export default {
 	state: {
 		topName:"设置",
+		logStatus:1,
 		userInfo:{
-			phone:"132****3234",	//电话
+			phone:"143xxxx0990",	//电话
 			verifiyCode:"",	//验证码 
 			name:'李宝库',
-			idCard:'已绑定',
-			oddCard:'未绑定'
+			idCard:'110786666786765667',
+			oddCard:'786678999877665'
 			// uid: localStorage.userid,  //用户id
 			 
 		}

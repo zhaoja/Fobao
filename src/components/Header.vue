@@ -1,6 +1,8 @@
 <template>
 	<div class="header">
-		<i class="icon icon-back" @click="$router.back(-1)"></i>
+		<div @click="$router.back(-1)">
+		<i class="icon icon-back"></i>
+		</div>
 		{{topName}}
 	</div>
 </template>

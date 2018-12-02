@@ -38,6 +38,9 @@ module.exports = {
       '@': resolve('src'),
     }
   },
+	externals: {
+		"BMap": "BMap"
+	},
   module: {
     rules: [
       ...(config.dev.useEslint ? [createLintingRule()] : []),
