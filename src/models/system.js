@@ -31,17 +31,7 @@ export default {
 						{id:11,title:"吃红枣、阿胶能补血吗？营养师：错，别再被这3个养生谣言欺骗了",picUrl:[], date:'星期二',time:'14:40'},
 						{id:12,title:"手机经常开关机到底好不好？真相来了",
 							picUrl:['./static/images/tupian/422x.png','./static/images/tupian/522x.png','./static/images/tupian/622x.png'],
-							date:'星期一',time:'14:40'},
-						{id:20,title:"中间断交了几年社保，前期交的社保以后怎么算？这个您需多注意",picUrl:['./static/images/tupian/722x.png'],date:'昨天 ',time:'14:40'},
-						{id:21,title:"吃红枣、阿胶能补血吗？营养师：错，别再被这3个养生谣言欺骗了",picUrl:[], date:'星期二',time:'14:40'},
-						{id:22,title:"手机经常开关机到底好不好？真相来了",
-							picUrl:['./static/images/tupian/422x.png','./static/images/tupian/522x.png','./static/images/tupian/622x.png'],
-							date:'星期一',time:'14:40'},
-						{id:210,title:"中间断交了几年社保，前期交的社保以后怎么算？这个您需多注意",picUrl:['./static/images/tupian/722x.png'],date:'昨天 ',time:'14:40'},
-						{id:211,title:"吃红枣、阿胶能补血吗？营养师：错，别再被这3个养生谣言欺骗了",picUrl:[], date:'星期二',time:'14:40'},
-						{id:212,title:"手机经常开关机到底好不好？真相来了",
-							picUrl:['./static/images/tupian/422x.png','./static/images/tupian/522x.png','./static/images/tupian/622x.png'],
-							date:'星期一',time:'14:40'},
+							date:'星期一',time:'14:40'}
 					]
 				},
 				programContentList2:{

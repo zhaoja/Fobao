@@ -9,10 +9,12 @@
 		<meta content="yes" name="apple-mobile-web-app-capable" />
 		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
 		<meta content="telephone=no" name="format-detection" />
+		
+		<script type="text/javascript" src="./static/tab-swiper-master/js/touch.min.js"></script>
+		<script type="text/javascript" src="./static/tab-swiper-master/js/tabSwiper.es5.min.js"></script>
+		
+		<!-- <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=nSxiPohfziUaCuONe4ViUP2N"></script> -->
 
-		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=nSxiPohfziUaCuONe4ViUP2N"></script>
-
-		<title>fobao</title>
 		<style>
 			* {
 				margin: 0;
@@ -67,21 +69,46 @@
       });
       // //首页返回键处理
       // //处理逻辑：1秒内，连续两次按返回键，则退出应用；
-      var first = null;
+      var firstIntoIndex = true;
       mui.back = function() {
-          //首次按键，提示  再按一次退出应用
-          if (!first) {
-              first = new Date().getTime();//记录第一次按下回退键的时间
-              mui.toast('再按一次退出应用');//给出提示
-              history.go(-1)//回退到上一页面
-              setTimeout(function() {//1s中后清除
-                  first = null;
-              }, 1000);
-          } else {
-              if (new Date().getTime() - first < 1000) {//如果两次按下的时间小于1s，
-                  plus.runtime.quit();//那么就退出app
+				if (location.href.indexOf("#/index") > 0 ) {
+						if (firstIntoIndex) {
+							mui.toast('再按一次退出应用');//给出提示\
+							firstIntoIndex = false
+							window.setTimeout( () => {
+								firstIntoIndex = true
+							}, 1000)
+						} else {
+							plus.runtime.quit();//那么就退出app
+						}
+ 				}
+// 				else {
+// 					history.back();
+// 					// history.go(-1)//回退到上一页面
+// 				}
+			};
 
-      } } };
+				
+          //首次按键，提示  再按一次退出应用
+//           if (!first) {
+//               first = new Date().getTime();//记录第一次按下回退键的时间
+//               //判断是不是首页
+// 							if(location.href.indexOf("#/index") > 0 ){
+// 								mui.toast('再按一次退出应用');//给出提示
+// 							}
+//               history.go(-1)//回退到上一页面
+//               setTimeout(function() {//1s中后清除
+//                   first = null;
+//               }, 1000);
+//           } else {
+//               if (new Date().getTime() - first < 1000) {//如果两次按下的时间小于1s，
+//                   plus.runtime.quit();//那么就退出app
+// 										
+//					} } 
+
+			
+			
+			
     </script>
 
 	</body>

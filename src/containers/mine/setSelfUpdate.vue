@@ -23,7 +23,7 @@
 			})
 		} ,
 		mounted() {
-			console.log($route.params.name)
+			 
 		},
 		methods:{
 			setUpdate(a){

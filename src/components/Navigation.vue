@@ -43,7 +43,7 @@
 		},
 		methods: {
 			toMine() {
-				console.log(this.systemInfoRead)
+				// console.log(this.systemInfoRead)
 				this.systemInfoRead = 0
 			}
 		}

@@ -252,6 +252,7 @@ $font18:18px;
     bottom: 0;
     width: 100%;
     background: #fff;
+		z-index: 3;
     li {
         width: 33%;
         float: left;
@@ -359,8 +360,8 @@ $font18:18px;
                 width: 100%;
             }
             li {
-				width: 100%;
-				margin-bottom: -1px;
+								width: 100%;
+								// margin-bottom: -1px;/* no */
                 position: relative;
                 a {
                     display: flex;
@@ -700,10 +701,12 @@ $font18:18px;
     .content {
         margin-top: 65px;
 				position: relative;
+				height: calc( 100% - 95px);
 				.page-tab-container{
 					margin-top: 45px;
 					margin-bottom: 50px;
 					position: absolute;
+					background: #fff;
 
 				}
 			.nav{
@@ -747,6 +750,7 @@ $font18:18px;
 					margin: 15px 15px 0;
 					padding-bottom: 15px;
 					border-bottom: 1px solid $colf5;
+					background:#fff;
 					.time {
 							clear: both;
 							line-height: 10px;

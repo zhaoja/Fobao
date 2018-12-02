@@ -2,85 +2,100 @@
 	<div class="news">
 		<Header :topName="topName" />
 		<div class="content">
-
-			<div class="nav">
-				<div class="navInner">
-					<mt-button size="small" :class="'tab-container'+pro.id" @click="getType('tab-container'+pro.id)"
-					 @click.native.prevent="active = 'tab-container'+pro.id" v-for="pro in program" :key="pro.name">{{pro.cname}}</mt-button>
-				</div>
+			<div class="tabs">
+				<span class="active">辟谣</span>
+				<span>养老政策</span>
+				<span>舆情</span>
+				<span>老人福利</span>
 			</div>
+			<div id="box">
+				<div class="pullDownHtml">
+					<div class="pullDownshow1">
+						<!-- 下拉刷新 -->
+						<mt-spinner type="triple-bounce" color="#fe4c40"></mt-spinner>
+					</div>
+					<div class="pullDownshow2">
+						<!-- 正在刷新 -->
+						<mt-spinner type="triple-bounce" color="#fe4c40"></mt-spinner>
+					</div>
+				</div>
+				<div class="pullUpHtml">
+					<div class="pullUpHtmlshow1">
+						<!-- 上拉加载 -->
+						<mt-spinner type="triple-bounce" color="#fe4c40"></mt-spinner>
+					</div>
+					<div class="pullUpHtmlshow2">
+						<!-- 正在加载 -->
+						<mt-spinner type="triple-bounce" color="#fe4c40"></mt-spinner>
+					</div>
+				</div>
+				<div class="box">
+					<div class="tab-container">
+						<div class="s-pull">
+							
+							<ul>
+								<li v-for="n in list1.list" class="list" :key="n.id">
+									<router-link to="rumorCenter/rumorDt">
+										<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
+										<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
+											<img :src="p" v-for="p in n.picUrl" :key="p" />
+										</div>
 
-			<div class="page-tab-container" 
-			@touchstart='touchStart' 
-			@touchmove='touchMove'
-			@touchend='touchEnd'>
-				<mt-tab-container class="page-tabbar-tab-container" v-model="active"  swipeable>
-					<mt-tab-container-item :id="'tab-container'+list1.type">
+										<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
+									</router-link>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="tab-container">
+						<div class="s-pull">
+							<ul>
+								<li v-for="n in list2.list" class="list" :key="n.id">
+									<router-link to="rumorCenter/rumorDt">
+										<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
+										<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
+											<img :src="p" v-for="p in n.picUrl" :key="p" />
+										</div>
 
-						<mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="false"
-						 ref="loadmore">
+										<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
+									</router-link>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="tab-container">
+						<div class="s-pull">
+							<ul>
+								<li v-for="n in list3.list" class="list" :key="n.id">
+									<router-link to="rumorCenter/rumorDt">
+										<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
+										<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
+											<img :src="p" v-for="p in n.picUrl" :key="p" />
+										</div>
 
-							<div v-for="n in list1.list" class="list" :key="n.id">
-								<router-link to="rumorCenter/rumorDt">
-									<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
-									<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
-										<img :src="p" v-for="p in n.picUrl" :key="p" />
-									</div>
+										<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
+									</router-link>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="tab-container">
+						<div class="s-pull">
+							<ul>
+								<li v-for="n in list4.list" class="list" :key="n.id">
+									<router-link to="rumorCenter/rumorDt">
+										<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
+										<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
+											<img :src="p" v-for="p in n.picUrl" :key="p" />
+										</div>
 
-									<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
-								</router-link>
-							</div>
-						</mt-loadmore>
-					</mt-tab-container-item>
-					<mt-tab-container-item :id="'tab-container'+list2.type">
-
-						<mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
-
-							<div v-for="n in list2.list" class="list" :key="n.id">
-								<router-link to="rumorCenter/rumorDt">
-									<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
-									<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
-										<img :src="p" v-for="p in n.picUrl" />
-									</div>
-									<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
-								</router-link>
-							</div>
-						</mt-loadmore>
-					</mt-tab-container-item>
-					<mt-tab-container-item :id="'tab-container'+list3.type">
-
-						<mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
-
-							<div v-for="n in list3.list" class="list" :key="n.id">
-								<router-link to="rumorCenter/rumorDt">
-									<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
-									<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
-										<img :src="p" v-for="p in n.picUrl" />
-									</div>
-									<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
-								</router-link>
-							</div>
-						</mt-loadmore>
-					</mt-tab-container-item>
-					<mt-tab-container-item :id="'tab-container'+list4.type">
-
-						<mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
-
-							<div v-for="n in list4.list" class="list" :key="n.id">
-								<router-link to="rumorCenter/rumorDt">
-									<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
-									<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
-										<img :src="p" v-for="p in n.picUrl" />
-									</div>
-									<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
-								</router-link>
-							</div>
-						</mt-loadmore>
-
-					</mt-tab-container-item>
-
-				</mt-tab-container>
-
+										<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
+									</router-link>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -107,26 +122,79 @@
 		},
 		data() {
 			return {
-				active: 'tab-container1',
+				// active: 'tab-container1',
 				topName: "辟谣中心",
 				allLoaded: false,
-				
-				isShow: false,
-				startX: 0, //开始触摸的位置
-				moveX: 0, //滑动时的位置
-				endX: 0, //结束触摸的位置
-				disX: 0, //移动距离
-				slideEffect: '', //滑动时的效果,使用v-bind:style="deleteSlider"
-
-
 			};
 		},
 		mounted() {
 
-			var navBtn = document.getElementsByClassName("mint-button")[0];
-			navBtn.classList.add("navAction")
-			
-			document.getElementsByClassName("mint-loadmore-content")
+			var box = document.getElementById('box')
+			// var boxUl = box.getElementsByTagName("ul")[0]
+		 
+			var swiper = new TabSwiper(box, {
+				speed: 300,
+				threshold: 100,
+				isPullDown: true,
+				isPullUp: true,
+				closeInertia: false,
+				xThreshold: 0.3,
+				defaultPage: 0,
+				initCb: function() {
+					console.log('初始化完成')
+					var spans = document.querySelectorAll('.tabs span')
+					for (var i = 0; i < spans.length; i++) {
+						(function(page) {
+							spans[page].onclick = function() {
+								swiper.changePage(page)
+							}
+						})(i)
+					}
+				},
+				onRefreshStart: function() {
+					var pullDownshow1 = document.querySelector('.pullDownshow1')
+					var pullDownshow2 = document.querySelector('.pullDownshow2')
+					pullDownshow1.style.display = 'none'
+					pullDownshow2.style.display = 'block'
+					setTimeout(function() {
+						swiper.pullEnd(function(page) {
+							pullDownshow1.style.display = 'block'
+							pullDownshow2.style.display = 'none'
+							console.log('刷新结束----' + page)
+							
+						})
+					}, 1000)
+				},
+				onLoadStart: function() {
+					var pullUpHtmlshow1 = document.querySelector('.pullUpHtmlshow1')
+					var pullUpHtmlshow2 = document.querySelector('.pullUpHtmlshow2')
+					pullUpHtmlshow1.style.display = 'none'
+					pullUpHtmlshow2.style.display = 'block'
+					setTimeout(function() {
+						swiper.pullEnd(function(page) {
+							pullUpHtmlshow1.style.display = 'block'
+							pullUpHtmlshow2.style.display = 'none'
+							console.log('加载结束----' + page)
+						})
+					}, 1000)
+				},
+				onEnd: function(page) {
+					console.log('当前所在----' + page)
+					var spans = document.querySelectorAll('.tabs span')
+					for (var i = 0; i < spans.length; i++) {
+						if (i != page) spans[i].className = ''
+						else spans[i].className = 'active'
+					}
+				},
+				onTouchmove: function(page, e) {
+					console.log('正在拖动...')
+				}
+			})
+
+			// 					var navBtn = document.getElementsByClassName("mint-button")[0];
+			// 					navBtn.classList.add("navAction")
+			// 					
+			// 					document.getElementsByClassName("mint-loadmore-content")
 
 		},
 		methods: {
@@ -142,107 +210,93 @@
 				
 			},
 			loadBottom() {},
-			touchStart: function(ev) {
-// 				//console.log(1)
-				ev = ev || event;
-				// ev.preventDefault();
-// 				//                      console.log(ev.targetTouches);
-// 				//                      console.log(ev.changedTouches);
-				if (ev.touches.length == 1) { //tounches类数组，等于1时表示此时有只有一只手指在触摸屏幕
-					this.startX = ev.touches[0].clientX; // 记录开始位置
-				//	console.log(this.startX)
-				}
-			},
-			touchMove: function(ev) {
-				console.log(2)
-				ev = ev || event;
-				// ev.preventDefault();
-// // 				let btnWidth = this.$refs.remove.offsetWidth; //$refs 减少获取dom节点的消耗
-// // 				let btnImg = this.$refs.btnImg.offsetWidth;
-// // 				console.log(ev.targetTouches);
-// // 				console.log(ev.changedTouches);
-// 				if (ev.touches.length == 1) {
-// 					//滑动时距离浏览器左侧的距离
-// 					this.moveX = ev.touches[0].clientX;
-// 					
-// 					//实时的滑动的距离-起始位置=实时移动的位置
-// // 					this.disX = this.moveX - this.startX;
-// // 					if (this.disX < 0 || this.disX == 0) {
-// // 						this.slideEffect = 'transform:translateX(0px)';
-// // 					} else if (this.disX > 0) {
-// // 						this.slideEffect = 'transform:translateX(' + this.disX + 'px)';
-// // 
-// // 						// 最大也只能等于删除按钮宽度 
-// // 						if (this.disX >= btnWidth) {
-// // 							this.slideEffect = 'transform:translateX(' + (btnWidth - btnImg) + 'px)';
-// // 						}
-// // 					}
-// 				}
-			},
-			touchEnd: function(ev) {
-// 				//console.log(3)
-				ev = ev || event;
-				ev.preventDefault();
-// // 				let btnWidth = this.$refs.remove.offsetWidth;
-// // 				let btnImg = this.$refs.btnImg.offsetWidth;
-// 				//                      console.log(ev.changedTouches);
-				if (ev.changedTouches.length == 1) {
-					let endX = ev.changedTouches[0].clientX;
-					this.disX = endX - this.startX;
-					console.log(this.disX, 'this.disX')
-					if(this.disX>50||this.disX<-50){
-						console.log(111)
-						 
-					}else{
-						 
-					}
-					// console.log((btnWidth / 2), 'btnWidth/2');
-// 					if (this.disX < (btnWidth / 2)) {
-// 						this.slideEffect = 'transform:translateX(0px)';
-// 					} else {
-// 						this.slideEffect = "transform:translateX(" + (btnWidth - btnImg) + "px)";
-// 						//让字段显示出来，或者写你需要的逻辑
-// 						this.isShow = true
-					// }
-				}
-			}
-
-		},
-		watch: {
-			active: function(a) {
-				console.log(a, 999)
-				var navBtn = document.getElementsByClassName("mint-button");
-				for (let i = 0; i < navBtn.length; i++) {
-					navBtn[i].classList.remove("navAction")
-				}
-				var navBtn = document.getElementsByClassName(a)[0];
-				navBtn.classList.add("navAction")
-			}
 		}
+		// 			touchStart: function(ev) {
+		// // 				//console.log(1)
+		// 				ev = ev || event;
+		// 				// ev.preventDefault();
+		// // 				//                      console.log(ev.targetTouches);
+		// // 				//                      console.log(ev.changedTouches);
+		// 				if (ev.touches.length == 1) { //tounches类数组，等于1时表示此时有只有一只手指在触摸屏幕
+		// 					this.startX = ev.touches[0].clientX; // 记录开始位置
+		// 				//	console.log(this.startX)
+		// 				}
+		// 			},
+		// 			touchMove: function(ev) {
+		// 				console.log(2)
+		// 				ev = ev || event;
+		// 				// ev.preventDefault();
+		// // // 				let btnWidth = this.$refs.remove.offsetWidth; //$refs 减少获取dom节点的消耗
+		// // // 				let btnImg = this.$refs.btnImg.offsetWidth;
+		// // // 				console.log(ev.targetTouches);
+		// // // 				console.log(ev.changedTouches);
+		// // 				if (ev.touches.length == 1) {
+		// // 					//滑动时距离浏览器左侧的距离
+		// // 					this.moveX = ev.touches[0].clientX;
+		// // 					
+		// // 					//实时的滑动的距离-起始位置=实时移动的位置
+		// // // 					this.disX = this.moveX - this.startX;
+		// // // 					if (this.disX < 0 || this.disX == 0) {
+		// // // 						this.slideEffect = 'transform:translateX(0px)';
+		// // // 					} else if (this.disX > 0) {
+		// // // 						this.slideEffect = 'transform:translateX(' + this.disX + 'px)';
+		// // // 
+		// // // 						// 最大也只能等于删除按钮宽度 
+		// // // 						if (this.disX >= btnWidth) {
+		// // // 							this.slideEffect = 'transform:translateX(' + (btnWidth - btnImg) + 'px)';
+		// // // 						}
+		// // // 					}
+		// // 				}
+		// 			},
+		// 			touchEnd: function(ev) {
+		// // 				//console.log(3)
+		// 				ev = ev || event;
+		// 				ev.preventDefault();
+		// // // 				let btnWidth = this.$refs.remove.offsetWidth;
+		// // // 				let btnImg = this.$refs.btnImg.offsetWidth;
+		// // 				//                      console.log(ev.changedTouches);
+		// 				if (ev.changedTouches.length == 1) {
+		// 					let endX = ev.changedTouches[0].clientX;
+		// 					this.disX = endX - this.startX;
+		// 					console.log(this.disX, 'this.disX')
+		// 					if(this.disX>50||this.disX<-50){
+		// 						console.log(111)
+		// 						 
+		// 					}else{
+		// 						 
+		// 					}
+		// 					// console.log((btnWidth / 2), 'btnWidth/2');
+		// // 					if (this.disX < (btnWidth / 2)) {
+		// // 						this.slideEffect = 'transform:translateX(0px)';
+		// // 					} else {
+		// // 						this.slideEffect = "transform:translateX(" + (btnWidth - btnImg) + "px)";
+		// // 						//让字段显示出来，或者写你需要的逻辑
+		// // 						this.isShow = true
+		// 					// }
+		// 				}
+		// 			}
+		// 
+		// 		},
+		// 		watch: {
+		// 			active: function(a) {
+		// 				console.log(a, 999)
+		// 				var navBtn = document.getElementsByClassName("mint-button");
+		// 				for (let i = 0; i < navBtn.length; i++) {
+		// 					navBtn[i].classList.remove("navAction")
+		// 				}
+		// 				var navBtn = document.getElementsByClassName(a)[0];
+		// 				navBtn.classList.add("navAction")
+		// 			}
+		// 		}
 	};
 </script>
 
 <style lang="scss">
-	.page-loadmore-wrapper {
-		overflow: scroll
-	}
-
-	.mint-loadmore-top {
-		// margin-top: 0px !important;
-
-	}
-
-	.navAction .mint-button-text {
-		color: red;
-	}
-
 	.pic1 {
 		width: calc(100% - 33% - 20px);
 		float: left;
 	}
-
 	.picList0 {}
-
 	.picList1 {
 		float: right;
 		width: 33%;
@@ -265,5 +319,49 @@
 			margin-right: 2px;
 			height: 75px;
 		}
+	}
+
+	#box {
+		height: calc(100% - 60px);
+	}
+
+	.pullDownHtml,
+	.pullUpHtml {
+		height: 50px;
+		/* visibility: hidden; */
+		position: absolute;
+	}
+
+	.pullDownshow1,
+	.pullDownshow2,
+	.pullUpHtmlshow1,
+	.pullUpHtmlshow2 {
+		font: 14px/50px "黑体";
+		text-align: center;
+	}
+	.pullDownshow2,
+	.pullUpHtmlshow2 {
+		display: none;
+	}
+	li{
+		display: list-item;
+		text-align: -webkit-match-parent;
+	}
+	.tabs {
+		height: 45px;
+		display: flex;
+		background: #f5f5f5;
+	}
+
+	.tabs span {
+		flex: 1;
+		text-align: center;
+		line-height: 45px;
+		height: 45px;
+		display: inline-block;
+	}
+
+	.tabs span.active {
+		color: red;
 	}
 </style>
