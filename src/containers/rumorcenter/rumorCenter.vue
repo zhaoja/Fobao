@@ -110,7 +110,6 @@
 				active: 'tab-container1',
 				topName: "辟谣中心",
 				allLoaded: false,
-				loadTop:false,
 				
 				isShow: false,
 				startX: 0, //开始触摸的位置
@@ -134,14 +133,14 @@
 			getType(a) {
 
 			},
-// 			loadTop() {
-// 				if(false) {
-// 					this.$refs.loadmore.onTopLoaded();
-// 				}
-// 				console.log(this.$refs.loadmore)
-// 				return false
-// 				
-// 			},
+			loadTop() {
+				if(false) {
+					this.$refs.loadmore.onTopLoaded();
+				}
+				console.log(this.$refs.loadmore)
+				return false
+				
+			},
 			loadBottom() {},
 			touchStart: function(ev) {
 // 				//console.log(1)
@@ -157,7 +156,7 @@
 			touchMove: function(ev) {
 				console.log(2)
 				ev = ev || event;
-				ev.preventDefault();
+				// ev.preventDefault();
 // // 				let btnWidth = this.$refs.remove.offsetWidth; //$refs 减少获取dom节点的消耗
 // // 				let btnImg = this.$refs.btnImg.offsetWidth;
 // // 				console.log(ev.targetTouches);
