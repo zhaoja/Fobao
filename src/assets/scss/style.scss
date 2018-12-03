@@ -620,7 +620,7 @@ $font18:18px;
         background: #fff;
         height: 100%;
         position: absolute;
-        padding-top: 10px;
+//      padding-top: 10px;
         li {
             height: 70px;
             border-bottom: 1px solid $colf5;
@@ -629,7 +629,7 @@ $font18:18px;
                 display: flex;
                 align-items: center;
                 .listIcon {
-                    margin: 15px;
+                    margin: 13px 15px;
                 }
                 .listText {
                     height: 40px;
@@ -944,18 +944,18 @@ $font18:18px;
     width: 40px;
     height: 40px;
     display: inline-block;
-    background-position-x: -200px;
-    background-position-y: -83px;
-    background-size: 338px;
+    background-position-x: -220px;
+    background-position-y: -92px;
+    background-size: 368px;
 }
 
 .icon-bgbell {
     width: 40px;
     height: 40px;
     display: inline-block;
-    background-position-x: -156px;
-    background-position-y: -83px;
-    background-size: 338px;
+    background-position-x: -172px;
+    background-position-y: -92px;
+    background-size: 368px;
 }
 
 .icon-card {

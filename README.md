@@ -58,3 +58,4 @@ mac恢复隐藏命令：defaults write com.apple.finder AppleShowAllFiles -bool 
  
  学习[swagger](http://lubanapi.kabuzhu.com/ui/dist/#/yunpeng/post_api_ali_pay_alpay)
 
+ --host 0.0.0.0搭建远程服务

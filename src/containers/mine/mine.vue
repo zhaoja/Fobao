@@ -4,8 +4,7 @@
 			<button @click="logout()" v-if="logStatus!=0">退出登录</button>
 			<img src="../../assets/images/person.png" alt="" />
 			<div>{{userInfo.phone}}</div>
-
-			<router-link to="set/self" v-if="logStatus!=0">
+			<router-link to="set/user" v-if="logStatus!=0">
 				<i class="icon icon-pen"></i>编辑资料
 			</router-link>
 

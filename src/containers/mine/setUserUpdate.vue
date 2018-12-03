@@ -29,7 +29,7 @@
 			setUpdate(a){
 				console.log(a);
 				this.$router.push({
-					path: '/set/self'
+					path: '/set/user'
 				})
 			}
 		}

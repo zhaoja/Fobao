@@ -32,7 +32,6 @@
 				<div class="box">
 					<div class="tab-container">
 						<div class="s-pull">
-							
 							<ul>
 								<li v-for="n in list1.list" class="list" :key="n.id">
 									<router-link to="rumorCenter/rumorDt">
@@ -130,15 +129,15 @@
 		mounted() {
 
 			var box = document.getElementById('box')
-			// var boxUl = box.getElementsByTagName("ul")[0]
+// 			var boxUl = box.getElementsByTagName("ul")[0]
 		 
 			var swiper = new TabSwiper(box, {
 				speed: 300,
 				threshold: 100,
 				isPullDown: true,
 				isPullUp: true,
-				closeInertia: false,
-				xThreshold: 0.3,
+				closeInertia: true,
+				xThreshold: 0.1,
 				defaultPage: 0,
 				initCb: function() {
 					console.log('初始化完成')
@@ -191,10 +190,10 @@
 				}
 			})
 
-			// 					var navBtn = document.getElementsByClassName("mint-button")[0];
-			// 					navBtn.classList.add("navAction")
-			// 					
-			// 					document.getElementsByClassName("mint-loadmore-content")
+// 					var navBtn = document.getElementsByClassName("mint-button")[0];
+// 					navBtn.classList.add("navAction")
+// 					
+// 					document.getElementsByClassName("mint-loadmore-content")
 
 		},
 		methods: {
@@ -211,84 +210,85 @@
 			},
 			loadBottom() {},
 		}
-		// 			touchStart: function(ev) {
-		// // 				//console.log(1)
-		// 				ev = ev || event;
-		// 				// ev.preventDefault();
-		// // 				//                      console.log(ev.targetTouches);
-		// // 				//                      console.log(ev.changedTouches);
-		// 				if (ev.touches.length == 1) { //tounches类数组，等于1时表示此时有只有一只手指在触摸屏幕
-		// 					this.startX = ev.touches[0].clientX; // 记录开始位置
-		// 				//	console.log(this.startX)
-		// 				}
-		// 			},
-		// 			touchMove: function(ev) {
-		// 				console.log(2)
-		// 				ev = ev || event;
-		// 				// ev.preventDefault();
-		// // // 				let btnWidth = this.$refs.remove.offsetWidth; //$refs 减少获取dom节点的消耗
-		// // // 				let btnImg = this.$refs.btnImg.offsetWidth;
-		// // // 				console.log(ev.targetTouches);
-		// // // 				console.log(ev.changedTouches);
-		// // 				if (ev.touches.length == 1) {
-		// // 					//滑动时距离浏览器左侧的距离
-		// // 					this.moveX = ev.touches[0].clientX;
-		// // 					
-		// // 					//实时的滑动的距离-起始位置=实时移动的位置
-		// // // 					this.disX = this.moveX - this.startX;
-		// // // 					if (this.disX < 0 || this.disX == 0) {
-		// // // 						this.slideEffect = 'transform:translateX(0px)';
-		// // // 					} else if (this.disX > 0) {
-		// // // 						this.slideEffect = 'transform:translateX(' + this.disX + 'px)';
-		// // // 
-		// // // 						// 最大也只能等于删除按钮宽度 
-		// // // 						if (this.disX >= btnWidth) {
-		// // // 							this.slideEffect = 'transform:translateX(' + (btnWidth - btnImg) + 'px)';
-		// // // 						}
-		// // // 					}
-		// // 				}
-		// 			},
-		// 			touchEnd: function(ev) {
-		// // 				//console.log(3)
-		// 				ev = ev || event;
-		// 				ev.preventDefault();
-		// // // 				let btnWidth = this.$refs.remove.offsetWidth;
-		// // // 				let btnImg = this.$refs.btnImg.offsetWidth;
-		// // 				//                      console.log(ev.changedTouches);
-		// 				if (ev.changedTouches.length == 1) {
-		// 					let endX = ev.changedTouches[0].clientX;
-		// 					this.disX = endX - this.startX;
-		// 					console.log(this.disX, 'this.disX')
-		// 					if(this.disX>50||this.disX<-50){
-		// 						console.log(111)
-		// 						 
-		// 					}else{
-		// 						 
-		// 					}
-		// 					// console.log((btnWidth / 2), 'btnWidth/2');
-		// // 					if (this.disX < (btnWidth / 2)) {
-		// // 						this.slideEffect = 'transform:translateX(0px)';
-		// // 					} else {
-		// // 						this.slideEffect = "transform:translateX(" + (btnWidth - btnImg) + "px)";
-		// // 						//让字段显示出来，或者写你需要的逻辑
-		// // 						this.isShow = true
-		// 					// }
-		// 				}
-		// 			}
-		// 
-		// 		},
-		// 		watch: {
-		// 			active: function(a) {
-		// 				console.log(a, 999)
-		// 				var navBtn = document.getElementsByClassName("mint-button");
-		// 				for (let i = 0; i < navBtn.length; i++) {
-		// 					navBtn[i].classList.remove("navAction")
-		// 				}
-		// 				var navBtn = document.getElementsByClassName(a)[0];
-		// 				navBtn.classList.add("navAction")
-		// 			}
-		// 		}
 	};
+// 			touchStart: function(ev) {
+//      		console.log(1)
+// 				ev = ev || event;
+//   			ev.preventDefault();
+//                      console.log(ev.targetTouches);
+//                      console.log(ev.changedTouches);
+// 				if (ev.touches.length == 1) { //tounches类数组，等于1时表示此时有只有一只手指在触摸屏幕
+// 					this.startX = ev.touches[0].clientX; // 记录开始位置
+//   				console.log(this.startX)
+// 				}
+// 			},
+// 			touchMove: function(ev) {
+// 				console.log(2)
+// 				ev = ev || event;
+//   				 ev.preventDefault();
+// 				let btnWidth = this.$refs.remove.offsetWidth; //$refs 减少获取dom节点的消耗
+// 				let btnImg = this.$refs.btnImg.offsetWidth;
+// 				console.log(ev.targetTouches);
+// 				console.log(ev.changedTouches);
+// 				if (ev.touches.length == 1) {
+// 					//滑动时距离浏览器左侧的距离
+// 					this.moveX = ev.touches[0].clientX;
+// 					
+// 					//实时的滑动的距离-起始位置=实时移动的位置
+// 					this.disX = this.moveX - this.startX;
+// 					if (this.disX < 0 || this.disX == 0) {
+// 						this.slideEffect = 'transform:translateX(0px)';
+// 					} else if (this.disX > 0) {
+// 						this.slideEffect = 'transform:translateX(' + this.disX + 'px)';
+// 
+// 						// 最大也只能等于删除按钮宽度 
+// 						if (this.disX >= btnWidth) {
+// 							this.slideEffect = 'transform:translateX(' + (btnWidth - btnImg) + 'px)';
+// 						}
+// 					}
+// 				}
+// 			},
+// 			touchEnd: function(ev) {
+//      				console.log(3)
+// 				ev = ev || event;
+// 				ev.preventDefault();
+// 				let btnWidth = this.$refs.remove.offsetWidth;
+// 				let btnImg = this.$refs.btnImg.offsetWidth;
+//                      console.log(ev.changedTouches);
+// 				if (ev.changedTouches.length == 1) {
+// 					let endX = ev.changedTouches[0].clientX;
+// 					this.disX = endX - this.startX;
+// 					console.log(this.disX, 'this.disX')
+// 					if(this.disX>50||this.disX<-50){
+// 						console.log(111)
+// 						 
+// 					}else{
+// 						 
+// 					}
+// 					// console.log((btnWidth / 2), 'btnWidth/2');
+// 					if (this.disX < (btnWidth / 2)) {
+// 						this.slideEffect = 'transform:translateX(0px)';
+// 					} else {
+// 						this.slideEffect = "transform:translateX(" + (btnWidth - btnImg) + "px)";
+// 						//让字段显示出来，或者写你需要的逻辑
+// 						this.isShow = true
+// 					}
+// 				}
+// 			}
+// 
+// 		},
+// 		watch: {
+// 			active: function(a) {
+// 				console.log(a, 999)
+// 				var navBtn = document.getElementsByClassName("mint-button");
+// 				for (let i = 0; i < navBtn.length; i++) {
+// 					navBtn[i].classList.remove("navAction")
+// 				}
+// 				var navBtn = document.getElementsByClassName(a)[0];
+// 				navBtn.classList.add("navAction")
+// 			}
+// 		}
+
 </script>
 
 <style lang="scss">

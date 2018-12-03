@@ -17,9 +17,10 @@ import SysMes from '@/containers/mine/sysMes'
 import AboutFB from '@/containers/mine/aboutFb'
 import SysMesDtails from '@/containers/mine/sysMesDtails'
 
-import SetSelf from '@/containers/mine/setSelf'
-import SetSelfUpdate from '@/containers/mine/setSelfUpdate'
-
+import SetUser from '@/containers/mine/setUser'
+import SetUserUpdate from '@/containers/mine/setUserUpdate'
+import SetUserHead from '@/containers/mine/setUserHead'
+ 
 // 
 import CardApply from '@/containers/govtservice/cardApply'
 import CardApply1 from '@/containers/govtservice/cardApply_p1'
@@ -39,7 +40,7 @@ export default new Router({
 			name: '目录',
 			component: Layout,
 			children:[
-				{path:"",redirect:'/index'},
+//				{path:"",redirect:'/index'},
 				{path:"/index",name:"首页",component:Home},
 				{path:"/rumorcenter",name:"辟谣中心",component:RumorCenter},
 				{path:"/mine",name:"我的",component:Mine}
@@ -55,8 +56,9 @@ export default new Router({
 			name:"设置",
 			component:Set,
 			children:[
-				{path:"/set/self",name:"个人设置",component:SetSelf},
-				{path:"/set/update",name:"信息修改",component:SetSelfUpdate},
+				{path:"/set/user",name:"编辑资料",component:SetUser},
+				{path:"/set/update",name:"修改个人信息",component:SetUserUpdate},
+				{path:"/set/head",name:"修改头像",component:SetUserHead},
 				
 				{path:"/set/sysMes",name:"系统消息",component:SysMes},
 				{path:"/set/sysMesDt",name:"系统消息详情",component:SysMesDtails},

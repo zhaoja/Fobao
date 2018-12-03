@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Header :topName="topName" />
+		<Header :topName="$route.name" />
 		<router-view/>
 	</div>
 </template>
@@ -12,14 +12,7 @@
 	export default {
 		components:{
 			Header
-		},
-		computed: {
-			...mapState({
-				topName: state => state.user.topName,
-			})
-		},
-		
-		
+		}
 	}
 </script>
 
