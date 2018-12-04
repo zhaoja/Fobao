@@ -1,19 +1,19 @@
 <template>
 	<div class="wrapper">
-		<!--<div class="model" v-show="model">
+		<div class="model" v-show="model">
 			<div class="model-show" @click="model = false">
 				<img :src="modelSrc" alt="" @click="model = false">
 			</div>
-		</div>-->
+		</div>
 		<div class="content">
-			<!--<h1><a class="title" href="https://github.com/xyxiao001/vue-cropper" target="_blank">vue-cropper</a></h1>-->
-			<!--<iframe src="https://ghbtns.com/github-btn.html?user=xyxiao001&repo=vue-cropper&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>-->
-			<!--<div class="show-info">
+			<h1><a class="title" href="https://github.com/xyxiao001/vue-cropper" target="_blank">vue-cropper</a></h1>
+			<iframe src="https://ghbtns.com/github-btn.html?user=xyxiao001&repo=vue-cropper&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+			<div class="show-info">
 				<h2>install</h2>
 				<codes>
 					<div slot="body">{{ code0 }}</div>
 				</codes>
-			</div>-->
+			</div>
 			<div class="show-info">
 				<!--<h2>example1 基本例子 无限制</h2>-->
 				<div class="test test1">
@@ -39,10 +39,10 @@
 				</div>
 
 				<div class="pre">
-					<!-- <section class="pre-item">
+					 <section class="pre-item">
 						<p>固定大小 固定宽度100px</p>
 						<section v-html="previews.html"></section>
-					</section> -->
+					</section> 
 
 					<section class="pre-item">
 						<p>截图框大小</p>

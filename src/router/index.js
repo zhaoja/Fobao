@@ -57,14 +57,14 @@ export default new Router({
 			component:Set,
 			children:[
 				{path:"/set/user",name:"编辑资料",component:SetUser},
-				{path:"/set/update",name:"修改个人信息",component:SetUserUpdate},
-				{path:"/set/head",name:"修改头像",component:SetUserHead},
-				
+				{path:"/set/update",name:"修改个人信息",component:SetUserUpdate},				
 				{path:"/set/sysMes",name:"系统消息",component:SysMes},
 				{path:"/set/sysMesDt",name:"系统消息详情",component:SysMesDtails},
 				{path:"/set/aboutFB",name:"关于福宝",component:AboutFB}
 			]    
-		},       
+		}, 
+		{path:"/set/head",name:"修改头像",component:SetUserHead},
+
 		{      
 			path:"/cardapply",
 			// name:"制卡申请",
