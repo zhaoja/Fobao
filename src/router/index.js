@@ -28,8 +28,11 @@ import CardApply2 from '@/containers/govtservice/cardApply_p2'
 import CardApply3 from '@/containers/govtservice/cardApply_p3'
 import CardApply4 from '@/containers/govtservice/cardApply_p4'
 import Function from '@/containers/govtservice/function'
+import PhoneCard from '@/containers/govtservice/phoneCard'
 // 
- 
+
+import yidong from '@/containers/yidong/moveApp'
+
 Vue.use(Router)
 
 export default new Router({
@@ -37,10 +40,10 @@ export default new Router({
 		{path:"*",name:"404",component:Status404},
 		{
 			path: '/',
-			name: '目录',
+//			name: '目录',
 			component: Layout,
 			children:[
-//				{path:"",redirect:'/index'},
+				{path:"",redirect:'/index'},
 				{path:"/index",name:"首页",component:Home},
 				{path:"/rumorcenter",name:"辟谣中心",component:RumorCenter},
 				{path:"/mine",name:"我的",component:Mine}
@@ -81,10 +84,20 @@ export default new Router({
 			name:"功能介绍",
 			component:Function,
 		},
+		{      
+			path:"/phoneCard",
+			name:"北京通手机卡",
+			component:PhoneCard,
+		},
 		{
 			path:"/rumorCenter/rumorDt",
 			name:"辟谣详情",
 			component:RumorDetail 
+		}, 
+		{
+			path:"/yidong",
+			name:"移动H5+",
+			component:yidong 
 		}, 
   ],
 	scrollBehavior (to, from, savedPosition) {

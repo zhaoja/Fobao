@@ -3,7 +3,7 @@
 
 		<div class="broadcast">
 			<mt-swipe :auto="4000">
-				<mt-swipe-item v-for="sl in swipeList">
+				<mt-swipe-item v-for="(sl,index) in swipeList" :key="index">
 					<img :src="sl" />
 				</mt-swipe-item>
 			</mt-swipe>
@@ -66,13 +66,13 @@
 								</router-link>
 							</li>
 							<li class="small">
-								<router-link to="">
+								<a href="tel:96198">
 									<div class="module-name">
 										<span>卡片挂失</span>
 										<span>Card Checks</span>
 									</div>
 									<i class="icon icon-card5"></i>
-								</router-link>
+								 </a> 
 							</li>
 
 						</ul>
@@ -85,10 +85,11 @@
 		<div class="paragraph mt15">
 			<div class="title">其他业务</div>
 			<div class="body module1">
-				<a href="http://caihong.xi-an.xin/fw/public//?openId=oGhvywUDFK-ROqPAmRuHfRbDhQsw&appid=wx8f75fe4f9587d5fd&param1=&param2=&param3=&param4=&param5=&param6=">
-					<div><i class="icon icon-move"></i></div>
+				<router-link to="phoneCard">
+				<!--<a href="http://caihong.xi-an.xin/fw/public//?openId=oGhvywUDFK-ROqPAmRuHfRbDhQsw&appid=wx8f75fe4f9587d5fd&param1=&param2=&param3=&param4=&param5=&param6=">-->
+					<div style="margin-bottom: 3px;"><i class="icon icon-move"></i></div>
 					北京通手机卡
-				</a>
+				</router-link>
 			</div>
 		</div>
 	</div>

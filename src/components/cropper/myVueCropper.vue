@@ -245,7 +245,7 @@
 				this.option.cropData = data;
 			},
 			save(){
-				alert("已更新头像")
+				alert("已上传头像，尚未连接后台，暂不支持更新")
 				this.$router.push({path:"/set/user"})
 			}
 		},
@@ -261,119 +261,4 @@
 		}
 	};
 </script>
-
-<style>	 
-	.wrapper{
-	    position: fixed;
-	    width: 100%;
-	    top: 65px;
-	    height: calc(100% - 115px) ;
-	    background: #000000;
-	}
-	.content{
-		height: 100%;
-	}
-	.test{
-		height: 100%;
-	}
-	.vue-cropper{
-		background: #000 !important;
-	}
-	.show-info{height: 100%;}
-	.model {
-		position: fixed;
-		z-index: 10;
-		width: 100vw;
-		height: 100vh;
-		overflow: auto;
-		top: 0;
-		left: 0;
-		background: rgba(0, 0, 0, 0.8);
-	}
-	
-	.model-show {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 100vw;
-		height: 100vh;
-		text-align: center;
-	}
-	
-	.model img {
-		display: block;
-		margin: auto;
-		max-width: 80%;
-		width: auto;
-		user-select: none;
-		background-position: 0px 0px, 10px 10px;
-		background-size: 20px 20px;
-		background-image: linear-gradient( 45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee 100%), linear-gradient(45deg, #eee 25%, white 25%, white 75%, #eee 75%, #eee 100%);
-	}
-
-	@keyframes slide {
-		0% {
-			background-position: 0 0;
-		}
-		100% {
-			background-position: -100% 0;
-		}
-	}
-	.test-button{
-		position: fixed;
-		top: 65px;
-		width: 100%;
-		background: transparent;
-		height: 30px; 
-		padding-top: 10px;   
-		text-align: right;   
-	} 
-	.test-save{
-		position: fixed;
-		bottom: 0px;
-		width: 100%;
-		text-align: center;
-		background: #000;
-	}
-	 .btnsave {
-		margin: auto;
-	    background: #666;
-	    color: #fff;
-	    border-radius: 2px;    
-	    padding: 15px 0;    
-	    width: 90%;    
-	    background: #1f1e1e;
-	    border: 1px solid #2f2d2d;
-	}
  
-	.btn {
-		/*float: right;*/
-	    background: #1f1e1e;
-		border: 1px solid #1f1e1e;
-		color: #1f2d3d;
-		text-align: center;
-    	 
-		color: #fff;
-		/*border: 1px solid #2f2d2d;*/
-		/*background-color: transparent;*/
-		padding: 0px 8px;
-		height: 30px;
-		line-height: 30px;
-		font-size: 14px;
-		border-radius: 4px;  
-		display: inline-block; 
-		 /*border: 1px solid #c0ccda;
-		line-height: 1;*/
-		white-space: nowrap;
-		cursor: pointer;
-	 	box-sizing: border-box;  
-		outline: none; 
-		/*margin: 20px 10px 0px 0px;*/ 
-		border-radius: 4px; 
-		border-color: #2f2d2d;
-		transition: all 0.2s ease;
-		text-decoration: none;
-		user-select: none;
-	}
- 
-</style>

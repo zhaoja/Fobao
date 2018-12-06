@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="setUserHead">
 		<Header :topName="$route.name" />
 		<MyVueCropper ></MyVueCropper>
     </div> 
@@ -12,8 +12,7 @@ import MyVueCropper from '../../components/cropper/myVueCropper'
 export default {
      components: {
 		Header,MyVueCropper 
-	},
-   
+	}
 }
  
 </script>

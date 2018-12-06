@@ -10,7 +10,7 @@
 			<li>
 				<router-link to="rumorCenter" :class="{active: $route.path.match('rumorCenter')}">
 					<div><i class="icon icon-news"></i></div>
-					辟谣中心
+					资讯
 				</router-link>
 			</li>
 			<li @click="toMine()">

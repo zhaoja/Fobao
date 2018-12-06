@@ -17,8 +17,9 @@
 				<li @click="toSystemMes()">
 					<router-link to="set/sysMes">
 						<i class="icon icon-bell left"></i>
-						<i class="icon-alert" v-if="systemInfoRead"></i>
+						<!--<i class="icon-alert" v-if="systemInfoRead"></i>-->
 						<label>系统消息</label>
+						<span class="span-alert" v-if="systemInfoRead">{{systemInfoRead}}</span>
 						<i class="icon icon-right"></i>
 					</router-link>
 				</li>
@@ -49,13 +50,14 @@
 			...mapState({
 				userInfo: state => state.user.userInfo,
 				logStatus: state => state.user.logStatus,
+				systemInfoRead: state => state.system.systemInfo.unread,
 			}),
 		},
 		data() {
 			return {
-				...mapState({
-					systemInfoRead: state => state.system.systemInfo.unread,
-				}),
+//				...mapState({
+//					systemInfoRead: state => state.system.systemInfo.unread,
+//				}),
 				logStatusMes: "",
 			}
 		},

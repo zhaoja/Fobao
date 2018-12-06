@@ -324,7 +324,7 @@
 	#box {
 		height: calc(100% - 60px);
 	}
-
+	.box{background: #fff;}
 	.pullDownHtml,
 	.pullUpHtml {
 		height: 50px;
