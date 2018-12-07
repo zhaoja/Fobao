@@ -26,8 +26,9 @@ Vue.use(MintUI)
 import Mui from 'vue-awesome-mui';
 Vue.use(Mui);
 
-import "./../static/tab-swiper-master/js/touch.min.js"
-import "./../static/tab-swiper-master/js/tabSwiper.es5.min.js"
+//import "./../static/tab-swiper-master/js/touch.min.js"
+//import "./../static/tab-swiper-master/js/tabSwiper.es5.min.js"
+import 'swiper/dist/css/swiper.css'
 
 Vue.config.productionTip = false
  

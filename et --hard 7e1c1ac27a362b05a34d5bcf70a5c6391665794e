@@ -1,0 +1,65 @@
+[33mcommit 7e1c1ac27a362b05a34d5bcf70a5c6391665794e[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: 332487429@qq.com <332487429@qq.com>
+Date:   Thu Dec 6 17:28:49 2018 +0800
+
+    加了H5
+
+[33mcommit 1a6f9fdc089d6293b9310ba75cae0bc7ad8a839e[m
+Author: 332487429@qq.com <332487429@qq.com>
+Date:   Tue Dec 4 15:39:54 2018 +0800
+
+    添加了照片上传截取功能
+
+[33mcommit e81124dcb529e9f99f1d1d46b7302e6bf0eb0f5c[m
+Author: 332487429@qq.com <332487429@qq.com>
+Date:   Mon Dec 3 17:49:37 2018 +0800
+
+    图片截取功能
+
+[33mcommit 17335381b2b543dbac3be419406e5cd777b5a0cd[m
+Author: zhaojia <332487429@qq.com>
+Date:   Sun Dec 2 19:31:19 2018 +0800
+
+    修改了辟谣中心
+
+[33mcommit 9f8a66824ce28e61be36fc78fae42849fbb2067e[m
+Author: zhaojia <332487429@qq.com>
+Date:   Sun Dec 2 12:01:43 2018 +0800
+
+    new
+
+[33mcommit a5fbfd3a5776f962282e307328dd93caaa5f33d8[m[33m ([m[1;31morigin/dev[m[33m)[m
+Author: zhaojia <332487429@qq.com>
+Date:   Sun Dec 2 11:55:52 2018 +0800
+
+    new
+
+[33mcommit f0dd0a76ae8a751cd3c33d5e128fcf844cfd8348[m
+Author: zhaojia <332487429@qq.com>
+Date:   Sun Dec 2 10:38:41 2018 +0800
+
+    完整版提交
+
+[33mcommit dba71301e9e91c916d54313501f942fcd9447180[m
+Author: zhaojia <332487429@qq.com>
+Date:   Mon Nov 26 00:13:43 2018 +0800
+
+    样式和bug改进
+
+[33mcommit cd38d3edb953ea58d6e65aeab1c0cfc1b882787d[m
+Author: zhaojia <332487429@qq.com>
+Date:   Sun Nov 25 14:49:41 2018 +0800
+
+    shanchu src1
+
+[33mcommit 612abc34cb40256fa4ff79d34a74f4a2503227b4[m
+Author: zhaojia <332487429@qq.com>
+Date:   Sun Nov 25 14:15:04 2018 +0800
+
+    首次添加的隐藏配置文件
+
+[33mcommit 160012ab7fe37e4563675682b7ec0cf562a17c2d[m
+Author: zhaojia <332487429@qq.com>
+Date:   Sun Nov 25 14:12:28 2018 +0800
+
+    福宝首次提交

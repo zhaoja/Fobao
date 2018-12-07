@@ -2,110 +2,57 @@
 	<div class="news">
 		<Header :topName="topName" />
 		<div class="content">
-			<div class="tabs">
-				<span class="active">辟谣</span>
-				<span>养老政策</span>
-				<span>舆情</span>
-				<span>老人福利</span>
-			</div>
-			<div id="box">
-				<div class="pullDownHtml">
-					<div class="pullDownshow1">
-						<!-- 下拉刷新 -->
-						<mt-spinner type="triple-bounce" color="#fe4c40"></mt-spinner>
-					</div>
-					<div class="pullDownshow2">
-						<!-- 正在刷新 -->
-						<mt-spinner type="triple-bounce" color="#fe4c40"></mt-spinner>
-					</div>
-				</div>
-				<div class="pullUpHtml">
-					<div class="pullUpHtmlshow1">
-						<!-- 上拉加载 -->
-						<mt-spinner type="triple-bounce" color="#fe4c40"></mt-spinner>
-					</div>
-					<div class="pullUpHtmlshow2">
-						<!-- 正在加载 -->
-						<mt-spinner type="triple-bounce" color="#fe4c40"></mt-spinner>
-					</div>
-				</div>
-				<div class="box">
-					<div class="tab-container">
-						<div class="s-pull">
-							<ul>
-								<li v-for="n in list1.list" class="list" :key="n.id">
-									<router-link to="rumorCenter/rumorDt">
-										<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
-										<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
-											<img :src="p" v-for="p in n.picUrl" :key="p" />
-										</div>
+			<!-- swiper -->
+			<swiper :options="swiperOptionh">
+				<swiper-slide>Horizontal Slide 1</swiper-slide>
+				<swiper-slide>
+					<swiper :options="swiperOptionv">
+						<swiper-slide class="text">
+							<div class="">
+					            <h4 class="title">乌合之众</h4>
+					            <p>回答这个问题之前，我想我们应该首先定义如何判断一本书存不存在偏见。我觉得“一本书是否存在偏见”并不在于他所提出的观点本身是否荒诞或者离经叛道，而在于他得出结论的过程是否科学，是否存在缺乏推敲的主观臆断。如果结论拥有完整严谨的推导过程，那么即使答案再令人瞠目结舌，我们也无法说他存在着偏见；反过来说，如果一本书里的论据没有任何可信的来源，结论也是无本之木，即使他的观点让人感觉“好像真是那么回事呀”，那么这套理论也很难摆脱主观思维的限制。</p>
+					            <p>以上是典型的理工思维。</p>
+					            <p>我从书架上找到了《乌合之众》戴光年的译本，随便翻开了几页：
+					              <blockquote> “又比如在亚洲一些野蛮人的部落中 流传着这样的风俗：当他们将骁勇善战的对手击败后，往往会吃下这个人的心脏，认为这样就可以得到他的全部力量和勇气。”（P61）
+					              “毫不客气的说，在十个人里面，就有九个人在几年里把他们的时间和努力浪费掉了；而且可以说，这是非常重要的，甚至是决定性的几年。他们中间有一半甚至三分之二的人，是为了考试而活着，然后被残酷地淘汰掉。”（P86）
+					              “就历史而言，尤其是文学和艺术的历史，实际上只是再重复那些毫无意义的东西。每个人都不想这样做，但是这些历史所具有的名望压迫着他们，每个人最后都会重复他从学校里学到的东西，直到这些东西变成了一些再没有人敢说三道四的称号和事物。”（P114）
+					              </blockquote>
+					            </p>
+					            <p>在这本书里我们经常可以看到勒庞把各种小说桥段，英雄传说和坊间流言用具有主观性的叙述方式表达出来，用以佐证他的论点，论证的逻辑方式也常常语焉不详——我可以接受这种书籍成为富有趣味性的人文读物，但是说这是一本研究群体心理学方面的重要著作，似乎令人难以接受。如果说《乌合之众》不存在偏见，我会觉得非常奇怪。</p>
+					            <br>
+					            <p>不过我们可以换一个角度看待勒庞和他的《乌合之众》。对于一部具有重要意义的作品来说，严谨和逻辑不应该作为其主要价值评判标准。我们应该关注的是它发现了什么，创造了什么。一部伟大的作品之所以伟大，并不是因为他严格的遵守着范式，而在于那些闪耀着的具有鲜明色调的个人智慧的光芒——这些东西通常是无法通过逻辑去解释的。从这个层面上说，我们其实并不需要执着于这本书是否存在着偏见，只需要让我们觉得“好像真是那么回事呀”就已经足够了。我没法说出这本书之于心理学的具体意义，但只说他带给我的东西，我觉得已经足够丰富。</p>
+					            <br>
+					            <p>而上面这些，似乎又是一种人文思维了。</p>
+					          </div>
+						</swiper-slide>
+						<!--<swiper-slide>Vertical Slide 2</swiper-slide>
+						<swiper-slide>Vertical Slide 3</swiper-slide>
+						<swiper-slide>Vertical Slide 4</swiper-slide>
+						<swiper-slide>Vertical Slide 5</swiper-slide>
+						<swiper-slide>Vertical Slide 1</swiper-slide>
+						<swiper-slide>Vertical Slide 2</swiper-slide>
+						<swiper-slide>Vertical Slide 3</swiper-slide>
+						<swiper-slide>Vertical Slide 4</swiper-slide>
+						<swiper-slide>Vertical Slide 5</swiper-slide>-->
+				        <div class="swiper-scrollbar" slot="scrollbar"></div>
 
-										<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
-									</router-link>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="tab-container">
-						<div class="s-pull">
-							<ul>
-								<li v-for="n in list2.list" class="list" :key="n.id">
-									<router-link to="rumorCenter/rumorDt">
-										<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
-										<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
-											<img :src="p" v-for="p in n.picUrl" :key="p" />
-										</div>
-
-										<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
-									</router-link>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="tab-container">
-						<div class="s-pull">
-							<ul>
-								<li v-for="n in list3.list" class="list" :key="n.id">
-									<router-link to="rumorCenter/rumorDt">
-										<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
-										<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
-											<img :src="p" v-for="p in n.picUrl" :key="p" />
-										</div>
-
-										<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
-									</router-link>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="tab-container">
-						<div class="s-pull">
-							<ul>
-								<li v-for="n in list4.list" class="list" :key="n.id">
-									<router-link to="rumorCenter/rumorDt">
-										<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
-										<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
-											<img :src="p" v-for="p in n.picUrl" :key="p" />
-										</div>
-
-										<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
-									</router-link>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
+						<!--<div class="swiper-pagination swiper-pagination-v" slot="pagination"></div>-->
+					</swiper>
+				</swiper-slide>
+				<swiper-slide>Horizontal Slide 1</swiper-slide>
+				<swiper-slide>Horizontal Slide 2</swiper-slide>
+				<swiper-slide>Horizontal Slide 3</swiper-slide>
+				<swiper-slide>Horizontal Slide 4</swiper-slide>
+				<div class="swiper-pagination swiper-pagination-h" slot="pagination"></div>
+			</swiper>
 		</div>
 	</div>
 </template>
 
 <script>
-	import {
-		mapState
-	} from 'vuex'
+	import { mapState } from 'vuex'
 	import Header from '../../components/Header.vue'
-
+	import { swiper, swiperSlide } from 'vue-awesome-swiper'
 	export default {
 		computed: {
 			...mapState({
@@ -117,166 +64,43 @@
 			})
 		},
 		components: {
-			Header
+			Header,
+			swiper,
+			swiperSlide
 		},
 		data() {
 			return {
-				// active: 'tab-container1',
 				topName: "辟谣中心",
-				allLoaded: false,
-			};
-		},
-		mounted() {
-
-			var box = document.getElementById('box')
-// 			var boxUl = box.getElementsByTagName("ul")[0]
-		 
-			var swiper = new TabSwiper(box, {
-				speed: 300,
-				threshold: 100,
-				isPullDown: true,
-				isPullUp: true,
-				closeInertia: true,
-				xThreshold: 0.1,
-				defaultPage: 0,
-				initCb: function() {
-					console.log('初始化完成')
-					var spans = document.querySelectorAll('.tabs span')
-					for (var i = 0; i < spans.length; i++) {
-						(function(page) {
-							spans[page].onclick = function() {
-								swiper.changePage(page)
-							}
-						})(i)
+ 				swiperOptionh: {
+					spaceBetween: 0,
+					autoplay:false,
+					direction: 'horizontal',
+//					watchSlidesProgress : true,
+					pagination: {
+//						el: '.swiper-pagination-h',
+//						clickable: true
 					}
 				},
-				onRefreshStart: function() {
-					var pullDownshow1 = document.querySelector('.pullDownshow1')
-					var pullDownshow2 = document.querySelector('.pullDownshow2')
-					pullDownshow1.style.display = 'none'
-					pullDownshow2.style.display = 'block'
-					setTimeout(function() {
-						swiper.pullEnd(function(page) {
-							pullDownshow1.style.display = 'block'
-							pullDownshow2.style.display = 'none'
-							console.log('刷新结束----' + page)
-							
-						})
-					}, 1000)
-				},
-				onLoadStart: function() {
-					var pullUpHtmlshow1 = document.querySelector('.pullUpHtmlshow1')
-					var pullUpHtmlshow2 = document.querySelector('.pullUpHtmlshow2')
-					pullUpHtmlshow1.style.display = 'none'
-					pullUpHtmlshow2.style.display = 'block'
-					setTimeout(function() {
-						swiper.pullEnd(function(page) {
-							pullUpHtmlshow1.style.display = 'block'
-							pullUpHtmlshow2.style.display = 'none'
-							console.log('加载结束----' + page)
-						})
-					}, 1000)
-				},
-				onEnd: function(page) {
-					console.log('当前所在----' + page)
-					var spans = document.querySelectorAll('.tabs span')
-					for (var i = 0; i < spans.length; i++) {
-						if (i != page) spans[i].className = ''
-						else spans[i].className = 'active'
-					}
-				},
-				onTouchmove: function(page, e) {
-					console.log('正在拖动...')
+				swiperOptionv: {
+					 direction: 'vertical',
+//			          slidesPerView: 'auto',
+//			          freeMode: true,
+			          scrollbar: {
+			            el: '.swiper-scrollbar'
+			          },
+			          mousewheel: true
+//					direction: 'vertical',
+//					spaceBetween: 0,
+//					freeMode: true,
+//					pagination: {
+//						el: '.swiper-pagination-v',
+//						clickable: true
+//					}
 				}
-			})
-
-// 					var navBtn = document.getElementsByClassName("mint-button")[0];
-// 					navBtn.classList.add("navAction")
-// 					
-// 					document.getElementsByClassName("mint-loadmore-content")
-
-		},
-		methods: {
-			getType(a) {
-
-			},
-			loadTop() {
-				if(false) {
-					this.$refs.loadmore.onTopLoaded();
-				}
-				console.log(this.$refs.loadmore)
-				return false
-				
-			},
-			loadBottom() {},
-		}
-	};
-// 			touchStart: function(ev) {
-//      		console.log(1)
-// 				ev = ev || event;
-//   			ev.preventDefault();
-//                      console.log(ev.targetTouches);
-//                      console.log(ev.changedTouches);
-// 				if (ev.touches.length == 1) { //tounches类数组，等于1时表示此时有只有一只手指在触摸屏幕
-// 					this.startX = ev.touches[0].clientX; // 记录开始位置
-//   				console.log(this.startX)
-// 				}
-// 			},
-// 			touchMove: function(ev) {
-// 				console.log(2)
-// 				ev = ev || event;
-//   				 ev.preventDefault();
-// 				let btnWidth = this.$refs.remove.offsetWidth; //$refs 减少获取dom节点的消耗
-// 				let btnImg = this.$refs.btnImg.offsetWidth;
-// 				console.log(ev.targetTouches);
-// 				console.log(ev.changedTouches);
-// 				if (ev.touches.length == 1) {
-// 					//滑动时距离浏览器左侧的距离
-// 					this.moveX = ev.touches[0].clientX;
-// 					
-// 					//实时的滑动的距离-起始位置=实时移动的位置
-// 					this.disX = this.moveX - this.startX;
-// 					if (this.disX < 0 || this.disX == 0) {
-// 						this.slideEffect = 'transform:translateX(0px)';
-// 					} else if (this.disX > 0) {
-// 						this.slideEffect = 'transform:translateX(' + this.disX + 'px)';
-// 
-// 						// 最大也只能等于删除按钮宽度 
-// 						if (this.disX >= btnWidth) {
-// 							this.slideEffect = 'transform:translateX(' + (btnWidth - btnImg) + 'px)';
-// 						}
-// 					}
-// 				}
-// 			},
-// 			touchEnd: function(ev) {
-//      				console.log(3)
-// 				ev = ev || event;
-// 				ev.preventDefault();
-// 				let btnWidth = this.$refs.remove.offsetWidth;
-// 				let btnImg = this.$refs.btnImg.offsetWidth;
-//                      console.log(ev.changedTouches);
-// 				if (ev.changedTouches.length == 1) {
-// 					let endX = ev.changedTouches[0].clientX;
-// 					this.disX = endX - this.startX;
-// 					console.log(this.disX, 'this.disX')
-// 					if(this.disX>50||this.disX<-50){
-// 						console.log(111)
-// 						 
-// 					}else{
-// 						 
-// 					}
-// 					// console.log((btnWidth / 2), 'btnWidth/2');
-// 					if (this.disX < (btnWidth / 2)) {
-// 						this.slideEffect = 'transform:translateX(0px)';
-// 					} else {
-// 						this.slideEffect = "transform:translateX(" + (btnWidth - btnImg) + "px)";
-// 						//让字段显示出来，或者写你需要的逻辑
-// 						this.isShow = true
-// 					}
-// 				}
-// 			}
-// 
-// 		},
+			}
+		} 
+	} 
+ 
 // 		watch: {
 // 			active: function(a) {
 // 				console.log(a, 999)
@@ -292,58 +116,75 @@
 </script>
 
 <style lang="scss">
-	.pic1 {
-		width: calc(100% - 33% - 20px);
-		float: left;
-	}
-	.picList0 {}
-	.picList1 {
-		float: right;
-		width: 33%;
-
-		img {
-			width: 100%;
-			height: 75px;
+ .swiper-wrapper{
+ 	height: 300px;
+ }
+ /*.swiper-slide {
+    background: #eee;
+  }
+ .swiper-slide-active{
+    background: red;
+  }
+  /*.swiper-container{
+  	    height: 500px;
+  }*/
+  /*.swiper-pagination{ 
+  	background: #004444;
+  }*/
+ 
+  .swiper-slide.text {
+    font-size: 18px!important;
+    text-align: left!important;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 30px;
+    > .content {
+      > .title {
+        margin: 0;
+        text-align: center;
+        margin-bottom: .75em;
+      }
+      > p,
+      blockquote {
+        line-height: 2;
+        text-indent: 2em;
+      }
+      blockquote {
+        background-color: #ddd;
+        margin-left: 2em;
+      }
+    }
+  }
+  
+  #news{
+  	.swiper-container{
+  		height: 570px;
+  	}
+		/*小圓點*/
+		.swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets {
+		    top: 0px;
+		    left: 0;
+		    width: 100%;
+		    display: flex;
 		}
+		.swiper-pagination-bullet{
+		 	height: 45px;
+		 	flex: 1;
+		 	padding: 0;
+		 	margin: 0;	
+		 	background: #ccc;
+		 	border-radius:0 ;
+			text-align: center;
+			line-height: 45px;
+			height: 45px;
+			display: inline-block;
+	 	}
+	 	.swiper-wrapper{
+ 		    margin-top: 45px;
+	 	}
 	}
-
-	.picList3 {
-		float: right;
-		width: 100%;
-		margin: 15px 0;
-
-		img {
-			float: left;
-			width: calc(33% - 3px);
-			margin-left: 1px;
-			margin-right: 2px;
-			height: 75px;
-		}
-	}
-
-	#box {
-		height: calc(100% - 60px);
-	}
-	.box{background: #fff;}
-	.pullDownHtml,
-	.pullUpHtml {
-		height: 50px;
-		/* visibility: hidden; */
-		position: absolute;
-	}
-
-	.pullDownshow1,
-	.pullDownshow2,
-	.pullUpHtmlshow1,
-	.pullUpHtmlshow2 {
-		font: 14px/50px "黑体";
-		text-align: center;
-	}
-	.pullDownshow2,
-	.pullUpHtmlshow2 {
-		display: none;
-	}
-	li{
+	/*li{
 		display: list-item;
 		text-align: -webkit-match-parent;
 	}
@@ -363,5 +204,5 @@
 
 	.tabs span.active {
 		color: red;
-	}
+	} */
 </style>
