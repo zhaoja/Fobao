@@ -292,7 +292,7 @@
 </script>
 
 <style lang="scss">
-	.pic1 {
+	/*.pic1 {
 		width: calc(100% - 33% - 20px);
 		float: left;
 	}
@@ -328,7 +328,7 @@
 	.pullDownHtml,
 	.pullUpHtml {
 		height: 50px;
-		/* visibility: hidden; */
+	 
 		position: absolute;
 	}
 
@@ -363,5 +363,5 @@
 
 	.tabs span.active {
 		color: red;
-	}
+	}*/
 </style>
