@@ -8,6 +8,12 @@
 				</router-link>
 			</li>
 			<li>
+				<router-link to="" :class="{active: $route.path.match('points')}">
+					<div><i class="icon icon-jifen"></i></div>
+					积分兑换
+				</router-link>
+			</li>
+			<li>
 				<router-link to="rumorCenter" :class="{active: $route.path.match('rumorCenter')}">
 					<div><i class="icon icon-news"></i></div>
 					资讯

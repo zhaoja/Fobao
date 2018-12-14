@@ -9,18 +9,41 @@
 				<swiper-slide>
 					<swiper :options="swiperOption">
 						<swiper-slide class="text">
-							<ul>
-								<li v-for="n in list1.list" class="list" :key="n.id">
-									<router-link to="rumorCenter/rumorDt">
-										<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
-										<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
-											<img :src="p" v-for="p in n.picUrl" :key="p" />
-										</div>
-
-										<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
-									</router-link>
-								</li>
-							</ul>
+							<div class="swiperOptionInner">
+								 <ul>
+									<li v-for="n in list1.list" class="list" :key="n.id">
+										<router-link to="rumorCenter/rumorDt">
+											<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
+											<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
+												<img :src="p" v-for="p in n.picUrl" :key="p" />
+											</div>
+	
+											<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
+										</router-link>
+									</li>
+								</ul>
+							</div>
+						</swiper-slide>
+						<div class="swiper-scrollbar" slot="scrollbar"></div>
+					</swiper>
+				</swiper-slide>
+				 <swiper-slide>
+					<swiper :options="swiperOption">
+						<swiper-slide class="text">
+							<div class="swiperOptionInner">
+								 <ul>
+									<li v-for="n in list1.list" class="list" :key="n.id">
+										<router-link to="rumorCenter/rumorDt">
+											<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
+											<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
+												<img :src="p" v-for="p in n.picUrl" :key="p" />
+											</div>
+	
+											<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
+										</router-link>
+									</li>
+								</ul>
+							</div>
 						</swiper-slide>
 						<div class="swiper-scrollbar" slot="scrollbar"></div>
 					</swiper>
@@ -28,18 +51,20 @@
 				<swiper-slide>
 					<swiper :options="swiperOption">
 						<swiper-slide class="text">
-							<ul>
-								<li v-for="n in list2.list" class="list" :key="n.id">
-									<router-link to="rumorCenter/rumorDt">
-										<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
-										<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
-											<img :src="p" v-for="p in n.picUrl" :key="p" />
-										</div>
-
-										<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
-									</router-link>
-								</li>
-							</ul>
+							<div class="swiperOptionInner">
+								 <ul>
+									<li v-for="n in list1.list" class="list" :key="n.id">
+										<router-link to="rumorCenter/rumorDt">
+											<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
+											<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
+												<img :src="p" v-for="p in n.picUrl" :key="p" />
+											</div>
+	
+											<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
+										</router-link>
+									</li>
+								</ul>
+							</div>
 						</swiper-slide>
 						<div class="swiper-scrollbar" slot="scrollbar"></div>
 					</swiper>
@@ -47,37 +72,20 @@
 				<swiper-slide>
 					<swiper :options="swiperOption">
 						<swiper-slide class="text">
-							<ul>
-								<li v-for="n in list3.list" class="list" :key="n.id">
-									<router-link to="rumorCenter/rumorDt">
-										<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
-										<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
-											<img :src="p" v-for="p in n.picUrl" :key="p" />
-										</div>
-
-										<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
-									</router-link>
-								</li>
-							</ul>
-						</swiper-slide>
-						<div class="swiper-scrollbar" slot="scrollbar"></div>
-					</swiper>
-				</swiper-slide>
-				<swiper-slide>
-					<swiper :options="swiperOption">
-						<swiper-slide class="text">
-							<ul>
-								<li v-for="n in list4.list" class="list" :key="n.id">
-									<router-link to="rumorCenter/rumorDt">
-										<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
-										<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
-											<img :src="p" v-for="p in n.picUrl" :key="p" />
-										</div>
-
-										<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
-									</router-link>
-								</li>
-							</ul>
+							<div class="swiperOptionInner">
+								 <ul>
+									<li v-for="n in list1.list" class="list" :key="n.id">
+										<router-link to="rumorCenter/rumorDt">
+											<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
+											<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
+												<img :src="p" v-for="p in n.picUrl" :key="p" />
+											</div>
+	
+											<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
+										</router-link>
+									</li>
+								</ul>
+							</div>
 						</swiper-slide>
 						<div class="swiper-scrollbar" slot="scrollbar"></div>
 					</swiper>
@@ -121,13 +129,6 @@
 						el: '.swiper-pagination-h',
 						clickable: true,
 						renderBullet: function(index, className) {
-							//	          	switch(index){
-							//	            case 0:text='壹';break;
-							//	            case 1:text='贰';break;
-							//	            case 2:text='叁';break;
-							//	            case 3:text='肆';break;
-							//	            case 4:text='伍';break;
-							//	          	}
 							let nav = {
 								0: '辟谣',
 								1: '养老政策',
@@ -206,8 +207,8 @@
 		.down{top: 50px;}
 
 	.news {
-		max-width: 375px;
- 
+		/*max-width: 375px;*/
+		 
 		.content {
 			margin-top: 65px;
 			position: relative;
@@ -250,30 +251,35 @@
 			}
 			.swiper-pagination-bullet-active {
 				color: red !important;
+				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);  
 			}
 		}
+		.swiperOptionInner{
+			width: 100%;
+			background: #fff;
+			ul{
+				background:  #f5f5f5;
+				width: calc(100% - 30px);
+				margin: 0px 15px;
+				.list {
+					background:  #ffffff;
+					margin-bottom: 1px;
+					overflow: hidden;
+					display: block;
+ 				 	padding: 15px 0;
+					.time {
+						clear: both;
+						line-height: 10px;
+						margin-top: 14px;
+						span {
+							font-size: 12px;
+							color: #999999;
+						}
+					}
+				}
+			}			
+		}
+
 	}
 	
-	.list {
-		padding: 15px 15px 0;
-		/*padding-bottom: 15px;*/
-		/*border-bottom: 1px solid #f5f5f5;*/
-		background: #fff;
-		width: calc(100% - 30px);
-		a {
-			border-bottom: 1px solid #f5f5f5;
-		    display: inline-block;
-		    padding-bottom: 17px;    
-		    width: 100%;
-		}
-		.time {
-			clear: both;
-			line-height: 10px;
-			margin-top: 14px;
-			span {
-				font-size: 12px;
-				color: #999999;
-			}
-		}
-	}
-</style>
+	</style>

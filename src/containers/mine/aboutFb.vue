@@ -12,7 +12,7 @@
 				 
 				<ul class="line2">
 					<li><a href="#"><label>给我评分</label> <i class="icon icon-right"></i></a></li>
-					<li><a href="#"><label>隐私设置</label>   <i class="icon icon-right"></i></a></li>
+					<li><a href="#"><label>隐私设置</label><i class="icon icon-right"></i></a></li>
 				</ul>
 			</div>
 		</div>
