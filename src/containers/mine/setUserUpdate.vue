@@ -30,13 +30,7 @@
 				})
 			}
 		},
-		diretives: {
-			focus: {
-				inserted(el){
-					el.focus()
-				}
-			}
-		}
+		
 	}
 </script>
 
