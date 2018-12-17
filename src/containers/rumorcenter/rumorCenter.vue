@@ -216,9 +216,9 @@
 		}
  
 		.swiper-container {
-			height: 545px;
+			height:  100%;
 			.swiper-wrapper {
-				height: calc(100% - 45px);
+				height: calc(100% - 20px);
 			}
 		}
 		.swiper-scrollbar {

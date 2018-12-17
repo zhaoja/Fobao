@@ -2,17 +2,25 @@
 	<div class="mine">
 		<div class="top">
 			<button @click="logout()" v-if="logStatus!=0">退出登录</button>
-			<img src="../../assets/images/person.png" alt="" />
-			<div>{{userInfo.phone}}</div>
-			<router-link to="set/user" v-if="logStatus!=0">
-				<i class="icon icon-pen"></i>编辑资料
-			</router-link>
-
+			<div class="topSelf">
+				<div><img src="../../assets/images/person.png" alt="" />{{userInfo.phone}}</div>
+				<router-link to="set/user" v-if="logStatus!=0">
+					<i class="icon icon-go"></i>
+				</router-link>
+			</div>
+			<div class="topAccont">
+				<div v-for="(a,c) in userInfo.accont">
+					<span>{{a}} </span> <label>元</label><br />
+					{{c}}
+				</div>
+			</div>
+			
+			<!--
 			<router-link to="login" v-if="logStatus==0">
 				登录
-			</router-link>
+			</router-link>-->
 		</div>
-		<div class="longLines" style="margin-top: 10px;">
+		<div class="longLines">
 			<ul class="line1">
 				<li @click="toSystemMes()">
 					<router-link to="set/sysMes">

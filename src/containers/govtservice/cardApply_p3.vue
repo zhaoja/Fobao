@@ -134,45 +134,5 @@
 			height: 100px;
 		}
 	}
-	
-	// 	
-	// 	.operation-box{
-	// 		line-height:0px !important
-	// 		
-	// 	}	
-	// 	.vue-uploader{
-	// 		border-left: 0px!important;
-	// 		border-right:0px!important;
-	// 		border-bottom:0px!important;
-	// 		.file-list .file-item{
-	// 			width: 100% !important;
-	// 			text-align: left !important;
-	// 			img {
-	// 				width: 200px !important;
-	// 				height: 120px !important;
-	// 				margin-left: 10px;
-	// 			}
-	// 			.file-name{
-	// 				display: none !important;
-	// 			}
-	// 		}
-	// 		.upload-func{
-	// 			padding:5px !important;
-	// 			button{
-	// 				padding: 0px 8px !important;
-	// 				height: 30px !important;
-	// 				line-height: 30px !important;
-	// 				font-size: 14px !important;
-	// 			} 
-	// 		}
-	// 		.add {
-	// 			width: 100% !important;
-	// 			height: 120px !important;
-	// 			margin-left: 10px; 
-	// 			line-height: 120px !important; 
-	// // 			span{
-	// // 				display: none;
-	// // 			}
-	// 		}
-	// 	}
+ 	 
 </style>

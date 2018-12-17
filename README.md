@@ -37,7 +37,13 @@ mac恢复隐藏命令：defaults write com.apple.finder AppleShowAllFiles -bool 
 
 # 4.我的 (mine)
 
- 
+
+# 导航
+# 首页：#/index
+# 积分兑换：#/account
+# 资讯：#/information
+# 我的：#/mine 
+
 需要补充字段的选择项：
 
 1.发证机关

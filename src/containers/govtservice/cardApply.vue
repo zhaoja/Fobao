@@ -24,10 +24,16 @@
 
 <style lang="scss">
 	.cardContainer{
-	    height: 100%;
+	    min-height: 100%;
 		width: 100%;
-		overflow: auto;
+		/*overflow: auto;*/
 		position: absolute;
 		background: #ffffff;
+		.long{
+		    line-height: 24px;
+	    	padding: 10px 0;
+    	    width: 80px;
+		}
 	}
+	
 </style>

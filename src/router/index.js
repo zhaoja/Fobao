@@ -45,7 +45,7 @@ export default new Router({
 			children:[
 				{path:"",redirect:'/index'},
 				{path:"/index",name:"首页",component:Home},
-				{path:"/rumorcenter",name:"辟谣中心",component:RumorCenter},
+				{path:"/information",name:"辟谣中心",component:RumorCenter},
 				{path:"/mine",name:"我的",component:Mine}
 			]
 		},

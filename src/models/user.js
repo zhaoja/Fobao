@@ -13,8 +13,14 @@ export default {
 			verifiyCode:"",	//验证码 
 			name:'李宝库',
 			idCard:'110786666786765667',
-			oddCard:'786678999877665'
+			oddCard:'786678999877665',
 			// uid: localStorage.userid,  //用户id
+			accont:{
+				"金融账户":79,
+				"老年券":86,
+				"失能券":40,
+				"福彩中奖账户": 100
+			}
 			 
 		}
 	},
