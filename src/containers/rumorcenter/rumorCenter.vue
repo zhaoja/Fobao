@@ -101,6 +101,8 @@
 	import { mapState } from 'vuex'
 	import Header from '../../components/Header.vue'
 	import { swiper, swiperSlide } from 'vue-awesome-swiper'
+	
+	
 	export default {
 		computed: {
 			...mapState({
@@ -119,7 +121,7 @@
 		data() {
 			return {
 				topName: "辟谣中心",
-
+				ifGetlist:false,
 				swiperOptionh: {
 					spaceBetween: 0,
 					autoplay: false,
@@ -148,9 +150,47 @@
 					scrollbar: {
 						el: '.swiper-scrollbar'
 					},
-					mousewheel: true
-				},
+					mousewheel: true,
+					on: {
+						// touchEnd: function(event){
+						// 						  //你的事件
+						// 						  
+						// 						},
+						// 						sliderMove: function(){
+						// 						   
+						// 						},
+						progress:(progress)=>{
+						 // this.getData(progress)
+						 if(this.ifGetlist==false){
+							 if(progress<0){
+							 	console.log(0)
+								this.ifGetlist = true
+								setTimeout(function(){
+									
+								})
+							 }else if(progress>1){
+							 	console.log(0)
+								this.ifGetlist = true
+							 }else{
+								false
+							 }
+						 }
+						 
+						}
+					}
+				}
 			}
+		},
+		method:{
+// 			getData:function(a){
+// 				console.log(11111111)
+// 				
+// 			},
+			getData(progress){
+			// console.log(progress);
+				
+			},  
+			 
 		}
 	}
 
@@ -248,6 +288,7 @@
 				height: 45px;
 				display: inline-block;
 				opacity: 1;
+				outline: none;
 			}
 			.swiper-pagination-bullet-active {
 				color: red !important;
