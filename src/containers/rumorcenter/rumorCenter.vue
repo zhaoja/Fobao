@@ -101,6 +101,8 @@
 	import { mapState } from 'vuex'
 	import Header from '../../components/Header.vue'
 	import { swiper, swiperSlide } from 'vue-awesome-swiper'
+	
+	
 	export default {
 		computed: {
 			...mapState({
@@ -119,7 +121,7 @@
 		data() {
 			return {
 				topName: "辟谣中心",
-
+				ifGetlist:false,
 				swiperOptionh: {
 					spaceBetween: 0,
 					autoplay: false,
@@ -140,7 +142,6 @@
 						},
 					}
 				},
-
 				swiperOption: {
 					direction: 'vertical',
 					slidesPerView: 'auto',
@@ -150,49 +151,37 @@
 					scrollbar: {
 						el: '.swiper-scrollbar'
 					},
-				  	on: {
-//			  		 	touchStart: function(event){
-//					      console.log('事件触发了;');
-//					    },
-//						touchMove: function(event){
-//							console.log("touchMove")
-//					      //你的事件
-//					    },		            
-//						touchEnd: function (event) {
-//							 console.log('事件jieshu了;')
-//			            	console.log(event)
-//			              //你的事件
-//			            },
-////			             reachEnd: function(){
-//					      alert('到了最后一个slide');
-//					    },
-//					     sliderMove: function(){
-//					     console.log('函数触发了');
-//					    },
-					    progress: function(progress){
-//					      console.log(progress,123);
-					      if (progress==0) {
-					      	console.log("0000")
-					 
-					      } else  if (progress==1){
-					      	console.log(1111)
-					      } else{
-					      	console.log(222)
-					      }
-					    },  
-					    setTranslate: function(translate){
-					       //自定义事件
-//					       console.log(translate,345)
-					    },
-		          	},
-
-					mousewheel: true
-				},
+					mousewheel: true,
+					on: {
+						// touchEnd: function(event){
+						// 						  //你的事件
+						// 						  
+						// 						},
+						// 						sliderMove: function(){
+						// 						   
+						// 						},
+						progress:(progress)=>{
+						 if(this.ifGetlist==false){
+							 if(progress<0){
+							 	console.log(0)
+								this.ifGetlist = true
+								setTimeout(function(){
+									
+								})
+							 }else if(progress>1){
+							 	console.log(0)
+								this.ifGetlist = true
+							 }else{
+								false
+							 }
+						 }
+						 
+						}
+					}
+				}
 			}
 		},
-		mounted(){
-			 
-		}
+ 
 	}
 
 	// 		watch: {
@@ -290,6 +279,7 @@
 				height: 45px;
 				display: inline-block;
 				opacity: 1;
+				outline: none;
 			}
 			.swiper-pagination-bullet-active {
 				color: red !important;
