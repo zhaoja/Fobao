@@ -124,6 +124,7 @@
 					spaceBetween: 0,
 					autoplay: false,
 					direction: 'horizontal',
+					resistanceRatio : 0,
 					//					watchSlidesProgress : true,
 					pagination: {
 						el: '.swiper-pagination-h',
@@ -144,13 +145,53 @@
 					direction: 'vertical',
 					slidesPerView: 'auto',
 					spaceBetween: 0,
+					resistanceRatio : 0.65,
 					freeMode: true,
 					scrollbar: {
 						el: '.swiper-scrollbar'
 					},
+				  	on: {
+//			  		 	touchStart: function(event){
+//					      console.log('事件触发了;');
+//					    },
+//						touchMove: function(event){
+//							console.log("touchMove")
+//					      //你的事件
+//					    },		            
+//						touchEnd: function (event) {
+//							 console.log('事件jieshu了;')
+//			            	console.log(event)
+//			              //你的事件
+//			            },
+////			             reachEnd: function(){
+//					      alert('到了最后一个slide');
+//					    },
+//					     sliderMove: function(){
+//					     console.log('函数触发了');
+//					    },
+					    progress: function(progress){
+//					      console.log(progress,123);
+					      if (progress==0) {
+					      	console.log("0000")
+					 
+					      } else  if (progress==1){
+					      	console.log(1111)
+					      } else{
+					      	console.log(222)
+					      }
+					    },  
+					    setTranslate: function(translate){
+					       //自定义事件
+//					       console.log(translate,345)
+					    },
+		          	},
+
 					mousewheel: true
 				},
 			}
+		},
+		mounted(){
+			 
 		}
 	}
 
@@ -232,6 +273,7 @@
 		}
 		/*小圓點*/
 		.swiper-pagination-h {
+			background:#F5F5F5;
 			top: 0px;
 			left: 0;
 			width: 100%;

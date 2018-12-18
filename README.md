@@ -40,7 +40,7 @@ mac恢复隐藏命令：defaults write com.apple.finder AppleShowAllFiles -bool 
 
 # 导航
 # 首页：#/index
-# 积分兑换：#/account
+# 积分兑换：#/account(暂时空着)
 # 资讯：#/information
 # 我的：#/mine 
 
