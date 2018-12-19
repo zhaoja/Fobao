@@ -1,339 +1,101 @@
 <template>
-	<div class="news">
-		<Header :topName="topName" />
-		<div class="content">
-			<div class="down"> 下拉加载
-				<mt-spinner type="triple-bounce" color="#fe4c40"></mt-spinner>
-			</div>
-			<div class="up"> 上拉加载
-				<mt-spinner type="triple-bounce" color="#fe4c40"></mt-spinner>
-			</div>
-			<!-- swiper -->
-			<swiper :options="swiperOptionh">
-				<swiper-slide>
-					<swiper :options="swiperOption">
-						<swiper-slide class="text">
-							<div class="swiperOptionInner">
-								<ul>
-									<li v-for="n in list1.list" class="list" :key="n.id">
-										<router-link to="rumorCenter/rumorDt">
-											<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
-											<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
-												<img :src="p" v-for="p in n.picUrl" :key="p" />
-											</div>
-
-											<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
-										</router-link>
-									</li>
-								</ul>
-							</div>
-						</swiper-slide>
-						<div class="swiper-scrollbar" slot="scrollbar"></div>
-					</swiper>
-				</swiper-slide>
-				<swiper-slide>
-					<swiper :options="swiperOption">
-						<swiper-slide class="text">
-							<div class="swiperOptionInner">
-								<ul>
-									<li v-for="n in list1.list" class="list" :key="n.id">
-										<router-link to="rumorCenter/rumorDt">
-											<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
-											<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
-												<img :src="p" v-for="p in n.picUrl" :key="p" />
-											</div>
-
-											<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
-										</router-link>
-									</li>
-								</ul>
-							</div>
-						</swiper-slide>
-						<div class="swiper-scrollbar" slot="scrollbar"></div>
-					</swiper>
-				</swiper-slide>
-				<swiper-slide>
-					<swiper :options="swiperOption">
-						<swiper-slide class="text">
-							<div class="swiperOptionInner">
-								<ul>
-									<li v-for="n in list1.list" class="list" :key="n.id">
-										<router-link to="rumorCenter/rumorDt">
-											<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
-											<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
-												<img :src="p" v-for="p in n.picUrl" :key="p" />
-											</div>
-
-											<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
-										</router-link>
-									</li>
-								</ul>
-							</div>
-						</swiper-slide>
-						<div class="swiper-scrollbar" slot="scrollbar"></div>
-					</swiper>
-				</swiper-slide>
-				<swiper-slide>
-					<swiper :options="swiperOption">
-						<swiper-slide class="text">
-							<div class="swiperOptionInner">
-								<ul>
-									<li v-for="n in list1.list" class="list" :key="n.id">
-										<router-link to="rumorCenter/rumorDt">
-											<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
-											<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
-												<img :src="p" v-for="p in n.picUrl" :key="p" />
-											</div>
-
-											<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
-										</router-link>
-									</li>
-								</ul>
-							</div>
-						</swiper-slide>
-						<div class="swiper-scrollbar" slot="scrollbar"></div>
-					</swiper>
-				</swiper-slide>
-				<div class="swiper-pagination swiper-pagination-h" slot="pagination"></div>
-			</swiper>
-		</div>
-
-	</div>
-</template>
-
-<script>
-	import { mapState } from 'vuex'
-	import Header from '../../components/Header.vue'
-	import { swiper, swiperSlide } from 'vue-awesome-swiper'
-
-	export default {
-		computed: {
-			...mapState({
-				program: state => state.system.news.rumorCenter.program,
-				list1: state => state.system.news.rumorCenter.programContentList1,
-				list2: state => state.system.news.rumorCenter.programContentList2,
-				list3: state => state.system.news.rumorCenter.programContentList3,
-				list4: state => state.system.news.rumorCenter.programContentList4,
-			})
-		},
-		components: {
-			Header,
-			swiper,
-			swiperSlide
-		},
-		data() {
-			return {
-				topName: "资讯",
-				ifGetlist: false, //允许调用数据
-				swiperOptionh: {
-					spaceBetween: 0,
-					autoplay: false,
-					direction: 'horizontal',
-					resistanceRatio: 0,
-//					watchSlidesProgress : true,
-					pagination: {
-						el: '.swiper-pagination-h',
-						clickable: true,
-						renderBullet: function(index, className) {
-							let nav = {
-								0: '辟谣',
-								1: '养老政策',
-								2: '舆情',
-								3: '老人福利'
-							}
-							return '<span class="' + className + '">' + nav[index] + '</span>';
-						},
-					}
+			  <div>
+			    <!--mescroll滚动区域的基本结构-->
+			    <mescroll-vue ref="mescroll" :down="mescrollDown" :up="mescrollUp" @init="mescrollInit">
+			      <!--内容...-->
+			    </mescroll-vue>
+			  </div>
+			</template>
+			
+			<script>
+			// 引入mescroll的vue组件
+			import MescrollVue from 'mescroll.js/mescroll.vue'
+			
+			export default {
+			  name: 'xxx',
+			  components: {
+			    MescrollVue // 注册mescroll组件
+			  },
+			  data () {
+			    return {
+			      mescroll: null, // mescroll实例对象
+			      mescrollDown:{}, //下拉刷新的配置. (如果下拉刷新和上拉加载处理的逻辑是一样的,则mescrollDown可不用写了)
+			      mescrollUp: { // 上拉加载的配置.
+			        callback: this.upCallback, // 上拉回调,此处简写; 相当于 callback: function(page, mescroll) { }
+			        //以下是一些常用的配置,当然不写也可以的.
+				page: {
+					num: 0, //当前页 默认0,回调之前会加1; 即callback(page)会从1开始
+					size: 10 //每页数据条数,默认10
 				},
-				swiperOption: {
-					direction: 'vertical',
-					slidesPerView: 'auto',
-					spaceBetween: 0,
-					resistanceRatio: 0.65,
-					freeMode: true,
-					freeModeMomentum:false,
-					
-					scrollbar: {
-						el: '.swiper-scrollbar'
-					},
-					mousewheel: true,
- 				 
-					on: {
-						 
-						progress: (progress) => {
-							this.progress = 0.5
-							console.log(progress,111)
-							let _this = this;
-							if(_this.ifGetlist == false) {
-								if(progress<-0.15){
-//									console.log("下拉");
-									_this.ifGetlist = true
-//									
-									setTimeout(function(){
-//	 							 		//请求成功了，就变成初始状态
-	 							 		_this.ifGetlist = false
-//	 							 		alert(_this.ifGetlist)
-									},3000)
-								} else if (progress>1.15) {
-//									console.log("上拉");
-									_this.ifGetlist = true
-									setTimeout(function(){
-//	 							 		//请求成功了，就变成初始状态
-	 							 		_this.ifGetlist = false
-//	 							 		alert(_this.ifGetlist)
-									},3000)
-								} else{
-//									console.log("中间")
-								}
-							} 
-						}
-					}
+				htmlNodata: '<p class="upwarp-nodata">-- END --</p>',
+				noMoreSize: 5, //如果列表已无数据,可设置列表的总数量要大于5才显示无更多数据;
+// 							避免列表数据过少(比如只有一条数据),显示无更多数据会不好看
+// 							这就是为什么无更多数据有时候不显示的原因
+				toTop: {
+					//回到顶部按钮
+					src: "./static/mescroll/mescroll-totop.png", //图片路径,默认null,支持网络图
+					offset: 1000 //列表滚动1000px才显示回到顶部按钮
+				},
+				empty: {
+					//列表第一页无任何数据时,显示的空提示布局; 需配置warpId才显示
+					warpId: "xxid", //父布局的id (1.3.5版本支持传入dom元素)
+					icon: "./static/mescroll/mescroll-empty.png", //图标,默认null,支持网络图
+					tip: "暂无相关数据~" //提示
 				}
+			      },
+			      dataList: [] // 列表数据
+			    }
+			  },
+			  beforeRouteEnter (to, from, next) { // 如果没有配置回到顶部按钮或isBounce,则beforeRouteEnter不用写
+			    next(vm => {
+			       // 找到当前mescroll的ref,调用子组件mescroll-vue的beforeRouteEnter方法
+			      vm.$refs.mescroll && vm.$refs.mescroll.beforeRouteEnter() // 进入路由时,滚动到原来的列表位置,恢复回到顶部按钮和isBounce的配置
+			    })
+			  },
+			  beforeRouteLeave (to, from, next) { // 如果没有配置回到顶部按钮或isBounce,则beforeRouteLeave不用写
+			     // 找到当前mescroll的ref,调用子组件mescroll-vue的beforeRouteLeave方法
+			    this.$refs.mescroll && this.$refs.mescroll.beforeRouteLeave() // 退出路由时,记录列表滚动的位置,隐藏回到顶部按钮和isBounce的配置
+			    next()
+			  },
+			  methods: {
+			    // mescroll组件初始化的回调,可获取到mescroll对象
+			    mescrollInit (mescroll) {
+			      this.mescroll = mescroll  // 如果this.mescroll对象没有使用到,则mescrollInit可以不用配置
+			    },
+			    // 上拉回调 page = {num:1, size:10}; num:当前页 ,默认从1开始; size:每页数据条数,默认10
+			    upCallback (page, mescroll) {
+			      // 联网请求
+			      axios.get('xxxxxx', {
+			        params: {
+			          num: page.num, // 页码
+			          size: page.size // 每页长度
+			        }
+			      }).then((response) => {
+			        // 请求的列表数据
+			        let arr = response.data
+			        // 如果是第一页需手动制空列表
+			        if (page.num === 1) this.dataList = []
+			        // 把请求到的数据添加到列表
+			        this.dataList = this.dataList.concat(arr)
+			        // 数据渲染成功后,隐藏下拉刷新的状态
+			        this.$nextTick(() => {
+			          mescroll.endSuccess(arr.length)
+			        })
+			      }).catch((e) => {
+			        // 联网失败的回调,隐藏下拉刷新和上拉加载的状态;
+			        mescroll.endErr()
+			      })
+			    }
+			  }
 			}
-		},
-
-	}
-
-	// 		watch: {
-	// 			active: function(a) {
-	// 				console.log(a, 999)
-	// 				var navBtn = document.getElementsByClassName("mint-button");
-	// 				for (let i = 0; i < navBtn.length; i++) {
-	// 					navBtn[i].classList.remove("navAction")
-	// 				}
-	// 				var navBtn = document.getElementsByClassName(a)[0];
-	// 				navBtn.classList.add("navAction")
-	// 			}
-	// 		}
-</script>
-
-<style lang="scss">
-	.swiper-wrapper{
-	   transition-timing-function:  ease;
-	}
-	.ani{
-	   animation-timing-function: ease;
-	   -webkit-animation-timing-function: ease;
-	}
-
-	.pic1 {
-		width: calc(100% - 33% - 20px);
-		float: left;
-	}
-	
-	.picList0 {}
-	
-	.picList1 {
-		float: right;
-		width: 33%;
-		img {
-			width: 100%;
-			height: 75px;
-		}
-	}
-	
-	.picList3 {
-		float: right;
-		width: 100%;
-		margin: 15px 0;
-		img {
-			float: left;
-			width: calc(33% - 3px);
-			margin-left: 1px;
-			margin-right: 2px;
-			height: 75px;
-		}
-	}
-	
-	.up,
-	.down {
-		position: absolute;
-		width: 100%;
-		font-size: 13px;
-		color: #ccc;
-		text-align: center;
-	}
-	
-	.up {
-		top: 500px;
-	}
-	
-	.down {
-		top: 50px;
-	}
-	
-	.news {
-		/*max-width: 375px;*/
-		.content {
-			margin-top: 65px;
-			position: relative;
-			height: calc( 100% - 95px);
-		}
-		.swiper-container {
-			height: 100%;
-			.swiper-wrapper {
-				height: calc(100% - 20px);
-			}
-		}
-		.swiper-scrollbar {
-			display: none;
-		}
-		.swiper-slide .text {
-			padding: 45px 0 0px 0;
-			height: auto;
-			-webkit-box-sizing: border-box;
-			box-sizing: border-box;
-		}
-		/*小圓點*/
-		.swiper-pagination-h {
-			background: #F5F5F5;
-			top: 0px;
-			left: 0;
-			width: 100%;
-			display: flex;
-			height: 45px;
-			.swiper-pagination-bullet {
-				flex: 1;
-				padding: 0;
-				margin: 0 !important;
-				background: #f5f5f5;
-				border-radius: 0;
-				text-align: center;
-				line-height: 45px;
-				height: 45px;
-				display: inline-block;
-				opacity: 1;
-				outline: none;
-			}
-			.swiper-pagination-bullet-active {
-				color: red !important;
-				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-			}
-		}
-		.swiperOptionInner {
-			width: 100%;
-			background: #fff;
-			ul {
-				background: #f5f5f5;
-				width: calc(100% - 30px);
-				margin: 0px 15px;
-				.list {
-					background: #ffffff;
-					margin-bottom: 1px;
-					overflow: hidden;
-					display: block;
-					padding: 15px 0;
-					.time {
-						clear: both;
-						line-height: 10px;
-						margin-top: 14px;
-						span {
-							font-size: 12px;
-							color: #999999;
-						}
-					}
-				}
-			}
-		}
-	}
-</style>
+			</script>
+			
+			<style scoped>
+			  /*通过fixed固定mescroll的高度*/
+			  .mescroll {
+			    position: fixed;
+			    top: 44px;
+			    bottom: 0;
+			    height: auto;
+			  }
+			</style>
