@@ -2,43 +2,26 @@
 	<div class="news">
 		<Header :topName="topName" />
 		<div class="content">
-			<div class="down"> 下拉加载<mt-spinner type="triple-bounce" color="#fe4c40"></mt-spinner> </div>
-			<div class="up"> 上拉加载<mt-spinner type="triple-bounce" color="#fe4c40"></mt-spinner> </div>
+			<div class="down"> 下拉加载
+				<mt-spinner type="triple-bounce" color="#fe4c40"></mt-spinner>
+			</div>
+			<div class="up"> 上拉加载
+				<mt-spinner type="triple-bounce" color="#fe4c40"></mt-spinner>
+			</div>
 			<!-- swiper -->
 			<swiper :options="swiperOptionh">
 				<swiper-slide>
 					<swiper :options="swiperOption">
 						<swiper-slide class="text">
 							<div class="swiperOptionInner">
-								 <ul>
+								<ul>
 									<li v-for="n in list1.list" class="list" :key="n.id">
 										<router-link to="rumorCenter/rumorDt">
 											<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
 											<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
 												<img :src="p" v-for="p in n.picUrl" :key="p" />
 											</div>
-	
-											<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
-										</router-link>
-									</li>
-								</ul>
-							</div>
-						</swiper-slide>
-						<div class="swiper-scrollbar" slot="scrollbar"></div>
-					</swiper>
-				</swiper-slide>
-				 <swiper-slide>
-					<swiper :options="swiperOption">
-						<swiper-slide class="text">
-							<div class="swiperOptionInner">
-								 <ul>
-									<li v-for="n in list1.list" class="list" :key="n.id">
-										<router-link to="rumorCenter/rumorDt">
-											<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
-											<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
-												<img :src="p" v-for="p in n.picUrl" :key="p" />
-											</div>
-	
+
 											<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
 										</router-link>
 									</li>
@@ -52,14 +35,14 @@
 					<swiper :options="swiperOption">
 						<swiper-slide class="text">
 							<div class="swiperOptionInner">
-								 <ul>
+								<ul>
 									<li v-for="n in list1.list" class="list" :key="n.id">
 										<router-link to="rumorCenter/rumorDt">
 											<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
 											<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
 												<img :src="p" v-for="p in n.picUrl" :key="p" />
 											</div>
-	
+
 											<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
 										</router-link>
 									</li>
@@ -73,14 +56,35 @@
 					<swiper :options="swiperOption">
 						<swiper-slide class="text">
 							<div class="swiperOptionInner">
-								 <ul>
+								<ul>
 									<li v-for="n in list1.list" class="list" :key="n.id">
 										<router-link to="rumorCenter/rumorDt">
 											<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
 											<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
 												<img :src="p" v-for="p in n.picUrl" :key="p" />
 											</div>
-	
+
+											<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
+										</router-link>
+									</li>
+								</ul>
+							</div>
+						</swiper-slide>
+						<div class="swiper-scrollbar" slot="scrollbar"></div>
+					</swiper>
+				</swiper-slide>
+				<swiper-slide>
+					<swiper :options="swiperOption">
+						<swiper-slide class="text">
+							<div class="swiperOptionInner">
+								<ul>
+									<li v-for="n in list1.list" class="list" :key="n.id">
+										<router-link to="rumorCenter/rumorDt">
+											<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
+											<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
+												<img :src="p" v-for="p in n.picUrl" :key="p" />
+											</div>
+
 											<div class="time"><span>{{n.date}}</span> <span>{{n.time}}</span></div>
 										</router-link>
 									</li>
@@ -101,8 +105,7 @@
 	import { mapState } from 'vuex'
 	import Header from '../../components/Header.vue'
 	import { swiper, swiperSlide } from 'vue-awesome-swiper'
-	
-	
+
 	export default {
 		computed: {
 			...mapState({
@@ -120,14 +123,14 @@
 		},
 		data() {
 			return {
-				topName: "辟谣中心",
-				ifGetlist:false,
+				topName: "资讯",
+				ifGetlist: false, //允许调用数据
 				swiperOptionh: {
 					spaceBetween: 0,
 					autoplay: false,
 					direction: 'horizontal',
-					resistanceRatio : 0,
-					//					watchSlidesProgress : true,
+					resistanceRatio: 0,
+//					watchSlidesProgress : true,
 					pagination: {
 						el: '.swiper-pagination-h',
 						clickable: true,
@@ -146,42 +149,49 @@
 					direction: 'vertical',
 					slidesPerView: 'auto',
 					spaceBetween: 0,
-					resistanceRatio : 0.65,
+					resistanceRatio: 0.65,
 					freeMode: true,
+					freeModeMomentum:false,
+					
 					scrollbar: {
 						el: '.swiper-scrollbar'
 					},
 					mousewheel: true,
+ 				 
 					on: {
-						// touchEnd: function(event){
-						// 						  //你的事件
-						// 						  
-						// 						},
-						// 						sliderMove: function(){
-						// 						   
-						// 						},
-						progress:(progress)=>{
-						 if(this.ifGetlist==false){
-							 if(progress<0){
-							 	console.log(0)
-								this.ifGetlist = true
-								setTimeout(function(){
-									
-								})
-							 }else if(progress>1){
-							 	console.log(0)
-								this.ifGetlist = true
-							 }else{
-								false
-							 }
-						 }
 						 
+						progress: (progress) => {
+							this.progress = 0.5
+							console.log(progress,111)
+							let _this = this;
+							if(_this.ifGetlist == false) {
+								if(progress<-0.15){
+//									console.log("下拉");
+									_this.ifGetlist = true
+//									
+									setTimeout(function(){
+//	 							 		//请求成功了，就变成初始状态
+	 							 		_this.ifGetlist = false
+//	 							 		alert(_this.ifGetlist)
+									},3000)
+								} else if (progress>1.15) {
+//									console.log("上拉");
+									_this.ifGetlist = true
+									setTimeout(function(){
+//	 							 		//请求成功了，就变成初始状态
+	 							 		_this.ifGetlist = false
+//	 							 		alert(_this.ifGetlist)
+									},3000)
+								} else{
+//									console.log("中间")
+								}
+							} 
 						}
 					}
 				}
 			}
 		},
- 
+
 	}
 
 	// 		watch: {
@@ -198,6 +208,14 @@
 </script>
 
 <style lang="scss">
+	.swiper-wrapper{
+	   transition-timing-function:  ease;
+	}
+	.ani{
+	   animation-timing-function: ease;
+	   -webkit-animation-timing-function: ease;
+	}
+
 	.pic1 {
 		width: calc(100% - 33% - 20px);
 		float: left;
@@ -226,27 +244,33 @@
 			height: 75px;
 		}
 	}
-	.up, .down{
+	
+	.up,
+	.down {
 		position: absolute;
 		width: 100%;
 		font-size: 13px;
 		color: #ccc;
 		text-align: center;
 	}
-		.up{top: 500px;}
-		.down{top: 50px;}
-
+	
+	.up {
+		top: 500px;
+	}
+	
+	.down {
+		top: 50px;
+	}
+	
 	.news {
 		/*max-width: 375px;*/
-		 
 		.content {
 			margin-top: 65px;
 			position: relative;
 			height: calc( 100% - 95px);
 		}
- 
 		.swiper-container {
-			height:  100%;
+			height: 100%;
 			.swiper-wrapper {
 				height: calc(100% - 20px);
 			}
@@ -262,7 +286,7 @@
 		}
 		/*小圓點*/
 		.swiper-pagination-h {
-			background:#F5F5F5;
+			background: #F5F5F5;
 			top: 0px;
 			left: 0;
 			width: 100%;
@@ -283,22 +307,22 @@
 			}
 			.swiper-pagination-bullet-active {
 				color: red !important;
-				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);  
+				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 			}
 		}
-		.swiperOptionInner{
+		.swiperOptionInner {
 			width: 100%;
 			background: #fff;
-			ul{
-				background:  #f5f5f5;
+			ul {
+				background: #f5f5f5;
 				width: calc(100% - 30px);
 				margin: 0px 15px;
 				.list {
-					background:  #ffffff;
+					background: #ffffff;
 					margin-bottom: 1px;
 					overflow: hidden;
 					display: block;
- 				 	padding: 15px 0;
+					padding: 15px 0;
 					.time {
 						clear: both;
 						line-height: 10px;
@@ -309,9 +333,7 @@
 						}
 					}
 				}
-			}			
+			}
 		}
-
 	}
-	
-	</style>
+</style>

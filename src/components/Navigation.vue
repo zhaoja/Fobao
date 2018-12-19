@@ -8,7 +8,8 @@
 				</router-link>
 			</li>
 			<li>
-				<router-link to="account" :class="{active: $route.path.match('account')}">
+				<!--account-->
+				<router-link to="" :class="{active: $route.path.match('account')}">
 					<div><i class="icon icon-jifen"></i></div>
 					积分兑换
 				</router-link>

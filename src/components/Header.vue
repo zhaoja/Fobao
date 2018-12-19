@@ -1,6 +1,6 @@
 <template>
 	<div class="header">
-		<div @click="$router.back(-1)">
+		<div @click="$router.back(-1)" v-if="topName!='资讯'">
 		<i class="icon icon-back"></i>
 		</div>
 		{{topName}}

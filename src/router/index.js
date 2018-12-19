@@ -33,10 +33,14 @@ import PhoneCard from '@/containers/govtservice/phoneCard'
 
 import yidong from '@/containers/yidong/moveApp'
 
+//移动定位
+import Location from '@/containers/other/location'
+
 Vue.use(Router)
 
 export default new Router({
-  routes: [
+	mode: 'history',
+  	routes: [
 		{path:"*",name:"404",component:Status404},
 		{
 			path: '/',
@@ -45,7 +49,7 @@ export default new Router({
 			children:[
 				{path:"",redirect:'/index'},
 				{path:"/index",name:"首页",component:Home},
-				{path:"/information",name:"辟谣中心",component:RumorCenter},
+				{path:"/information",name:"资讯",component:RumorCenter},
 				{path:"/mine",name:"我的",component:Mine}
 			]
 		},
@@ -99,6 +103,11 @@ export default new Router({
 			name:"移动H5+",
 			component:yidong 
 		}, 
+		{
+			path:"/location",
+			name:"高德地图",
+			component:Location 
+		}
   ],
 	scrollBehavior (to, from, savedPosition) {
 			return { x: 0, y: 0 }
