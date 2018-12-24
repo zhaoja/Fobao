@@ -125,24 +125,6 @@
 						mescroll: null,
 						list: [],
 						isListInit: false
-					},
-					{
-						name: '老人福利',
-						mescroll: null,
-						list: [],
-						isListInit: false
-					},
-					{
-						name: '老人福利',
-						mescroll: null,
-						list: [],
-						isListInit: false
-					},
-					{
-						name: '老人福利',
-						mescroll: null,
-						list: [],
-						isListInit: false
 					}
 				],
 				tabWidth: 80, // 每个tab的宽度
