@@ -14,6 +14,7 @@ import 'lib-flexible'
 import cardApply from './models/cardApply'
 import user from './models/user'
 import system from './models/system'
+import location from './models/location'
 /*  eslint-disable no-new */
 Vue.use(Vuex)
 
@@ -38,6 +39,7 @@ Vue.config.productionTip = false
      cardApply: cardApply,
      user: user,
      system: system,
+		 location:location
  
    }
  })

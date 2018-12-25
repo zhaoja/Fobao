@@ -1,13 +1,29 @@
 <template>
 	<div>
+		<div class="search-header"> 
+			<!-- <mt-search v-model="value"
+			  cancel-text="搜索"
+			  placeholder="搜索"></mt-search> -->
+		</div>
 		<div id="container"></div>
+		<div id="panel"></div>
 	</div>
 </template>
 
 <script>
+	import { mapState } from 'vuex'
 	export default {
+		
+		
+		computed: {
+			...mapState({
+				location: state => state.location.location.mapData
+				 
+			})
+		},
 		data() {
 			return {
+				value:'',
 				lat: 116.397428, //纬度 
 				lag: 39.90923, //经度 
 				lnglat: [116.473188, 39.993253]
@@ -17,6 +33,8 @@
 			this.getLocation();
 		},
 		mounted(){
+			
+			//当前位置的坐标点
    			let map = new AMap.Map('container', {
 				zoom: 11, //级别
 				center: [this.lat, this.lag], //中心点坐标
@@ -27,104 +45,153 @@
 				position: [this.lat, this.lag]
 			});
 			map.add(marker1);
-
-			//路线规划窗体
-			let infowindow1 = new AMap.AdvancedInfoWindow({
-				offset: new AMap.Pixel(0, -30)
-			});
-			infowindow1.open(map, [116.473188, 39.993253])
-
-			//鼠标点击marker弹出自定义的信息窗体
-			AMap.event.addListener(marker1, 'click', function() {
-				infoWindow.open(map, marker1.getPosition());
-			});
-			//实例化信息窗体
-			var title = '方恒假日酒店<span style="font-size:11px;color:#F00;">价格:318</span>',
-				content = [];
-			content.push("<img src='http://tpc.googlesyndication.com/simgad/5843493769827749134'>地址：北京市朝阳区阜通东大街6号院3号楼东北8.3公里");
-			content.push("电话：010-64733333");
-			content.push("<a href='https://ditu.amap.com/detail/B000A8URXB?citycode=110105'>详细信息</a>");
-			var infoWindow = new AMap.InfoWindow({
-				isCustom: true, //使用自定义窗体
-				content: createInfoWindow(title, content.join("<br/>")),
-				offset: new AMap.Pixel(16, -45)
-			});
-
-			var marker3 = new AMap.Marker({
-				position: lnglat
-			});
-			marker3.setMap(map);
-
-			//构建自定义信息窗体
-			function createInfoWindow(title, content) {
-				var info = document.createElement("div");
-				info.className = "custom-info input-card content-window-card";
-
-				//可以通过下面的方式修改自定义窗体的宽高
-				//info.style.width = "400px";
-				// 定义顶部标题
-				var top = document.createElement("div");
-				var titleD = document.createElement("div");
-				var closeX = document.createElement("img");
-				top.className = "info-top";
-				titleD.innerHTML = title;
-				closeX.src = "https://webapi.amap.com/images/close2.gif";
-				closeX.onclick = closeInfoWindow;
-
-				top.appendChild(titleD);
-				top.appendChild(closeX);
-				info.appendChild(top);
-
-				// 定义中部内容
-				var middle = document.createElement("div");
-				middle.className = "info-middle";
-				middle.style.backgroundColor = 'white';
-				middle.innerHTML = content;
-				info.appendChild(middle);
-
-				// 定义底部内容
-				var bottom = document.createElement("div");
-				bottom.className = "info-bottom";
-				bottom.style.position = 'relative';
-				bottom.style.top = '0px';
-				bottom.style.margin = '0 auto';
-				var sharp = document.createElement("img");
-				sharp.src = "https://webapi.amap.com/images/sharp.png";
-				bottom.appendChild(sharp);
-				info.appendChild(bottom);
-				return info;
+			
+			//目标组的坐标点
+			let loactionLists = this.location;
+			var infoWindow = new AMap.InfoWindow({offset: new AMap.Pixel(0, -30)});
+			for (var i = 0, marker; i < loactionLists.length; i++) {
+				var marker = new AMap.Marker({
+					position: [loactionLists[i].y, loactionLists[i].x],
+					map: map
+				});
+				marker.content = loactionLists[i].name+'<span style="font-size:11px;color:#3e93fa;float: right;margin-right: 10px;">距离:318Km</span>'+
+				"<br>电话:"+loactionLists[i].phone +
+				'<br>地址:'+loactionLists[i].location+
+				'<button id="walkRouter">路线<button>';
+				marker.on('click', markerClick);
+				marker.emit('click', {target: marker});
 			}
-
+		
 			//关闭信息窗体
 			function closeInfoWindow() {
 				map.clearInfoWindow();
 			}
+			
+				
+			//步行导航
+			var walking = new AMap.Walking({
+				map: map,
+				panel: "panel"
+			}); 
+			
+			function markerClick(e) {
+				infoWindow.setContent(e.target.content);
+				infoWindow.open(map, e.target.getPosition());
+			}
+			map.setFitView();
+				
+			
+			//根据起终点坐标规划步行路线
+			function walkingRouter(a,b){
+				 
+				walking.search(a,b, function(status, result) {
+					// result即是对应的步行路线数据信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_WalkingResult
+					if (status === 'complete') {
+						log.success('绘制步行路线完成')
+					} else {
+						log.error('步行路线数据查询失败' + result)
+					} 
+				});
+			}
+// 			var a = [116.399028, 39.845042];
+// 			var b = [116.436281, 39.880719]
+// 			walkingRouter(a,b)
+			
+			var cc = document.getElementsByClassName('amap-info-contentContainer');
+			var dd = document.getElementById('walkRouter');
+			console.log(JSON.stringify(cc))
+			//路线规划窗体
+// 			let infowindow1 = new AMap.AdvancedInfoWindow({
+// 				offset: new AMap.Pixel(0, -30)
+// 			});
+// 			infowindow1.open(map, this.lnglat)
+
+			//鼠标点击marker弹出自定义的信息窗体
+// 			AMap.event.addListener(marker1, 'click', function() {
+// 				infoWindow.open(map, marker1.getPosition());
+// 			});
+// 			
+// 			//实例化信息窗体
+// 			var infoWindow = new AMap.InfoWindow({
+// 				isCustom: true, //使用自定义窗体
+// 				content: createInfoWindow(),
+// 				offset: new AMap.Pixel(16, -45)
+// 			});
+
+			
 
 			//添加组群
-			let lnglats = [
-				[116.39, 39.92],
-				[116.41, 39.93],
-				[116.43, 39.91],
-				[116.46, 39.93]
-			];
-			let markers1 = [];
+// 			
+// 			let lnglats = [
+// 				[116.39, 39.92],
+// 				[116.41, 39.93],
+// 				[116.43, 39.91],
+// 				[116.46, 39.93]
+// 			];
+// 			let markers1 = [];
+//  			let loactionLists = this.location;
+// 			for(let i = 0; i < loactionLists.length; i++) {
+// 				console.log(loactionLists[i])
+// 				// var lnglat = lnglats[i];
+// 				// 创建点实例
+// 				let marker = new AMap.Marker({
+// 					// position: new AMap.LngLat(lnglat[0], lnglat[1]),
+// 					position: new AMap.LngLat(loactionLists[i].y, loactionLists[i].x),
+// 					icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b' + (i + 1) + '.png',
+// 					extData: {
+// 						id: i + 1
+// 					},
+// 				});
+// 				AMap.event.addListener(marker, 'click', function() {
+// 					infoWindow.open(map, marker.getPosition());
+// 				});
+// 				markers1.push(marker);
+// 			}
+// 
+// 			let overlayGroups1 = new AMap.OverlayGroup(markers1);
+// 			map.add(overlayGroups1);
+			
+			
+			//构建自定义信息窗体
+// 			function createInfoWindow(text) {
+// 				var info = document.createElement("div");
+// 				info.className = "custom-info input-card content-window-card";
+// 
+// 				//可以通过下面的方式修改自定义窗体的宽高
+// 				//info.style.width = "400px";
+// 				// 定义顶部标题
+// 				var top = document.createElement("div");
+// 				var titleD = document.createElement("div");
+// 				var closeX = document.createElement("img");
+// 				top.className = "info-top";
+// 				titleD.innerHTML = '方恒假日酒店<span style="font-size:11px;color:#F00;">价格:318</span>';
+// 				closeX.src = "https://webapi.amap.com/images/close2.gif";
+// 				closeX.onclick = closeInfoWindow;
+// 
+// 				top.appendChild(titleD);
+// 				top.appendChild(closeX);
+// 				info.appendChild(top);
+// 
+// 				// 定义中部内容
+// 				var middle = document.createElement("div");
+// 				middle.className = "info-middle";
+// 				middle.style.backgroundColor = 'white';
+// 				middle.innerHTML = ["<img src='http://tpc.googlesyndication.com/simgad/5843493769827749134'>地址：北京市朝阳区阜通东大街6号院3号楼东北8.3公里<br/>","电话：010-64733333<br/>","<a href='https://ditu.amap.com/detail/B000A8URXB?citycode=110105'>详细信息</a>"];
+// 				info.appendChild(middle);
+// 
+// 				// 定义底部内容
+// 				var bottom = document.createElement("div");
+// 				bottom.className = "info-bottom";
+// 				bottom.style.position = 'relative';
+// 				bottom.style.top = '0px';
+// 				bottom.style.margin = '0 auto';
+// 				var sharp = document.createElement("img");
+// 				sharp.src = "https://webapi.amap.com/images/sharp.png";
+// 				bottom.appendChild(sharp);
+// 				info.appendChild(bottom);
+// 				return info;
+// 			}
 
-			for(let i = 0; i < lnglats.length; i++) {
-				var lnglat = lnglats[i];
-				// 创建点实例
-				let marker = new AMap.Marker({
-					position: new AMap.LngLat(lnglat[0], lnglat[1]),
-					icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b' + (i + 1) + '.png',
-					extData: {
-						id: i + 1
-					}
-				});
-
-				markers1.push(marker);
-			}
-
-			let overlayGroups1 = new AMap.OverlayGroup(markers1);
-			map.add(overlayGroups1);
 		},
 		methods: {
 
@@ -161,6 +228,10 @@
 </script>
 
 <style>
+	.search-header{
+		background-color: #fe4c40;
+		height: 65px;
+	}
 	#container {
 		width: 100%;
 		height: 580px;

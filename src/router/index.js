@@ -28,7 +28,7 @@ import CardApply2 from '@/containers/govtservice/cardApply_p2'
 import CardApply3 from '@/containers/govtservice/cardApply_p3'
 import CardApply4 from '@/containers/govtservice/cardApply_p4'
 import Function from '@/containers/govtservice/function'
-import PhoneCard from '@/containers/govtservice/phoneCard'
+import LinkPage from '@/containers/govtservice/linkPage'
 // 
 
 import yidong from '@/containers/yidong/moveApp'
@@ -88,10 +88,15 @@ export default new Router({
 			name:"功能介绍",
 			component:Function,
 		},
+// 		{      
+// 			path:"/phoneCard",
+// 			name:"北京通手机卡",
+// 			component:PhoneCard,
+// 		},
 		{      
-			path:"/phoneCard",
-			name:"北京通手机卡",
-			component:PhoneCard,
+			path:"/linkPage",
+			name:"外部链接",
+			component:LinkPage,
 		},
 		{
 			path:"/rumorCenter/rumorDt",

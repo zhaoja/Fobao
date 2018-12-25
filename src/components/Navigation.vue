@@ -15,6 +15,12 @@
 				</router-link>
 			</li>
 			<li>
+				<router-link to="location" :class="{active: $route.path.match('location')}">
+					<div><i class="icon-m icon-m-location"></i></div>
+					服务网点
+				</router-link>
+			</li>
+			<li>
 				<router-link to="information" :class="{active: $route.path.match('information')}">
 					<div><i class="icon icon-news"></i></div>
 					资讯
