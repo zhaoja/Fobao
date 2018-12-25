@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="search-header"> 
+		<div class="search-header">
 			<!-- <mt-search v-model="value"
 			  cancel-text="搜索"
 			  placeholder="搜索"></mt-search> -->
@@ -11,199 +11,133 @@
 </template>
 
 <script>
-	import { mapState } from 'vuex'
+	import {
+		mapState
+	} from 'vuex'
 	export default {
-		
-		
+
+
 		computed: {
 			...mapState({
 				location: state => state.location.location.mapData
-				 
+
 			})
 		},
 		data() {
 			return {
-				value:'',
+				value: '',
 				lat: 116.397428, //纬度 
 				lag: 39.90923, //经度 
-				lnglat: [116.473188, 39.993253]
+				lnglat: [116.473188, 39.993253],
+				map:{},
+				walkingRouter:null
 			}
 		},
 		created() {
 			this.getLocation();
 		},
-		mounted(){
-			
-			//当前位置的坐标点
-   			let map = new AMap.Map('container', {
-				zoom: 11, //级别
-				center: [this.lat, this.lag], //中心点坐标
-				viewMode: '3D', //使用3D视图
-			});
-			let marker1 = new AMap.Marker({
-				icon: "http://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-red.png",
-				position: [this.lat, this.lag]
-			});
-			map.add(marker1);
-			
-			//目标组的坐标点
-			let loactionLists = this.location;
-			var infoWindow = new AMap.InfoWindow({offset: new AMap.Pixel(0, -30)});
-			for (var i = 0, marker; i < loactionLists.length; i++) {
-				var marker = new AMap.Marker({
-					position: [loactionLists[i].y, loactionLists[i].x],
-					map: map
-				});
-				marker.content = loactionLists[i].name+'<span style="font-size:11px;color:#3e93fa;float: right;margin-right: 10px;">距离:318Km</span>'+
-				"<br>电话:"+loactionLists[i].phone +
-				'<br>地址:'+loactionLists[i].location+
-				'<button id="walkRouter">路线<button>';
-				marker.on('click', markerClick);
-				marker.emit('click', {target: marker});
-			}
-		
-			//关闭信息窗体
-			function closeInfoWindow() {
-				map.clearInfoWindow();
-			}
-			
-				
-			//步行导航
-			var walking = new AMap.Walking({
-				map: map,
-				panel: "panel"
-			}); 
-			
-			function markerClick(e) {
-				infoWindow.setContent(e.target.content);
-				infoWindow.open(map, e.target.getPosition());
-			}
-			map.setFitView();
-				
-			
-			//根据起终点坐标规划步行路线
-			function walkingRouter(a,b){
-				 
-				walking.search(a,b, function(status, result) {
-					// result即是对应的步行路线数据信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_WalkingResult
-					if (status === 'complete') {
-						log.success('绘制步行路线完成')
-					} else {
-						log.error('步行路线数据查询失败' + result)
-					} 
-				});
-			}
-// 			var a = [116.399028, 39.845042];
-// 			var b = [116.436281, 39.880719]
-// 			walkingRouter(a,b)
-			
-			var cc = document.getElementsByClassName('amap-info-contentContainer');
-			var dd = document.getElementById('walkRouter');
-			console.log(JSON.stringify(cc))
-			//路线规划窗体
-// 			let infowindow1 = new AMap.AdvancedInfoWindow({
-// 				offset: new AMap.Pixel(0, -30)
-// 			});
-// 			infowindow1.open(map, this.lnglat)
+		mounted() {
 
-			//鼠标点击marker弹出自定义的信息窗体
-// 			AMap.event.addListener(marker1, 'click', function() {
-// 				infoWindow.open(map, marker1.getPosition());
-// 			});
-// 			
-// 			//实例化信息窗体
-// 			var infoWindow = new AMap.InfoWindow({
-// 				isCustom: true, //使用自定义窗体
-// 				content: createInfoWindow(),
-// 				offset: new AMap.Pixel(16, -45)
-// 			});
-
-			
-
-			//添加组群
-// 			
-// 			let lnglats = [
-// 				[116.39, 39.92],
-// 				[116.41, 39.93],
-// 				[116.43, 39.91],
-// 				[116.46, 39.93]
-// 			];
-// 			let markers1 = [];
-//  			let loactionLists = this.location;
-// 			for(let i = 0; i < loactionLists.length; i++) {
-// 				console.log(loactionLists[i])
-// 				// var lnglat = lnglats[i];
-// 				// 创建点实例
-// 				let marker = new AMap.Marker({
-// 					// position: new AMap.LngLat(lnglat[0], lnglat[1]),
-// 					position: new AMap.LngLat(loactionLists[i].y, loactionLists[i].x),
-// 					icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b' + (i + 1) + '.png',
-// 					extData: {
-// 						id: i + 1
-// 					},
-// 				});
-// 				AMap.event.addListener(marker, 'click', function() {
-// 					infoWindow.open(map, marker.getPosition());
-// 				});
-// 				markers1.push(marker);
-// 			}
-// 
-// 			let overlayGroups1 = new AMap.OverlayGroup(markers1);
-// 			map.add(overlayGroups1);
-			
-			
-			//构建自定义信息窗体
-// 			function createInfoWindow(text) {
-// 				var info = document.createElement("div");
-// 				info.className = "custom-info input-card content-window-card";
-// 
-// 				//可以通过下面的方式修改自定义窗体的宽高
-// 				//info.style.width = "400px";
-// 				// 定义顶部标题
-// 				var top = document.createElement("div");
-// 				var titleD = document.createElement("div");
-// 				var closeX = document.createElement("img");
-// 				top.className = "info-top";
-// 				titleD.innerHTML = '方恒假日酒店<span style="font-size:11px;color:#F00;">价格:318</span>';
-// 				closeX.src = "https://webapi.amap.com/images/close2.gif";
-// 				closeX.onclick = closeInfoWindow;
-// 
-// 				top.appendChild(titleD);
-// 				top.appendChild(closeX);
-// 				info.appendChild(top);
-// 
-// 				// 定义中部内容
-// 				var middle = document.createElement("div");
-// 				middle.className = "info-middle";
-// 				middle.style.backgroundColor = 'white';
-// 				middle.innerHTML = ["<img src='http://tpc.googlesyndication.com/simgad/5843493769827749134'>地址：北京市朝阳区阜通东大街6号院3号楼东北8.3公里<br/>","电话：010-64733333<br/>","<a href='https://ditu.amap.com/detail/B000A8URXB?citycode=110105'>详细信息</a>"];
-// 				info.appendChild(middle);
-// 
-// 				// 定义底部内容
-// 				var bottom = document.createElement("div");
-// 				bottom.className = "info-bottom";
-// 				bottom.style.position = 'relative';
-// 				bottom.style.top = '0px';
-// 				bottom.style.margin = '0 auto';
-// 				var sharp = document.createElement("img");
-// 				sharp.src = "https://webapi.amap.com/images/sharp.png";
-// 				bottom.appendChild(sharp);
-// 				info.appendChild(bottom);
-// 				return info;
+			this.createMap();
+			 
+// 			//关闭信息窗体
+// 			function closeInfoWindow() {
+// 				map.clearInfoWindow();
 // 			}
 
 		},
 		methods: {
+			
+			createMap(){
+				let _this = this;
+				//当前位置的坐标点
+				this.map = new AMap.Map('container', {
+					zoom: 11, //级别
+					resizeEnable:true,
+					// center: [this.lat, this.lag], //中心点坐标
+				});
+				//定位我的位置
+				let marker1 = new AMap.Marker({
+					map: _this.map,
+					icon: "http://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-red.png",
+					position: new AMap.LngLat(_this.lat, _this.lag),
+					 
+				});
+				_this.map.add(marker1);
+				
+				
+				//画出好多其他点
+				let loactionLists = this.location;
+				var infoWindow = new AMap.InfoWindow({
+					offset: new AMap.Pixel(0, -30)
+				});
+				for (let i = 0, marker; i < loactionLists.length; i++) {
+					var marker = new AMap.Marker({
+						position: [loactionLists[i].y, loactionLists[i].x],
+						map: _this.map
+					});
 
+					marker.content = loactionLists[i].name +
+						'<span style="font-size:11px;color:#3e93fa;float: right;margin-right: 10px;">距离:318Km</span>' +
+						"<br>电话:" + loactionLists[i].phone +
+						'<br>地址:' + loactionLists[i].location +
+						`<button id="id${i}" onclick='(${_this.walkrouter})()'>路线<button>`;
+
+					marker.on('click', markerClick);
+					marker.emit('click', {
+						target: marker
+					});
+					var a = _this.lnglat;
+					
+					// console.log(b)
+					function markerClick(e) {
+						infoWindow.setContent(e.target.content);
+						infoWindow.open(_this.map, e.target.getPosition());
+						setTimeout(function(index){
+							var ids = document.getElementById("id"+i);
+							if(ids){
+								ids.onclick = function() {
+									var mappp = _this.map.getAllOverlays('polyline');
+									// _this.map.remove([mappp]);
+// 									if(_this.walkingRoute){
+// 										_this.walkingRoute.clearMap();
+// 										// _this.map.setFitView()
+// 										// _this.walkingRoute.clear()
+// 									}
+									
+										// _this.map.setFitView();
+
+									AMap.service('AMap.Walking', function() { //回调函数
+										if(!_this.walkingRouter) {
+											_this.walkingRouter = new AMap.Walking({ //构造路线导航类
+													map: _this.map
+											});
+										}
+										var b = [loactionLists[index].y, loactionLists[index].x];
+										// console.log()
+									//	_this.walkingRoute.clearMap;
+										_this.walkingRouter.search(a,b, function(status, result) {})
+									})
+								}
+							}
+							
+						},500,i)
+					}
+					_this.map.setFitView();
+				}
+				
+			},
+	 
+			
 			getLocation() {
-				if(navigator.geolocation) {
+				if (navigator.geolocation) {
 					navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
 				} else {
 					alert("浏览器不支持地理定位。");
 				}
 			},
 			showError(error) {
-				switch(error.code) {
+				switch (error.code) {
 					case error.PERMISSION_DENIED:
 						alert("定位失败,用户拒绝请求地理定位");
 						break;
@@ -222,21 +156,25 @@
 				this.lat = position.coords.latitude; //纬度 
 				this.lag = position.coords.longitude; //经度 
 				alert('纬度:' + lat + ',经度:' + lag);
+			},
+			aa() {
+				return console.log(111)
 			}
 		}
 	}
 </script>
 
 <style>
-	.search-header{
+	.search-header {
 		background-color: #fe4c40;
 		height: 65px;
 	}
+
 	#container {
 		width: 100%;
 		height: 580px;
 	}
-	
+
 	.content-window-card {
 		position: relative;
 		box-shadow: none;
@@ -245,22 +183,22 @@
 		width: auto;
 		padding: 0;
 	}
-	
+
 	.content-window-card p {
 		height: 2rem;
 	}
-	
+
 	.custom-info {
 		border: solid 1px silver;
 	}
-	
+
 	div.info-top {
 		position: relative;
 		background: none repeat scroll 0 0 #F9F9F9;
 		border-bottom: 1px solid #CCC;
 		border-radius: 5px 5px 0 0;
 	}
-	
+
 	div.info-top div {
 		display: inline-block;
 		color: #333333;
@@ -269,58 +207,58 @@
 		line-height: 31px;
 		padding: 0 10px;
 	}
-	
+
 	div.info-top img {
 		position: absolute;
 		top: 10px;
 		right: 10px;
 		transition-duration: 0.25s;
 	}
-	
+
 	div.info-top img:hover {
 		box-shadow: 0px 0px 5px #000;
 	}
-	
+
 	div.info-middle {
 		font-size: 12px;
 		padding: 10px 6px;
 		line-height: 20px;
 	}
-	
+
 	div.info-bottom {
 		height: 0px;
 		width: 100%;
 		clear: both;
 		text-align: center;
 	}
-	
+
 	div.info-bottom img {
 		position: relative;
 		z-index: 104;
 	}
-	
+
 	span {
 		margin-left: 5px;
 		font-size: 11px;
 	}
-	
+
 	.info-middle img {
 		float: left;
 		margin-right: 6px;
 	}
-	
+
 	.custom-input-card {
 		width: 22rem;
 	}
-	
+
 	.custom-input-card .btn {
 		margin-right: 1rem;
 	}
-	
+
 	.custom-input-card .btn:last-child {
 		margin-right: 0;
 	}
-	
+
 	.info-title {
 		color: white;
 		font-size: 14px;
@@ -330,19 +268,19 @@
 		font-weight: lighter;
 		letter-spacing: 1px
 	}
-	
+
 	.info-content {
 		font: 12px Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial;
 		padding: 4px;
 		color: #666666;
 		line-height: 23px;
 	}
-	
+
 	.info-content img {
 		float: left;
 		margin: 3px;
 	}
-	
+
 	.amap-info-combo .keyword-input {
 		height: 25px;
 		border-radius: 2px 0 0 2px;
