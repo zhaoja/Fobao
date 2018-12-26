@@ -50,7 +50,12 @@ export default new Router({
 				{path:"",redirect:'/index'},
 				{path:"/index",name:"首页",component:Home},
 				{path:"/information",name:"资讯",component:RumorCenter},
-				{path:"/mine",name:"我的",component:Mine}
+				{path:"/mine",name:"我的",component:Mine}, 
+				{
+					path:"/location",
+					name:"高德地图",
+					component:Location 
+				}
 			]
 		},
 		{
@@ -107,11 +112,6 @@ export default new Router({
 			path:"/yidong",
 			name:"移动H5+",
 			component:yidong 
-		}, 
-		{
-			path:"/location",
-			name:"高德地图",
-			component:Location 
 		}
   ],
 	scrollBehavior (to, from, savedPosition) {

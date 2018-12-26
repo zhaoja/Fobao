@@ -1,10 +1,13 @@
 <template>
-	<div>
+	<div class="location">
 		<div class="search-header">
-			<!-- <mt-search v-model="value"
-			  cancel-text="搜索"
-			  placeholder="搜索"></mt-search> -->
+			<input v-model="value" placeholder="请输入关键字"/> 
+			<button @click="search(value)">搜索</button>
 		</div>
+		<ul class="location-nav">
+			<li v-for="(item,index) in btn" v-bind:class="{active:(indexs==index)}" v-on:click="createMap(index)" :key="index">{{item}}</li>
+		</ul>
+
 		<div id="container"></div>
 		<div id="panel"></div>
 	</div>
@@ -19,116 +22,257 @@
 
 		computed: {
 			...mapState({
-				location: state => state.location.location.mapData
+				location: state => state.location.location.mapData,
+				location1: state => state.location.location.mapData1,
+				location2: state => state.location.location.mapData2,
+				location3: state => state.location.location.mapData3,
+				location4: state => state.location.location.mapData4
 
 			})
 		},
 		data() {
 			return {
+				btn: ['全部', '购物类', '服务类', '餐饮类', '其他'],
+				indexs: 0,
 				value: '',
-				lat: 116.397428, //纬度 
-				lag: 39.90923, //经度 
-				lnglat: [116.473188, 39.993253],
-				map:{},
-				walkingRouter:null
+				lnglat: [116.416202, 39.924363],
+				map: {},
+				walkingRouter: null,
+				transferRouter: null,
+				ridingRouter: null,
+				autoComplete: null
 			}
 		},
 		created() {
 			this.getLocation();
+
 		},
 		mounted() {
-
-			this.createMap();
-			 
-// 			//关闭信息窗体
-// 			function closeInfoWindow() {
-// 				map.clearInfoWindow();
-// 			}
+			this.createMap(0);
+			// this.search()
 
 		},
 		methods: {
-			
-			createMap(){
+
+			createMap(str) {
+				let loactionLists;
+				this.indexs = str;
+				if (str == 0) {
+					loactionLists = this.location
+				} else if (str == 1) {
+					loactionLists = this.location1
+				} else if (str == 2) {
+					loactionLists = this.location2
+				} else if (str == 3) {
+					loactionLists = this.location3
+				} else if (str == 4) {
+					loactionLists = this.location4
+				}
+
 				let _this = this;
-				//当前位置的坐标点
+				var a = _this.lnglat;
+				
+				//地图初始化
 				this.map = new AMap.Map('container', {
 					zoom: 11, //级别
-					resizeEnable:true,
+					resizeEnable: true,
 					// center: [this.lat, this.lag], //中心点坐标
 				});
 				//定位我的位置
 				let marker1 = new AMap.Marker({
 					map: _this.map,
 					icon: "http://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-red.png",
-					position: new AMap.LngLat(_this.lat, _this.lag),
-					 
+					position: new AMap.LngLat(_this.lnglat[0], _this.lnglat[1]),
+
 				});
 				_this.map.add(marker1);
-				
-				
+
+
 				//画出好多其他点
-				let loactionLists = this.location;
+
 				var infoWindow = new AMap.InfoWindow({
 					offset: new AMap.Pixel(0, -30)
 				});
-				for (let i = 0, marker; i < loactionLists.length; i++) {
-					var marker = new AMap.Marker({
-						position: [loactionLists[i].y, loactionLists[i].x],
-						map: _this.map
-					});
+				if (loactionLists) {
+					for (let i = 0, marker; i < loactionLists.length; i++) {
+						var marker = new AMap.Marker({
+							position: [loactionLists[i].y, loactionLists[i].x],
+							map: _this.map
+						});
 
-					marker.content = loactionLists[i].name +
-						'<span style="font-size:11px;color:#3e93fa;float: right;margin-right: 10px;">距离:318Km</span>' +
-						"<br>电话:" + loactionLists[i].phone +
-						'<br>地址:' + loactionLists[i].location +
-						`<button id="id${i}" onclick='(${_this.walkrouter})()'>路线<button>`;
+						marker.content = loactionLists[i].name +
+							'<span style="font-size:11px;color:#3e93fa;float: right;margin-right: 10px;">距离:318Km</span>' +
+							"<br>电话:" + loactionLists[i].phone +
+							'<br>地址:' + loactionLists[i].location +
+							`<div><button class="wkbtn" id="id${i}" onclick='(${_this.walkrouter})()'>步行导航<button>` +
+							`<button class="bsbtn" id="idt${i}" onclick='(${_this.transferrouter})()'>公交导航<button></div>`;
 
-					marker.on('click', markerClick);
-					marker.emit('click', {
-						target: marker
-					});
-					var a = _this.lnglat;
-					
-					// console.log(b)
-					function markerClick(e) {
-						infoWindow.setContent(e.target.content);
-						infoWindow.open(_this.map, e.target.getPosition());
-						setTimeout(function(index){
-							var ids = document.getElementById("id"+i);
-							if(ids){
-								ids.onclick = function() {
-									var mappp = _this.map.getAllOverlays('polyline');
-									// _this.map.remove([mappp]);
-// 									if(_this.walkingRoute){
-// 										_this.walkingRoute.clearMap();
-// 										// _this.map.setFitView()
-// 										// _this.walkingRoute.clear()
-// 									}
-									
-										// _this.map.setFitView();
+						marker.on('click', markerClick);
+						marker.emit('click', {
+							target: marker
+						});
+						
 
-									AMap.service('AMap.Walking', function() { //回调函数
-										if(!_this.walkingRouter) {
-											_this.walkingRouter = new AMap.Walking({ //构造路线导航类
-													map: _this.map
+						function markerClick(e) {
+							infoWindow.setContent(e.target.content);
+							infoWindow.open(_this.map, e.target.getPosition());
+							// console.log(loactionLists)
+							setTimeout(function(index) {
+								var ids = document.getElementById("id" + i);
+								var idts = document.getElementById("idt" + i);
+								// var idrs = document.getElementById("idr" + i);
+								console.log(ids)
+								if (ids) {
+									ids.onclick = function() {
+
+										AMap.service('AMap.Walking', function() { //回调函数
+											if (!_this.walkingRouter) {
+												_this.walkingRouter = new AMap.Walking({ //构造路线导航类
+													map: _this.map,
+													panel: "panel"
+												});
+											}
+											var b = [loactionLists[index].y, loactionLists[index].x];
+
+											_this.walkingRouter.search(a, b, function(status, result) {})
+										})
+									}
+								};
+								 
+
+								if (idts) {
+									idts.onclick = function() {
+
+										if (!_this.transferRouter) {
+											//构造公交换乘类
+											_this.transferRouter = new AMap.Transfer({
+												map: _this.map,
+												city: '北京市',
+												panel: 'panel',
 											});
 										}
 										var b = [loactionLists[index].y, loactionLists[index].x];
-										// console.log()
-									//	_this.walkingRoute.clearMap;
-										_this.walkingRouter.search(a,b, function(status, result) {})
-									})
-								}
-							}
-							
-						},500,i)
+										 
+										//根据起、终点坐标查询公交换乘路线
+										_this.transferRouter.search(new AMap.LngLat(a[0], a[1]), new AMap.LngLat(b[0], b[1]),
+											function(status, result) {
+												if (status === 'complete') {
+													log.success('绘制公交路线完成')
+												} else {
+													log.error('公交路线数据查询失败' + result)
+												}
+											});
+									}
+								};
+							}, 500, i)
+						}
+						_this.map.setFitView();
 					}
-					_this.map.setFitView();
 				}
-				
 			},
-	 
-			
+			search(value) {
+				console.log(value)
+				// 获取输入提示信息
+				// function autoInput() {
+				let _this = this;
+				var a = _this.lnglat;
+				_this.map = new AMap.Map('container', {
+					resizeEnable: true, //是否监控地图容器尺寸变化
+					zoom: 11, //初始地图级别
+				});
+				var infoWindow = new AMap.InfoWindow({
+					offset: new AMap.Pixel(0, -30)
+				});
+				var keywords = value;
+			 
+				AMap.plugin('AMap.Autocomplete', function() {
+					// 实例化Autocomplete
+
+					_this.autoComplete = new AMap.Autocomplete({
+						city: '全国'
+					});
+					_this.autoComplete.search(keywords, function(status, result) {
+						
+						console.log(status,result)
+						let loactionLists = result.tips
+						if (loactionLists) {
+							for (let i = 0, marker; i < loactionLists.length; i++) {
+								var marker = new AMap.Marker({
+									position: [loactionLists[i].location.lng, loactionLists[i].location.lat],
+									map: _this.map
+								});
+
+								marker.content = loactionLists[i].name +
+									'<span style="font-size:11px;color:#3e93fa;float: right;margin-right: 10px;">距离:318Km</span>' +
+									// "<br>电话:" + loactionLists[i].phone +
+									'<br>地址:' + loactionLists[i].address + loactionLists[i].address+
+									`<div><button class="wkbtn" id="id${i}" onclick='(${_this.walkrouter})()'>步行导航<button>` +
+									`<button class="bsbtn" id="idt${i}" onclick='(${_this.transferrouter})()'>公交导航<button></div>`;
+
+								marker.on('click', markerClick);
+								marker.emit('click', {
+									target: marker
+								});
+ 
+								function markerClick(e) {
+									infoWindow.setContent(e.target.content);
+									infoWindow.open(_this.map, e.target.getPosition());
+									setTimeout(function(index) {
+										var ids = document.getElementById("id" + i);
+										var idts = document.getElementById("idt" + i);
+										var idrs = document.getElementById("idr" + i);
+										if (ids) {
+											ids.onclick = function() {
+
+												AMap.service('AMap.Walking', function() { //回调函数
+													if (!_this.walkingRouter) {
+														_this.walkingRouter = new AMap.Walking({ //构造路线导航类
+															map: _this.map,
+															panel: "panel"
+														});
+													}
+													var b = [loactionLists[index].y, loactionLists[index].x];
+
+													_this.walkingRouter.search(a, b, function(status, result) {})
+												})
+											}
+										};
+										// 							if (idrs) {
+
+										if (idts) {
+											idts.onclick = function() {
+
+												if (!_this.transferRouter) {
+													//构造公交换乘类
+													_this.transferRouter = new AMap.Transfer({
+														map: _this.map,
+														city: '北京市',
+														panel: 'panel',
+													});
+												}
+												var b = [loactionLists[index].y, loactionLists[index].x];
+												//根据起、终点坐标查询公交换乘路线
+												_this.transferRouter.search(new AMap.LngLat(a[0], a[1]), new AMap.LngLat(b[0], b[1]),
+													function(status, result) {
+														if (status === 'complete') {
+															log.success('绘制公交路线完成')
+														} else {
+															log.error('公交路线数据查询失败' + result)
+														}
+													});
+											}
+										};
+									}, 500, i)
+								}
+								_this.map.setFitView();
+							}
+						}
+ 
+					})
+				})
+ 
+			},
+			//条件组
 			getLocation() {
 				if (navigator.geolocation) {
 					navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
@@ -157,17 +301,54 @@
 				this.lag = position.coords.longitude; //经度 
 				alert('纬度:' + lat + ',经度:' + lag);
 			},
-			aa() {
-				return console.log(111)
-			}
+
+
+
 		}
 	}
 </script>
 
-<style>
+<style lang="scss">
+	.location {
+		.location-nav {
+			height: 40px;
+			line-height: 40px;
+			display: flex;
+			background:#ffffff;
+			li {
+				flex: 1;
+				text-align: center;
+			}
+
+			.active {
+				color: #fe4c40;
+			}
+			 
+		}
+	}
+
 	.search-header {
 		background-color: #fe4c40;
 		height: 65px;
+		display: flex;
+		input{
+			flex: 1;
+			height: 30px;
+			border-radius: 15px;
+			background-color: #ffffff;
+			margin-top: 27px;
+			margin-left: 15px;
+			padding: 0 15px;
+		}
+		button{
+			margin-top: 34px;
+			width: 50px;
+			height: 16px;
+			font-size: 17px;
+			line-height: 10px;
+			color: #ffffff;
+			background:#fe4c40;
+		}
 	}
 
 	#container {
@@ -285,4 +466,59 @@
 		height: 25px;
 		border-radius: 2px 0 0 2px;
 	}
+
+	.amap-icon img {
+		width: 19px;
+		height: 20px;
+	}
+
+	.wkbtn,
+	.rdbtn,
+	.bsbtn {
+		color: #fff;
+		margin-right: 5px;
+		font-size: 16px;
+		padding: 3px 5px;
+	}
+
+	.wkbtn {
+		background: #3891f7;
+	}
+
+	.rdbtn {
+		background: #33b166;
+	}
+
+	.bsbtn {
+		background: #d66969;
+	}
+
+	.btn-group {
+		width: 50%;
+		margin: 0 auto;
+	}
+
+
+
+
+
+	/* 	#panel {
+				position: fixed;
+				background-color: white;
+				max-height: 90%;
+				overflow-y: auto;
+				top: 10px;
+				right: 10px;
+				width: 280px;
+		}
+		#panel .amap-call {
+				background-color: #009cf9;
+				border-top-left-radius: 4px;
+				border-top-right-radius: 4px;
+		}
+		#panel .amap-lib-walking {
+			border-bottom-left-radius: 4px;
+				border-bottom-right-radius: 4px;
+				overflow: hidden;
+		} */
 </style>

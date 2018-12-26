@@ -220,7 +220,7 @@ $font18:18px;
     background: #FE4C40;
     padding-top: 20px;
     line-height: 45px;
-    height: 45px;
+    height: 64px;
     color: #ffffff;
     text-align: center;
     font-size: $font18;
@@ -366,7 +366,7 @@ $font18:18px;
     background: #fff;
     z-index: 3;
     li {
-        width: 25%;
+        width: 20%;
         float: left;
         text-align: center;
         a {
@@ -723,6 +723,7 @@ $font18:18px;
         .line1 li {
             label {
                 margin-left: 60px;
+								font-size: 16px;
             }
             .span-alert {
                 position: absolute;
