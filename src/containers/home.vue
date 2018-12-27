@@ -1,8 +1,12 @@
 <template>
 	<div class="home">
 
-		<a href='doScan' style='margin:30px;'>扫描二维码</a>
-		<div id="result" style="margin:10px;"></div>
+		<a href='doScan' style='margin:10px;   
+		 position: absolute;
+    z-index: 10;
+    right: 0;
+    top: 20px;'>扫一扫</a>
+		<div id="result" style=" "></div>
 	
 		<div class="broadcast">
 			<mt-swipe :auto="4000">

@@ -114,24 +114,24 @@ const router = new Router({
 			return { x: 0, y: 0 }
 	}
 })
- router.beforeEach((to, from, next) => {
-	 alert(6)
+router.beforeEach((to, from, next) => {
+	 
   /* 路由发生变化修改页面meta */
   let metas = document.getElementsByTagName('head')[0].getElementsByTagName("meta");
   for(var meta of metas){
   	if(meta.name=='viewport'){
   		if(to.meta.content){
-			// alert(0)
+			 
 			if (window.screen.width<='360'){
-				meta.content = "width=device-width, initial-scale=0.35, minimum-scale=0, maximum-scale=10, user-scalable=yes";
-				// alert(1)
+				meta.content = "width=device-width, initial-scale=0.35, minimum-scale=0, maximum-scale=10, user-scalable=yes, viewport-fit=cover";
+				 
 			}else{
-				meta.content = "width=device-width, initial-scale=0, minimum-scale=0, maximum-scale=10, user-scalable=yes";
-				// alert(2)
+				meta.content = "width=device-width, initial-scale=0, minimum-scale=0, maximum-scale=10, user-scalable=yes, viewport-fit=cover";
+				 
 			}
 			
 		} else{
-			// alert(9)
+			
 			meta.content = "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
 		}
   		 
