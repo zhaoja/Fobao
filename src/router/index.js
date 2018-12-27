@@ -38,7 +38,7 @@ import Location from '@/containers/other/location'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
 	mode: 'history',
   	routes: [
 		{path:"*",name:"404",component:Status404},
@@ -49,13 +49,9 @@ export default new Router({
 			children:[
 				{path:"",redirect:'/index'},
 				{path:"/index",name:"首页",component:Home},
-				{path:"/information",name:"资讯",component:RumorCenter},
-				{path:"/mine",name:"我的",component:Mine}, 
-				{
-					path:"/location",
-					name:"高德地图",
-					component:Location 
-				}
+				{path:"/information",name:"资讯",component:RumorCenter },
+				{path:"/mine",name:"我的",component:Mine }, 
+				{path:"/location",name:"高德地图",component:Location}
 			]
 		},
 		{
@@ -93,15 +89,14 @@ export default new Router({
 			name:"功能介绍",
 			component:Function,
 		},
-// 		{      
-// 			path:"/phoneCard",
-// 			name:"北京通手机卡",
-// 			component:PhoneCard,
-// 		},
 		{      
 			path:"/linkPage",
 			name:"外部链接",
 			component:LinkPage,
+			meta: {
+				title:"教师详情",
+				content: "width=device-width, initial-scale=auto, minimum-scale=0, maximum-scale=10, user-scalable=yes"
+			}
 		},
 		{
 			path:"/rumorCenter/rumorDt",
@@ -113,8 +108,37 @@ export default new Router({
 			name:"移动H5+",
 			component:yidong 
 		}
-  ],
+	],
+	
 	scrollBehavior (to, from, savedPosition) {
 			return { x: 0, y: 0 }
 	}
 })
+ router.beforeEach((to, from, next) => {
+	 alert(6)
+  /* 路由发生变化修改页面meta */
+  let metas = document.getElementsByTagName('head')[0].getElementsByTagName("meta");
+  for(var meta of metas){
+  	if(meta.name=='viewport'){
+  		if(to.meta.content){
+			// alert(0)
+			if (window.screen.width<='360'){
+				meta.content = "width=device-width, initial-scale=0.35, minimum-scale=0, maximum-scale=10, user-scalable=yes";
+				// alert(1)
+			}else{
+				meta.content = "width=device-width, initial-scale=0, minimum-scale=0, maximum-scale=10, user-scalable=yes";
+				// alert(2)
+			}
+			
+		} else{
+			// alert(9)
+			meta.content = "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+		}
+  		 
+  	}
+  }
+  next()
+}); 
+
+export default router
+

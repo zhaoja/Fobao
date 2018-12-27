@@ -49,7 +49,7 @@
 
 		},
 		mounted() {
-			
+
 			let _this = this;
 			var a = _this.lnglat;
 
@@ -59,19 +59,19 @@
 				resizeEnable: true,
 				center: [this.lnglat[0], this.lnglat[1]], //中心点坐标
 			});
-			
+
 			this.createMap(0);
 
 		},
 		methods: {
 			//地理定位
-			getLocation(){   
-					if (navigator.geolocation){   
-							navigator.geolocation.getCurrentPosition(this.showPosition,this.showError);   
-					}else{   
-							alert("浏览器不支持地理定位。");   
-					}   
-			},  
+			getLocation() {
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
+				} else {
+					alert("浏览器不支持地理定位。");
+				}
+			},
 			showError(error) {
 				switch (error.code) {
 					case error.PERMISSION_DENIED:
@@ -91,10 +91,10 @@
 			showPosition(position) {
 				this.lat = position.coords.latitude; //纬度 
 				this.lag = position.coords.longitude; //经度 
-				this.lnglat = [lat,lag];
+				this.lnglat = [lat, lag];
 				alert('纬度:' + lat + ',经度:' + lag);
 			},
-		
+
 			//默认检索
 			createMap(str) {
 
@@ -127,7 +127,7 @@
 					position: new AMap.LngLat(_this.lnglat[0], _this.lnglat[1]),
 				});
 				_this.mymap.add(marker1);
-			
+
 				//画出好多其他点
 				var infoWindow = new AMap.InfoWindow({
 					offset: new AMap.Pixel(0, -30)
@@ -203,7 +203,7 @@
 					}
 				}
 			},
-			
+
 			//查询
 			search(value) {
 
@@ -211,8 +211,14 @@
 				this.mymap.clearMap();
 				let _this = this;
 				var a = _this.lnglat;
-				 
-				 
+				//定位我的位置
+				let marker1 = new AMap.Marker({
+					map: _this.mymap,
+					icon: "http://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-red.png",
+					position: new AMap.LngLat(_this.lnglat[0], _this.lnglat[1]),
+				});
+				_this.mymap.add(marker1);
+
 				var infoWindow = new AMap.InfoWindow({
 					offset: new AMap.Pixel(0, -30)
 				});
@@ -222,7 +228,7 @@
 					// 实例化Autocomplete
 
 					_this.autoComplete = new AMap.Autocomplete({
-						city:"北京市",
+						city: "北京市",
 					});
 					_this.autoComplete.search(keywords, function(status, result) {
 
@@ -233,8 +239,8 @@
 								if (loactionLists[i].location) {
 									var marker = new AMap.Marker({
 										position: [loactionLists[i].location.lng, loactionLists[i].location.lat],
-										city:"北京市",
-										
+										city: "北京市",
+
 										map: _this.mymap
 									});
 
@@ -251,12 +257,12 @@
 									});
 
 									function markerClick(e) {
-										
+
 										infoWindow.setContent(e.target.content);
 										infoWindow.open(_this.mymap, e.target.getPosition());
 										setTimeout(function(index) {
 											var ids = document.getElementById("id" + i);
-											var idts = document.getElementById("idt" + i); 
+											var idts = document.getElementById("idt" + i);
 											//步行出行
 											if (ids) {
 												ids.onclick = function() {
@@ -265,9 +271,9 @@
 														_this.transferRouter.clear();
 													}
 													var b = [loactionLists[index].location.lng, loactionLists[index].location.lat];
-													
+
 													AMap.service('AMap.Walking', function() { //回调函数
-			
+
 														if (!_this.myRouter) {
 															_this.myRouter = new AMap.Walking({ //构造路线导航类
 																map: _this.mymap,
@@ -275,18 +281,18 @@
 																panel: "panel"
 															});
 														}
-												 
-														_this.myRouter.search(a,b, function(status, result) {
-														 
-															if(result=='OVER_DIRECTION_RANGE'){
+
+														_this.myRouter.search(a, b, function(status, result) {
+
+															if (result == 'OVER_DIRECTION_RANGE') {
 																alert("起点终点距离过长，请选择其他出行方式")
 															}
 														})
-			
+
 													})
 												}
 											};
-										  
+
 											//公交出行
 											if (idts) {
 												idts.onclick = function() {
@@ -306,7 +312,7 @@
 													//根据起、终点坐标查询公交换乘路线
 													_this.transferRouter.search(new AMap.LngLat(a[0], a[1]), new AMap.LngLat(b[0], b[1]),
 														function(status, result) {
-															console.log(status, 222,result)
+															console.log(status, 222, result)
 															if (status === 'complete') {
 																console.log('绘制公交路线完成')
 															} else {
@@ -350,41 +356,46 @@
 			}
 
 		}
-			.amap-icon img {
-				width: 15px;
-				height: 20px;
-				margin-left: 2px;
-		
-			}
-			.amap-icon{
-				width: 31px !important;
-			}
-		
-			.wkbtn,
-			.rdbtn,
-			.bsbtn {
-				color: #fff;
-				margin-right: 5px;
-				font-size: 16px;
-				padding: 3px 5px;
-			}
-		
-			.wkbtn {
-				background: #3891f7;
-			}
-		
-			.rdbtn {
-				background: #33b166;
-			}
-		
-			.bsbtn {
-				background: #d66969;
-			}
-		
-			.btn-group {
-				width: 50%;
-				margin: 0 auto;
-			}
+		#container {
+			width: 100%;
+			height: 300px;
+		}
+		.amap-icon img {
+			width: 15px;
+			height: 20px;
+			margin-left: 2px;
+
+		}
+
+		.amap-icon {
+			width: 31px !important;
+		}
+
+		.wkbtn,
+		.rdbtn,
+		.bsbtn {
+			color: #fff;
+			margin-right: 5px;
+			font-size: 16px;
+			padding: 3px 5px;
+		}
+
+		.wkbtn {
+			background: #3891f7;
+		}
+
+		.rdbtn {
+			background: #33b166;
+		}
+
+		.bsbtn {
+			background: #d66969;
+		}
+
+		.btn-group {
+			width: 50%;
+			margin: 0 auto;
+		}
 	}
 
 	.search-header {
@@ -413,10 +424,7 @@
 		}
 	}
 
-	#container {
-		width: 100%;
-		height: 580px;
-	}
+
 
 	.content-window-card {
 		position: relative;
@@ -528,21 +536,38 @@
 		height: 25px;
 		border-radius: 2px 0 0 2px;
 	}
+
 	#panel {
 		padding-bottom: 55px;
-	}
-	#panel .plan{
-		padding:0 15px;
+
+		.plan {
+			padding: 0 15px;
+
 		}
+
+		.amap-lib-transfer span.line .beforespan {
+			left: -24px !important;
+		}
+
+		.amap-lib-transfer span.subwayline {
+			margin-left: 20px !important;
+		}
+
+		.amap-lib-transfer span.busline {
+			margin-left: 22px;
+		}
+	}
+
+
 	// #panel .plan{
-		 
-// 			position: fixed; 
-// 			background-color: white;
-// 			max-height: 90%;
-// 			overflow-y: auto;
-// 			top: 10px;
-// 			right: 10px;
-// 			width: 280px;
+
+	// 			position: fixed; 
+	// 			background-color: white;
+	// 			max-height: 90%;
+	// 			overflow-y: auto;
+	// 			top: 10px;
+	// 			right: 10px;
+	// 			width: 280px;
 	// }
 	/* 	#panel .amap-call {
 				background-color: #009cf9;

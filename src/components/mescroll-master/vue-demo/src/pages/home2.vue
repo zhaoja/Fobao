@@ -166,7 +166,7 @@
 			},
 			// mescroll上拉加载的配置
 			getMescrollUp(tabIndex) {
-				console.log(tabIndex)
+				// console.log(tabIndex)
 				let emptyWarpId = 'dataList' + tabIndex;
 				return {
 					auto: false,
