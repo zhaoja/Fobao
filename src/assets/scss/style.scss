@@ -467,129 +467,114 @@ $font18:18px;
             }
         }
     }
-    .paragraph {
-//         padding: 15px 0 0 0;
-//         .title {
-//             margin-left: 15px;
-//             border-left: 6px solid #FF4400;
-//             height: 16px;
-//             padding-left: 10px;
-//             line-height: 16px;
-//             font-size: 16px;
-//             color: #333333;
-//         }
-//         .module {
-//             font-size: 15px;
-//             padding: 15px;
-//             ul {
-//                 display: inline-table;
-//                 width: 100%;
-//             }
-//             li {
-//                 width: 100%;
-//                 position: relative;
-//                 a {
-//                     display: flex;
-//                     justify-content: space-between;
-//                     background: $white;
-//                     border-radius: 2px;
-//                     span:nth-child(1) {
-//                         color: #444444;
-//                         font-size: 15px;
-//                         display: list-item;
-//                     }
-//                     @media screen and (min-width:360px) {
-//                         span:nth-child(2) {
-//                             color: #999999;
-//                             font-size: 12px;
-//                             -webkit-transform: scale(0.89);
-//                             margin-left: 10px;
-//                             letter-spacing: -1px;
-//                             white-space: nowrap;
-//                         }
-//                     }
-//                     @media screen and (max-width:360px) {
-//                         span:nth-child(2) {
-//                             color: #999999;
-//                             font-size: 12px;
-//                             margin-left: 5px;
-//                             -webkit-transform: scale(0.89);
-//                             display: block;
-//                             -webkit-text-size-adjust: none;
-//                             left: 0;
-//                             letter-spacing: -1px;
-//                             white-space: nowrap;
-//                         }
-//                     }
-//                     @media screen and (max-width:320px) {
-//                         span:nth-child(2) {
-//                             color: #999999;
-//                             margin-left: -5px;
-//                             -webkit-transform: scale(0.80);
-//                             display: block;
-//                             -webkit-text-size-adjust: none;
-//                             letter-spacing: -1px;
-//                             //                          white-space:nowrap;
-//                         }
-//                     }
-//                 }
-//             }
-//             .line1 {
-//                 width: 50%;
-//                 float: left;
-//                 .big {
-//                     height: 105px;
-//                     a {
-//                         height: 100px;
-//                         margin-right: 2px;
-//                         span:nth-child(1) {
-//                             margin-top: 33px;
-//                             margin-left: 10px;
-//                         }
-//                         i {
-//                             margin-top: 30px;
-//                             margin-right: 5px;
-//                         }
-//                     }
-//                 }
-//                 .small {
-//                     height: 70px;
-//                     a {
-//                         height: 65px;
-//                         margin-left: 2px;
-//                         span:nth-child(1) {
-//                             margin-top: 15px;
-//                             margin-left: 10px;
-//                         }
-//                         i {
-//                             margin-top: 14px;
-//                             margin-right: 5px;
-//                         }
-//                     }
-//                     @media screen and (max-width:320px) {
-//                         span:nth-child(2) {
-//                             color: #999999;
-//                             margin-left: 2px;
-//                             -webkit-transform: scale(0.80);
-//                             display: block;
-//                             -webkit-text-size-adjust: none;
-//                             letter-spacing: -1px;
-//                             //                          white-space:nowrap;
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-//         .module1 {
-//             a {
-//                 display: inline-block;
-//                 text-align: center;
-//                 margin-left: 20px;
-//                 margin-top: 20px;
-//                 font-size: $font15;
-//             }
-//         }
-    }
+     
+}
+//service net
+.location {
+	.search-header {
+		background-color: #fe4c40;
+		height: 65px;
+		display: flex;
+
+		input {
+			flex: 1;
+			height: 30px;
+			border-radius: 15px;
+			background-color: #ffffff;
+			margin-top: 27px;
+			margin-left: 15px;
+			padding: 0 15px;
+		}
+
+		button {
+			margin-top: 34px;
+			width: 50px;
+			height: 16px;
+			font-size: 17px;
+			line-height: 10px;
+			color: #ffffff;
+			background: #fe4c40;
+		}
+	}
+	
+	
+	.location-nav {
+		height: 40px;
+		line-height: 40px;
+		display: flex;
+		background: #ffffff;
+
+		li {
+			flex: 1;
+			text-align: center;
+		}
+
+		.active {
+			color: #fe4c40;
+		}
+
+	}
+	#container {
+		width: 100%;
+		height: calc( 100vh - 180px );
+	}
+	.amap-icon img {
+		width: 15px;
+		height: 20px;
+		margin-left: 2px;
+
+	}
+
+	.amap-icon {
+		width: 31px !important;
+	}
+
+	.wkbtn,
+	.rdbtn,
+	.bsbtn {
+		color: #fff;
+		margin-right: 5px;
+		font-size: 16px;
+		padding: 3px 5px;
+	}
+
+	.wkbtn {
+		background: #3891f7;
+	}
+
+	.rdbtn {
+		background: #33b166;
+	}
+
+	.bsbtn {
+		background: #d66969;
+	}
+
+	.btn-group {
+		width: 50%;
+		margin: 0 auto;
+	}
+	
+	#panel {
+		padding-bottom: 55px;
+
+		.plan {
+			padding: 0 15px;
+
+		}
+
+		.amap-lib-transfer span.line .beforespan {
+			left: -24px !important;
+		}
+
+		.amap-lib-transfer span.subwayline {
+			margin-left: 20px !important;
+		}
+
+		.amap-lib-transfer span.busline {
+			margin-left: 22px;
+		}
+	}
 }
 
 .capply {
