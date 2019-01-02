@@ -1,5 +1,7 @@
 <template>
+
 	<div class="location">
+
 		<div class="search-header">
 			<input v-model="value" placeholder="请输入关键字" />
 			<button @click="search(value)">搜索</button>
@@ -9,9 +11,11 @@
 		</ul>
 
 		<div id="container"></div>
-
-		<button @click="clearPoint();">清除所有</button>
-		<button @click="minePosition();">我的位置</button>
+		<div class="btns">
+			<button @click="clearPoint();">清除所有</button>
+			<button @click="returnMe();">我的位置</button>
+			<button @click="clearRouter();">清除路线</button>
+		</div>
 		<div id="panel">
 			<div class="nearby" v-for="(lo,ind) in location5" :key="ind" v-if="location5" @click="searchMap1(ind)" :class="{active2:(indexs2==ind)}">
 				<img class="pos-img" src="https://webapi.amap.com/theme/v1.3/markers/b/mark_bs.png" alt="">
@@ -21,13 +25,14 @@
 		</div>
 	</div>
 </template>
-
 <script>
 	import {
 		mapState
 	} from 'vuex'
+	import AMap from 'AMap'
 	import newpoint from '@/assets/images/11.png'
 
+	var mymap;
 	export default {
 		computed: {
 			...mapState({
@@ -44,51 +49,24 @@
 				btn: ['全部', '购物类', '服务类', '餐饮类', '其他'],
 				indexs: 0,
 				indexs2: null,
+
 				value: '稻香村',
 				lnglat: [116.416202, 39.924363],
-				mymap: {},
+
 				walkingRouter: null,
 				transferRouter: null,
 				autoComplete: null,
 				geocoder: null,
 				freeMarker: null,
 				location5: {},
-
 			}
 		},
-		created() {
-			this.getLocation();
-			// this.mapClick()
-			// this.myPosition(this.lnglat[0], this.lnglat[1])
-			
-		},
-		mounted() {
-
-			let _this = this;
-			//地图初始化
-			this.mymap = new AMap.Map('container', {
-				zoom: 11, //级别
-				resizeEnable: true,
-				center: [this.lnglat[0], this.lnglat[1]], //中心点坐标
-			});
-			//比例尺和工具条
-			var scale = new AMap.Scale({
-					visible: true
-			}),
-			toolBar = new AMap.ToolBar({
-					visible: true
-			});
-			_this.mymap.addControl(scale);
-			_this.mymap.addControl(toolBar);
-			
-			//调用点击事件
-			this.mymap.on('click', this.showInfoClick);
-
-
+		mounted: function() {
+			this.init();
 			//默认全部点
 			this.searchMap(0);
 			this.clickPoint(); //点击地图生成点
-		 
+			this.getLocation();
 		},
 		methods: {
 
@@ -120,6 +98,8 @@
 			//搜搜下边弹出一条
 			searchMap1(str) {
 
+				this.clearPoint();
+
 				let loactionLists;
 
 				this.indexs2 = str;
@@ -131,20 +111,39 @@
 
 			//搜索2
 			search(value) {
+				this.clearPoint();
 				this.clearPanel();
 				//发送请求
-				document.getElementById("panel").style.top = "500px"
+				// document.getElementById("panel").style.top = "500px"
+				document.getElementById("panel").style.top = "300px"
+				
 				this.location5 = this.location3;
 				this.createMap(this.location3);
 				this.indexs = null;
 			},
 
+			init() {
+				mymap = new AMap.Map('container', {
+					center: [116.397428, 39.90923],
+					resizeEnable: true,
+					zoom: 10,
+
+				});
+				AMap.plugin(['AMap.ToolBar', 'AMap.Scale'], function() {
+					mymap.addControl(new AMap.ToolBar({
+						position: ' LT',
+						ruler: true,
+						locate: true,
+					}))
+					mymap.addControl(new AMap.Scale())
+				});
+
+			},
 
 			//地理定位
 			getLocation() {
 
 				if (navigator.geolocation) {
-
 					navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
 				} else {
 					alert("浏览器不支持地理定位。");
@@ -153,52 +152,101 @@
 			//错误处理
 			showError(error) {
 
-				switch (error.code) {
-// 					case error.PERMISSION_DENIED:
-// 						alert("定位失败,用户拒绝请求地理定位");
-// 						break;
-// 					case error.POSITION_UNAVAILABLE:
-// 						alert("定位失败,位置信息是不可用");
-// 						break;
-// 					case error.TIMEOUT:
-// 						alert("定位失败,请求获取用户位置超时");
-// 						break;
-// 					case error.UNKNOWN_ERROR:
-// 						alert("定位失败,定位系统失效");
-// 						break;
-				}
+				// 				switch (error.code) {
+				// 					case error.PERMISSION_DENIED:
+				// 						alert("定位失败,用户拒绝请求地理定位");
+				// 						break;
+				// 					case error.POSITION_UNAVAILABLE:
+				// 						alert("定位失败,位置信息是不可用");
+				// 						break;
+				// 					case error.TIMEOUT:
+				// 						alert("定位失败,请求获取用户位置超时");
+				// 						break;
+				// 					case error.UNKNOWN_ERROR:
+				// 						alert("定位失败,定位系统失效");
+				// 					break;
+				// 				}
 			},
 
-			//获取个人定位
+			//获取当前定位
 			showPosition(position) {
-				this.lag = position.coords.longitude; //经度 
-				this.lat = position.coords.latitude; //纬度 
-				this.myPosition(this.lag, this.lat)
+				let lag = position.coords.longitude; //经度 
+				let lat = position.coords.latitude; //纬度 
+
+				if (lag && lat) {
+					this.lnglat = [lag, lat]
+				}
+				//绘制我的定位
+				this.myPosition(this.lnglat[0], this.lnglat[1])
 			},
 
 			//绘制我的位置
 			myPosition(a, b) {
-				console.log(a,b)
+				console.log(a, b)
 				let _this = this;
 				//定位我的位置
 				let markerMe = new AMap.Marker({
-					map: _this.mymap,
+					map: mymap,
 					//设置节点属性
 					icon: "http://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-red.png",
 					position: new AMap.LngLat(a, b),
 				});
-				// console.log(markerMe)
-				_this.mymap.add(markerMe);
+				mymap.add(markerMe);
 
 			},
+			//默认检索
+			createMap(loactionLists) {
 
+				let _this = this;
+
+				let startMarker = _this.lnglat;
+				let infoWindow = new AMap.InfoWindow({
+					offset: new AMap.Pixel(0, -30)
+				});
+
+				AMapUI.loadUI(['overlay/SimpleInfoWindow'], function(SimpleInfoWindow) {
+
+					if (loactionLists) {
+						for (let i = 0, marker; i < loactionLists.length; i++) {
+							var marker = new AMap.Marker({
+								position: [loactionLists[i].y, loactionLists[i].x],
+								map: mymap,
+							});
+
+							marker.content = loactionLists[i].name +
+								'<span style="font-size:11px;color:#3e93fa;float: right;margin-right: 10px;">距离:318Km</span>' +
+								"<br>电话:" + loactionLists[i].phone +
+								'<br>地址:' + loactionLists[i].location +
+								`<div style="margin-top: 5px;"><button class="wkbtn" id="id${i}">步行导航<button>` +
+								`<button class="bsbtn" id="idt${i}">公交导航<button></div>`;
+
+							marker.on('click', markerClick);
+							//默认打开
+							// 							marker.emit('click', {
+							// 								target: marker
+							// 							});
+
+							_this.getLocation(); //重绘我的位置
+
+							function markerClick(e) {
+
+								infoWindow.setContent(e.target.content);
+								infoWindow.open(mymap, e.target.getPosition());
+								_this.navigation(startMarker, e.target.getPosition(), i)
+							}
+							mymap.setFitView();
+						}
+					}
+				})
+
+			},
 			//绘制路线
 			navigation(a, b, index) {
 
 				let _this = this;
 
 				let mapParam = { //构造路线导航类
-					map: _this.mymap,
+					map: mymap,
 					city: '北京市',
 					panel: "panel",
 				};
@@ -240,72 +288,79 @@
 							if (_this.walkingRouter) {
 								_this.walkingRouter.clear();
 							}
-							if (!_this.transferRouter) {
-								_this.transferRouter = new AMap.Transfer(mapParam);
-							}
-							//根据起、终点坐标查询公交换乘路线
+							AMap.service('AMap.Transfer', function() { //回调函数
 
-							_this.transferRouter.search(new AMap.LngLat(a[0], a[1]), new AMap.LngLat(b.lng, b.lat),
-								function(status, result) {
-									if (status === 'complete') {
-										log.success('绘制公交路线完成')
-									} else {
-										log.error('公交路线数据查询失败' + result)
-									}
-								});
+								if (!_this.transferRouter) {
+									_this.transferRouter = new AMap.Transfer(mapParam);
+								}
+								//根据起、终点坐标查询公交换乘路线
+
+								_this.transferRouter.search(new AMap.LngLat(a[0], a[1]), new AMap.LngLat(b.lng, b.lat),
+									function(status, result) {
+										if (status === 'complete') {
+											console.log('绘制公交路线完成')
+										} else {
+											console.log('公交路线数据查询失败' + result)
+										}
+									});
+							})
 						}
 					};
+
 				}, 500, index)
 			},
-
 			//地图点击事件
 			clickPoint() {
 				let _this = this;
-				
-				_this.mymap.on('click', function(e) {
+				mymap.on('click', function(e) {
 					_this.clearPoint();
+					_this.clearPanel();
+
 					_this.regeoCode(e.lnglat);
 				})
 			},
-
 			//绘制点击生成的点
 			regeoCode(lnglat) {
 
 				let _this = this;
-				
-				if (!_this.geocoder) {
-					_this.geocoder = new AMap.Geocoder({
-						city: "010", //城市设为北京，默认：“全国”
-						radius: 1000, //范围，默认：500
-					});
-				};
+				AMap.plugin(['AMap.Geocoder'], function() {
 
-				if (!_this.freeMarker) {
+					if (!mymap.geocoder) {
+						mymap.geocoder = new AMap.Geocoder({
+							city: "010", //城市设为北京，默认：“全国”
+							radius: 1000, //范围，默认：500
+						});
+					};
 
-					_this.freeMarker = new AMap.Marker({
-						icon: newpoint,
+					if (!_this.freeMarker) {
 
-					});
-					_this.mymap.add(_this.freeMarker);
-				}
-				_this.freeMarker.setPosition(lnglat);
+						_this.freeMarker = new AMap.Marker({
+							icon: newpoint,
 
-				_this.geocoder.getAddress(lnglat, function(status, result) {
-					if (status === 'complete' && result.regeocode) {
-						var address = result.regeocode.formattedAddress;
-						//请求数据 要传给后台一个type
-						_this.createMap(_this.location1)
-					} else {
-						alert(JSON.stringify(result))
+						});
+						mymap.add(_this.freeMarker);
 					}
+					_this.freeMarker.setPosition(lnglat);
+
+					mymap.geocoder.getAddress(lnglat, function(status, result) {
+						if (status === 'complete' && result.regeocode) {
+							var address = result.regeocode.formattedAddress;
+							//请求数据 要传给后台一个type
+							_this.createMap(_this.location1)
+						} else {
+							alert(JSON.stringify(result))
+						}
+					});
 				});
+
 			},
-			
-			//使我的位置变成中心
-			minePosition(){
-				this.mymap.setCenter([this.lag, this.lat]); //设置地图中心点
+
+			//回到我的位置（使我为中心）
+			returnMe() {
+				this.myPosition(this.lnglat[0], this.lnglat[1])
+
+				mymap.setCenter([this.lnglat[0], this.lnglat[1]]); //设置地图中心点
 			},
-			
 			//清除下边的panel
 			clearPanel() {
 				this.location5 = {};
@@ -318,122 +373,41 @@
 			},
 			//清除所有点
 			clearPoint() {
-				this.mymap.clearMap();
-				this.freeMarker = null
+				mymap.clearMap();
+				this.freeMarker = null;
+				// this.clearPanel();
 			},
-
-			//默认检索
-			createMap(loactionLists) {
-
-				let _this = this;
-				
-				let startMarker = _this.lnglat;
-				let infoWindow = new AMap.InfoWindow({
-					offset: new AMap.Pixel(0, -30)
-				});
-
-				AMapUI.loadUI(['overlay/SimpleInfoWindow'], function(SimpleInfoWindow) {
-
-					if (loactionLists) {
-						for (let i = 0, marker; i < loactionLists.length; i++) {
-							var marker = new AMap.Marker({
-								position: [loactionLists[i].y, loactionLists[i].x],
-								map: _this.mymap,
-							});
-
-							marker.content = loactionLists[i].name +
-								'<span style="font-size:11px;color:#3e93fa;float: right;margin-right: 10px;">距离:318Km</span>' +
-								"<br>电话:" + loactionLists[i].phone +
-								'<br>地址:' + loactionLists[i].location +
-								`<div style="margin-top: 5px;"><button class="wkbtn" id="id${i}">步行导航<button>` +
-								`<button class="bsbtn" id="idt${i}">公交导航<button></div>`;
-
-							marker.on('click', markerClick);
-							//默认打开
-							// 							marker.emit('click', {
-							// 								target: marker
-							// 							});
-							
-							_this.getLocation(); //重绘我的位置
-
-							function markerClick(e) {
-								infoWindow.setContent(e.target.content);
-								infoWindow.open(_this.mymap, e.target.getPosition());
-								_this.navigation(startMarker, e.target.getPosition(), i)
-							}
-							_this.mymap.setFitView();
-						}
-					}
-				})
-			},
-			
-			//比例尺
-// 			toolBar() {
-// 				_this.mymap.plugin(["AMap.ToolBar"], function() {
-// 					_this.mymap.addControl(new AMap.ToolBar());
-// 				});
-// 				if(location.href.indexOf('&guide=1')!==-1){
-// 					_this.mymap.setStatus({scrollWheel:false})
-// 				}
-// 			},
-			
-			//周边检索
-			searchNearBy() {
-
-				let _this = this;
-
-				var search, center = [116.39946, 39.910829];
-
-			},
-			//绘制拖动点
-			makePicker() {
-
-				let _this = this;
-
-				AMapUI.loadUI(['misc/PositionPicker'], function(PositionPicker) {
-
-					var positionPicker = new PositionPicker({
-						mode: 'dragMarker',
-						map: _this.mymap,
-						iconStyle: { //自定义外观
-							url: 'http://webapi.amap.com/ui/1.0/assets/position-picker2.png',
-							ancher: [24, 40],
-							size: [48, 48]
-						}
-
-					});
-
-					positionPicker.marker.on('click', mClick);
-
-					positionPicker.emit('click', {
-						target: positionPicker
-					});
-
-					function mClick(e) {
-						infoWindow.setContent(e.target.content);
-						infoWindow.open(_this.mymap, e.target.getPosition());
-					}
-
-					positionPicker.on('success', function(positionResult) {
-						console.log(positionResult)
-						positionPicker.marker.content = positionResult.address;
-					});
-					positionPicker.on('fail', function(positionResult) {
-
-					});
-					//	console.log(_this.mymap.getBounds().getSouthWest())
-					positionPicker.start();
-					alert(9)
-					positionPicker.marker.clear();
-
-				});
-			},
-
+			//清除路线
+			clearRouter() {
+				if (this.walkingRouter) {
+					this.walkingRouter.clear();
+				}
+				if (this.transferRouter) {
+					this.transferRouter.clear();
+				}
+			}
 		}
+
 	}
 </script>
-
 <style lang="scss">
+	.btns {
+		position: absolute;
+		top: 110px;
+		right: 5px;
+		width: 65px;
+		z-index: 200;
+
+		// background: #CCC;
+		button {
+			margin-bottom: 5px;
+		}
+	}
+
+	.amap-controls {
+		margin-top: 80px;
+	}
+
 	.amap-copyright,
 	.amap-call,
 	.amap-logo {
@@ -444,6 +418,8 @@
 		position: absolute;
 		background: #ffffff;
 		width: 100%;
+		z-index: 200;
+		width: 100%;
 
 		// padding-top: 10px;
 		.active2 {
@@ -451,7 +427,7 @@
 		}
 
 		.nearby {
-			padding: 5px 10px;
+			padding: 5px 0px;
 			width: 100%;
 			border-bottom: 1px solid #f5f5f5;
 
@@ -461,6 +437,7 @@
 				width: 20px;
 				margin-right: 10px;
 				margin-top: 6px;
+				margin-left: 10px;
 			}
 
 			.nearname {
@@ -468,6 +445,7 @@
 
 				span {
 					float: right;
+					margin-right: 10px;
 				}
 			}
 

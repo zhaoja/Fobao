@@ -31,6 +31,15 @@ Vue.use(Mui);
 //import "./../static/tab-swiper-master/js/tabSwiper.es5.min.js"
 import 'swiper/dist/css/swiper.css'
 
+import VueAMap from 'vue-amap';
+Vue.use(VueAMap)
+
+ VueAMap.initAMapApiLoader({
+  key: '4bbbadeab79ceb71d6310dacb8b5fa16',
+  plugin: ['AMap.Scale','AMap.ToolBar','AMap.Geocoder'],
+  uiVersion: '1.0.11' // 版本号
+});
+
 Vue.config.productionTip = false
  
  

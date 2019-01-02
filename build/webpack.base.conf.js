@@ -39,8 +39,8 @@ module.exports = {
     }
   },
 	externals: {
-		"BMap": "BMap",
-		'AMap': 'AMap',
+		 'AMap': 'AMap'
+
 	},
   module: {
     rules: [

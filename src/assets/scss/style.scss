@@ -364,7 +364,7 @@ $font18:18px;
     bottom: 0;
     width: 100%;
     background: #fff;
-    z-index: 11;
+    z-index: 200;
     li {
         width: 20%;
         float: left;
@@ -481,7 +481,7 @@ $font18:18px;
 			height: 30px;
 			border-radius: 15px;
 			background-color: #ffffff;
-			margin-top: 27px;
+			margin-top: 27px; 
 			margin-left: 15px;
 			padding: 0 15px;
 		}
@@ -516,7 +516,7 @@ $font18:18px;
 	}
 	#container {
 		width: 100%;
-		height: calc( 100vh - 180px );
+		height: calc( 100vh - 150px );
 	}
 	 
 	.amap-icon img{
