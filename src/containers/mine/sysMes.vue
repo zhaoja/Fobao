@@ -2,14 +2,14 @@
 	<div class="mine set">
 		<ul class="sysMesList">
 			<li v-for="li in systemInfoList">
-				<router-link to="sysMesDt">
+				<router-link to="orderMesDt">
 				<div class="listIcon">
 					<i class="icon" :class="li.status==0?'icon-bgbell-red':'icon-bgbell'"></i>
 				</div>
 				<div class="listText">
 					<div class="title">
 						{{li.title}}
-						<span>{{li.time}}</span>
+						<span class="text1">{{li.time}}</span>
 					</div>
 					<div class="text">
 						 {{li.text}}

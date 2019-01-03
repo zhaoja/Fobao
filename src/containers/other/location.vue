@@ -30,7 +30,9 @@
 		mapState
 	} from 'vuex'
 	import AMap from 'AMap'
-	import newpoint from '@/assets/images/11.png'
+	import newpoint from '@/assets/images/map/p2.png'
+	import point from '@/assets/images/map/p1.png'
+	import mypoint from '@/assets/images/map/mp.png'
 
 	var mymap;
 	export default {
@@ -188,7 +190,7 @@
 				let markerMe = new AMap.Marker({
 					map: mymap,
 					//设置节点属性
-					icon: "http://a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-red.png",
+					icon: mypoint,
 					position: new AMap.LngLat(a, b),
 				});
 				mymap.add(markerMe);
@@ -410,7 +412,7 @@
 
 	.amap-copyright,
 	.amap-call,
-	.amap-logo {
+	.amap-logo ,.amap-touch-toolbar .amap-geo{
 		display: none !important;
 	}
 

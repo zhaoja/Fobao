@@ -809,10 +809,14 @@ $font18:18px;
                         font-weight: 600;
                         line-height: 20px;
                         height: 20px;
-                        span {
+                        .text1 {
                             font-size: $font13;
                             color: $col9;
                             position: absolute;
+                            right: 15px;
+                        }
+                        .text2{
+                             position: absolute;
                             right: 15px;
                         }
                     }

@@ -22,7 +22,32 @@
 		</div>
 		<div class="longLines">
 			<ul class="line1">
-				<li @click="toSystemMes()">
+				<li> 	
+					<router-link to="set/orderMes">
+						<i class="icon icon-bell left"></i>
+						<!--<i class="icon-alert" v-if="systemInfoRead"></i>-->
+						<label>订单管理</label>
+						<i class="icon icon-right"></i>
+					</router-link>
+				</li>
+				<li>
+					<router-link to="set/adressMes">
+						<i class="icon icon-bell left"></i>
+						<!--<i class="icon-alert" v-if="systemInfoRead"></i>-->
+						<label>地址管理</label>
+						<i class="icon icon-right"></i>
+					</router-link>
+				</li>
+				<li>
+					<router-link to="set/scoreMes">
+						<i class="icon icon-bell left"></i>
+						<!--<i class="icon-alert" v-if="systemInfoRead"></i>-->
+						<label>积分查询</label>
+						<i class="icon icon-right"></i>
+					</router-link>
+				</li>
+				
+				<li @click="toSystemMes()" style="margin-top: 10px;">
 					<router-link to="set/sysMes">
 						<i class="icon icon-bell left"></i>
 						<!--<i class="icon-alert" v-if="systemInfoRead"></i>-->

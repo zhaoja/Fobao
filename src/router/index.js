@@ -17,6 +17,13 @@ import SysMes from '@/containers/mine/sysMes'
 import AboutFB from '@/containers/mine/aboutFb'
 import SysMesDtails from '@/containers/mine/sysMesDtails'
 
+import OrderMes from '@/containers/mine/orderMes'
+import OrderMesDtails from '@/containers/mine/orderMesDtails'
+import AdressMes from '@/containers/mine/adressMes'
+import ScoreMes from '@/containers/mine/scoreMes'
+  
+
+
 import SetUser from '@/containers/mine/setUser'
 import SetUserUpdate from '@/containers/mine/setUserUpdate'
 import SetUserHead from '@/containers/mine/setUserHead'
@@ -65,7 +72,15 @@ const router = new Router({
 			component:Set,
 			children:[
 				{path:"/set/user",name:"编辑资料",component:SetUser},
-				{path:"/set/update",name:"修改个人信息",component:SetUserUpdate},				
+				{path:"/set/update",name:"修改个人信息",component:SetUserUpdate},	
+				
+				{path:"/set/orderMes",name:"订单管理",component:OrderMes},
+				{path:"/set/orderMesDt",name:"订单管理详情",component:OrderMesDtails},
+
+				{path:"/set/adressMes",name:"地址管理",component:AdressMes},
+				
+				{path:"/set/scoreMes",name:"积分查询",component:ScoreMes},
+				
 				{path:"/set/sysMes",name:"系统消息",component:SysMes},
 				{path:"/set/sysMesDt",name:"系统消息详情",component:SysMesDtails},
 				{path:"/set/aboutFB",name:"关于福宝",component:AboutFB}
