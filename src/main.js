@@ -15,6 +15,8 @@ import cardApply from './models/cardApply'
 import user from './models/user'
 import system from './models/system'
 import order from './models/order'
+import adress from './models/adress'
+
 import location from './models/location'
 /*  eslint-disable no-new */
 Vue.use(Vuex)
@@ -50,6 +52,7 @@ Vue.config.productionTip = false
      user: user,
      system: system,
      order:order,
+     adress:adress,
 	 location:location
  
    }

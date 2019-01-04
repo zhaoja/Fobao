@@ -17,6 +17,7 @@ $font18:18px;
     font-size: $font16;
     color: $col3;
     font-family: "Microsoft YaHei";
+    letter-spacing:1px;
     ul li {
         margin: 0;
         padding: 0;
@@ -467,6 +468,39 @@ $font18:18px;
             }
         }
     }
+    .paragraph{
+        margin-top: 10px;
+        padding: 15px 0;
+        background: #ffffff;
+        .title {
+            margin-left: 15px;
+            border-left: 6px solid #FF4400;
+            height: 16px;
+            padding-left: 10px;
+            line-height: 16px;
+            font-size: 16px;
+            color: #333333;
+        }
+        ul{
+            display: flex;
+            flex-wrap:wrap;
+            width: 100%;
+            li{
+                width: 25%;
+                text-align: center;
+                a{display: block;}
+                span {
+                    display: inline-block;
+                    font-size: 14px,
+                }
+                .icon-m {
+                    margin-top: 20px;
+                    
+                }
+            }
+        }
+  
+    }
      
 }
 //service net
@@ -533,13 +567,13 @@ $font18:18px;
 	.rdbtn,
 	.bsbtn {
 		color: #fff;
-		margin-right: 5px;
-		font-size: 16px;
-		padding: 3px 5px;
+		font-size: 15px;
+		padding: 3px 15px;
 	}
 
 	.wkbtn {
 		background: #3891f7;
+		margin-right: 10px;
 	}
 
 	.rdbtn {
@@ -768,8 +802,8 @@ $font18:18px;
                 position: absolute;
             }
             .left {
-                top: 13px;
-                left: 22px;
+                top: 2px;
+                left: 15px;
             }
             .icon-right {
                 top: 15px;
@@ -835,6 +869,77 @@ $font18:18px;
             }
         }
     }
+    .adressList {
+        width: 100%;
+        background: $colf5;
+        position: absolute;
+//      padding-top: 10px;
+        li {
+            min-height: 85px;
+            width: 100%;
+            margin-bottom: 1px !important;
+            background: $white;
+            overflow: hidden;
+            display: block;
+            display: flex;
+            align-items: center;
+            .listText{
+                flex: 1;
+                padding-left: 15px;
+                height: 50px;
+                position: relative;
+                width: 100%;
+                .title {
+                    font-size: $font16;
+                    color: $col3;
+                    font-weight: 600;
+                    line-height: 20px;
+                    height: 20px;
+                    .text1 {
+                        font-size: $font15;
+                        margin-left: 30px;
+                        margin-right: 10px;
+                    }
+                    .btn{
+                        font-size: 12px;
+                        width: 40px;
+                        height: 16px;
+                        background: rgba(254, 76, 64, 0.15);
+                        color:#fe4c40;
+                        padding: 0 3px;
+                    }
+                }
+                 .text {
+                    font-size: $font14;
+                    color: $col9;
+                    margin-top: 3px;
+                    width: 90%;
+                    height: 20px;
+                    line-height: 20px;
+                }
+               
+            }
+            a {
+                width: 63px;
+                display: inline-block;
+                span{
+                    border-left:1px solid #e5e5e5;
+                    height: 31px;
+                    font-size: 14px;
+                    color: $col6;
+                    display: inline-block;
+                    width: 100%;
+                    text-align: center;
+                    line-height: 31px;
+                }
+                .listIcon {
+                    margin: 12px 15px;
+                }
+                
+            }
+        }
+       
+    }
     .details {
         margin-top: 65px;
         h2 {
@@ -865,6 +970,42 @@ $font18:18px;
             text-indent: 30px;
         }
     }
+    .order {
+       .head{
+           text-align: center;
+           background: $white;
+           padding: 20px 0;
+           h1{
+               font-size: 18px;
+               font-weight: 400;
+               margin-top: 10px;
+               strong{
+                  font-size: 24px; 
+               }
+           }
+        }
+        .body{
+            background: $white;
+            margin-top: 10px;
+            padding: 20px 0px;
+            hr{
+                border-bottom: 2px solid $colf5;
+                margin-bottom: 15px;
+                margin-top: 10px;
+            }
+            ul li{
+                width: 100%;
+                padding: 0 15px;
+                height: 30px;
+                span{
+                    color: $col6;
+                    display: inline-block;
+                    width: 90px;
+                }
+            }
+        } 
+    }
+   
 }
 
 .news {
@@ -1171,3 +1312,30 @@ $font18:18px;
     position: absolute;
     border-radius: 10px;
 }
+
+.icon-m{
+    display: inline-block;
+    background-size: 220px;
+    width: 45px;
+    height: 45px;
+}
+.icon-m1{background-position: -5px -5px;}       
+.icon-m2{background-position: -60px -5px;}      
+.icon-m3{background-position: -115px -5px;}     
+.icon-m4{background-position: -170px -5px;} 
+    
+.icon-m5{background-position: -5px -60px;}      
+.icon-m6{background-position: -60px -60px;}     
+.icon-m7{background-position: -115px -60px;}        
+.icon-m8{background-position: -170px -60px;}  
+      
+.icon-m9{background-position: -5px -115px;}  
+.icon-m-od{background-position: -170px -115px;} 
+  
+.icon-m-ad{background-position: -5px -170px;}   
+.icon-m-sc{background-position: -60px -170px;}  
+.icon-m-bell{background-position: -115px -170px;}   
+.icon-m-card{background-position: -170px -170px;} 
+  
+.icon-m-set{background-position: -5px -225px;}  
+.icon-m-cir-od{background-position: -60px -225px;}   

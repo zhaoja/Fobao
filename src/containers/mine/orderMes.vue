@@ -4,7 +4,7 @@
 			<li v-for="li in orderInfoList">
 				<router-link to="orderMesDt">
 				<div class="listIcon">
-					<i class="icon icon-bgbell"></i>
+					<i class="icon-m icon-m-cir-od"></i>
 				</div>
 				<div class="listText">
 					<div class="title">

@@ -46,7 +46,7 @@ import Location from '@/containers/other/location'
 Vue.use(Router)
 
 const router = new Router({
-	mode: 'history',
+//	mode: 'history',
   	routes: [
 		{path:"*",name:"404",component:Status404},
 		{

@@ -1,11 +1,11 @@
 <template>
 	<div class="home">
 
-		<a href='doScan' style='margin:10px;   
+		<!--<a href='doScan' style='margin:10px;   
 		 position: absolute;
     z-index: 10;
     right: 0;
-    top: 20px;'>扫一扫</a>
+    top: 20px;'>扫一扫</a>-->
 		<div id="result" style=" "></div>
 	
 		<div class="broadcast">
@@ -23,7 +23,6 @@
 					农历十月初十 宜<span>嫁娶</span> 忌<span>搬迁</span>
 				</div>-->
 			</div>
-
 		</div>
 		<div class="paragraph">
 			<div class="title">养老助残卡业务</div>
@@ -44,7 +43,8 @@
 			<div class="module">
 				<ul>
 					<li v-for="li in serve2_list" :key="li.icon">
-						<router-link :to="{path:'linkPage',name: '外部链接', query: { url: li.url, name:li.name}}"><i class="icon-m" :class="li.icon"></i><span>{{li.name}}</span></router-link>
+						<router-link to=""><i class="icon-m" :class="li.icon"></i><span>{{li.name}}</span></router-link>
+						<!--<router-link :to="{path:'linkPage',name: '外部链接', query: { url: li.url, name:li.name}}"><i class="icon-m" :class="li.icon"></i><span>{{li.name}}</span></router-link>-->
 					</li>
 				</ul>
 			</div>
@@ -86,52 +86,6 @@
 	}
 </script>
 <style lang="scss">
-	.paragraph{
-		margin-top: 10px;
-		padding: 15px 0;
-		background: #ffffff;
-		.title {
-			margin-left: 15px;
-			border-left: 6px solid #FF4400;
-			height: 16px;
-			padding-left: 10px;
-			line-height: 16px;
-			font-size: 16px;
-			color: #333333;
-		}
-		ul{
-			display: flex;
-			flex-wrap:wrap;
-			width: 100%;
-			li{
-				width: 25%;
-				text-align: center;
-				a{display: block;}
-				span {
-					display: inline-block;
-					font-size: 14px,
-				}
-				.icon-m {
-					margin-top: 20px;
-					
-				}
-			}
-		}
-		.icon-m{
-			display: inline-block;
-			background-size: 220px;
-			width: 45px;
-			height: 45px;
-		}
-		.icon-m1{background-position: -5px -5px;}	    
-		.icon-m2{background-position: -60px -5px;}	    
-		.icon-m3{background-position: -115px -5px;}	    
-		.icon-m4{background-position: -170px -5px;}	    
-		.icon-m5{background-position: -5px -60px;}	    
-		.icon-m6{background-position: -60px -60px;}	    
-		.icon-m7{background-position: -115px -60px;}	    
-		.icon-m8{background-position: -170px -60px;}	    
-		.icon-m9{background-position: -5px -115px;}	    
-	}
+
 
 </style>

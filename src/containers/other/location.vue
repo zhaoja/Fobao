@@ -12,9 +12,9 @@
 
 		<div id="container"></div>
 		<div class="btns">
-			<button @click="clearPoint();">清除所有</button>
-			<button @click="returnMe();">我的位置</button>
-			<button @click="clearRouter();">清除路线</button>
+			<button @click="clearPoint();"><img src="../../assets/images/map/clear2.png"/></button>
+			<button @click="returnMe();"><img src="../../assets/images/map/clear3.png"/></button>
+			<button @click="clearRouter();"><img src="../../assets/images/map/clear1.png"/></button>
 		</div>
 		<div id="panel">
 			<div class="nearby" v-for="(lo,ind) in location5" :key="ind" v-if="location5" @click="searchMap1(ind)" :class="{active2:(indexs2==ind)}">
@@ -215,10 +215,10 @@
 								map: mymap,
 							});
 
-							marker.content = loactionLists[i].name +
-								'<span style="font-size:11px;color:#3e93fa;float: right;margin-right: 10px;">距离:318Km</span>' +
-								"<br>电话:" + loactionLists[i].phone +
-								'<br>地址:' + loactionLists[i].location +
+							marker.content = 
+								'<div style="color: #000000;">'+loactionLists[i].name +'<span style="font-size:11px;color:#3e93fa;">(318km)</span></div>'+
+								'<div style="font-size:14px;">电话:'+loactionLists[i].phone+"</div>"+
+								'<div style="font-size:14px;">地址: '+loactionLists[i].location+"</div>"+
 								`<div style="margin-top: 5px;"><button class="wkbtn" id="id${i}">步行导航<button>` +
 								`<button class="bsbtn" id="idt${i}">公交导航<button></div>`;
 
@@ -379,7 +379,7 @@
 				this.freeMarker = null;
 				// this.clearPanel();
 			},
-			//清除路线
+ 			//清除路线
 			clearRouter() {
 				if (this.walkingRouter) {
 					this.walkingRouter.clear();
@@ -397,12 +397,14 @@
 		position: absolute;
 		top: 110px;
 		right: 5px;
-		width: 65px;
+		width: 60px;
 		z-index: 200;
-
-		// background: #CCC;
 		button {
-			margin-bottom: 5px;
+			background: #fff;
+			margin-bottom: 1px;
+			img{
+				width: 100%;
+			}
 		}
 	}
 
@@ -415,15 +417,30 @@
 	.amap-logo ,.amap-touch-toolbar .amap-geo{
 		display: none !important;
 	}
-
+	.amap-info-content{
+		width: 200px;
+		padding-right: 10px !important;
+	}
+	.amap-info-close{
+		right: -2px !important;
+	    top: -7px;
+	    background: #fff;
+	    display: inline-block;
+	    width: 22px;
+	    height: 22px;
+	    border-radius: 22px;
+	    font-size: 18px !important;
+	    text-align: center;
+	    line-height: 19px;
+	    box-shadow: 2px -1px 9px #928e8e;
+	}
 	#panel {
 		position: absolute;
 		background: #ffffff;
 		width: 100%;
 		z-index: 200;
 		width: 100%;
-
-		// padding-top: 10px;
+  
 		.active2 {
 			background-color: #f5f5f5;
 		}
