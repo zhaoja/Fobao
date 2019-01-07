@@ -8,12 +8,12 @@
 					<i class="icon icon-go"></i>
 				</router-link>
 			</div>
-			<div class="topAccont">
+			<!--<div class="topAccont">
 				<div v-for="(a,c) in userInfo.accont">
 					<span>{{a}} </span> <label>元</label><br />
 					{{c}}
 				</div>
-			</div>
+			</div>-->
 			
 			<!--
 			<router-link to="login" v-if="logStatus==0">

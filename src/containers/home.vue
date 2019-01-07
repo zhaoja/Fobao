@@ -29,7 +29,8 @@
 			<div class="module">
 				<ul>
 					<li v-for="li in serve1_list" :key="li.icon">
-						<router-link v-if="li.icon!='icon-m7'&&li.icon!='icon-m8'" :to="{path:'linkPage',name: '外部链接', query: { url: li.url, name:li.name  }}"><i class="icon-m" :class="li.icon"></i><span>{{li.name}}</span></router-link>
+						<router-link v-if="li.icon!='icon-m7'&&li.icon!='icon-m8'" :to="{path:'linkPage',name: '外部链接', 
+							query: {id:li.id, url: li.url, name:li.name, content:li.content }}"><i class="icon-m" :class="li.icon"></i><span>{{li.name}}</span></router-link>
 						<a href="tel:96198" v-if="li.icon=='icon-m7'"><i class="icon-m" :class="li.icon"></i><span>{{li.name}}</span></a>
 						<router-link v-if="li.icon=='icon-m8'" to="function"><i class="icon-m" :class="li.icon"></i><span>{{li.name}}</span></router-link>
 					</li>
@@ -69,14 +70,14 @@
 			return {
 				swipeList: [img1, img2, img3],
 				serve1_list:[
-					{name:'制卡申请',icon:'icon-m1',url:'https://fhzx.bjrcb.com/appoint/choosePension.jhtml'},
-					{name:'信息查询',icon:'icon-m2',url:'https://fhzx.bjrcb.com/appoint/queryCardApplyInfo.jhtml'},
-					{name:'信息修改',icon:'icon-m3',url:'https://fhzx.bjrcb.com/appoint/modifyInfo.jhtml'},
-					{name:'照片上传',icon:'icon-m4',url:'https://fhzx.bjrcb.com/appoint/yanglaoImageUpload.jhtml'},
-					{name:'申请撤销',icon:'icon-m5',url:'https://fhzx.bjrcb.com/appoint/applyRepeal.jhtml'},
-					{name:'进度查询',icon:'icon-m6',url:'https://fhzx.bjrcb.com/appoint/cardSchedulQuery.jhtml'},
-					{name:'卡片挂失',icon:'icon-m7',url:''},
-					{name:'功能介绍',icon:'icon-m8',url:''},
+					{id:0,name:'制卡申请',icon:'icon-m1',url:'https://fhzx.bjrcb.com/appoint/choosePension.jhtml',content:''},
+					{id:1,name:'信息查询',icon:'icon-m2',url:'https://fhzx.bjrcb.com/appoint/queryCardApplyInfo.jhtml',content:''},
+					{id:2,name:'信息修改',icon:'icon-m3',url:'https://fhzx.bjrcb.com/appoint/modifyInfo.jhtml',content:''},
+					{id:3,name:'照片上传',icon:'icon-m4',url:'https://fhzx.bjrcb.com/appoint/yanglaoImageUpload.jhtml',content:''},
+					{id:4,name:'申请撤销',icon:'icon-m5',url:'https://fhzx.bjrcb.com/appoint/applyRepeal.jhtml',content:''},
+					{id:5,name:'进度查询',icon:'icon-m6',url:'https://fhzx.bjrcb.com/appoint/cardSchedulQuery.jhtml',content:''},
+					{id:6,name:'卡片挂失',icon:'icon-m7',url:''},
+					{id:7,name:'功能介绍',icon:'icon-m8',url:''},
 				],
 				serve2_list:[
 					{name:'北京通手机卡',icon:'icon-m9',url:'http://caihong.xi-an.xin/fw/public//?openId=oGhvywUDFK-ROqPAmRuHfRbDhQsw&appid=wx8f75fe4f9587d5fd&param1=&param2=&param3=&param4=&param5=&param6='}

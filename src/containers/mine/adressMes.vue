@@ -12,14 +12,14 @@
 						 {{li.text}}
 					</div>
 				</div>
-				<router-link to="orderMesDt">
+				<button @click="adMesDt()">
 					<span>编辑</span>
-				</router-link>
+				</button>
 			</li>
 		</ul>
 		
 		<div class="add">
-			<button> + 新建收货地址</button>
+			<button @click="adMesDt()"> + 新建收货地址</button>
 		</div>
 	</div>
 </template>
@@ -32,7 +32,7 @@
 		},
 		data() {
 			return {
-			 
+			 value:""
 			}
 		},
 		computed: {
@@ -46,6 +46,9 @@
 		},
 		 
 		methods: {
+			adMesDt(){
+				this.$router.push({path: '/set/adressMesDt' ,param:{name:1}})
+			},
 			cardnext() {
 				// this.$store.dispatch('cardapplyNext',a);
 //				this.$router.push({

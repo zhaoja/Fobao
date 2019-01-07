@@ -25,13 +25,11 @@ Vue.use(Vuex)
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 Vue.use(MintUI)
-
+ 
 //处理手机返回键
 import Mui from 'vue-awesome-mui';
 Vue.use(Mui);
-
-//import "./../static/tab-swiper-master/js/touch.min.js"
-//import "./../static/tab-swiper-master/js/tabSwiper.es5.min.js"
+ 
 import 'swiper/dist/css/swiper.css'
 
 import VueAMap from 'vue-amap';

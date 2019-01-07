@@ -13,13 +13,15 @@ import RumorCenter from '@/containers/rumorcenter/rumorCenter'
 import RumorDetail from '@/containers/rumorcenter/rumorDetail'
 
 import Set from '@/containers/mine/set'
-import SysMes from '@/containers/mine/sysMes'
 import AboutFB from '@/containers/mine/aboutFb'
-import SysMesDtails from '@/containers/mine/sysMesDtails'
 
+import SysMes from '@/containers/mine/sysMes'
+import SysMesDtails from '@/containers/mine/sysMesDtails'
 import OrderMes from '@/containers/mine/orderMes'
 import OrderMesDtails from '@/containers/mine/orderMesDtails'
 import AdressMes from '@/containers/mine/adressMes'
+import AdressMesDtails from '@/containers/mine/adressMesDtails'
+
 import ScoreMes from '@/containers/mine/scoreMes'
   
 
@@ -78,6 +80,7 @@ const router = new Router({
 				{path:"/set/orderMesDt",name:"订单管理详情",component:OrderMesDtails},
 
 				{path:"/set/adressMes",name:"地址管理",component:AdressMes},
+				{path:"/set/adressMesDt",name:"地址管理",component:AdressMesDtails},
 				
 				{path:"/set/scoreMes",name:"积分查询",component:ScoreMes},
 				
@@ -129,31 +132,6 @@ const router = new Router({
 			return { x: 0, y: 0 }
 	}
 })
-router.beforeEach((to, from, next) => {
-	 
-  /* 路由发生变化修改页面meta */
-  let metas = document.getElementsByTagName('head')[0].getElementsByTagName("meta");
-  for(var meta of metas){
-  	if(meta.name=='viewport'){
-  		if(to.meta.content){
-			 
-			if (window.screen.width<='360'){
-				meta.content = "width=device-width, initial-scale=0.35, minimum-scale=0, maximum-scale=10, user-scalable=yes, viewport-fit=cover";
-				 
-			}else{
-				meta.content = "width=device-width, initial-scale=0, minimum-scale=0, maximum-scale=10, user-scalable=yes, viewport-fit=cover";
-				 
-			}
-			
-		} else{
-			
-			meta.content = "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
-		}
-  		 
-  	}
-  }
-  next()
-}); 
 
 export default router
 

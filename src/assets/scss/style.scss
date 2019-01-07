@@ -39,6 +39,9 @@ $font18:18px;
         -moz-user-focus: none;
         -moz-user-select: none;
     }
+    input{
+        outline: none;//去掉浏览器默认的选中框
+    }
     .indent {
         text-indent: 35px;
     }
@@ -232,7 +235,7 @@ $font18:18px;
     div {
         position: absolute;
         width: 50px;
-        height: 40px;
+        height: 38px;
         top: 25px;
         left: 0;
         background: $orange;
@@ -811,6 +814,7 @@ $font18:18px;
             }
         }
     }
+    
 }
 
 .set {
@@ -873,7 +877,6 @@ $font18:18px;
         width: 100%;
         background: $colf5;
         position: absolute;
-//      padding-top: 10px;
         li {
             min-height: 85px;
             width: 100%;
@@ -919,9 +922,10 @@ $font18:18px;
                 }
                
             }
-            a {
+            button {
                 width: 63px;
                 display: inline-block;
+                border: 0;
                 span{
                     border-left:1px solid #e5e5e5;
                     height: 31px;
@@ -938,7 +942,6 @@ $font18:18px;
                 
             }
         }
-       
     }
     .details {
         margin-top: 65px;
@@ -1005,7 +1008,26 @@ $font18:18px;
             }
         } 
     }
-   
+   .longLines{
+       label{
+           display: inline-block;
+           min-width: 110px;
+           .mint-switch{float: right; margin-right: 15px;}
+           .mint-switch-label{
+               margin-left: 100px;
+           }
+           .mint-switch-core{
+                margin-top: 10px;
+                margin-right: 8px;
+           }
+       }
+       input{
+           height: 100%;
+           width: calc(100% - 140px);
+           text-align: right;
+       }
+       
+   }
 }
 
 .news {
