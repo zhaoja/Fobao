@@ -42,7 +42,7 @@
 					<router-link to="set/scoreMes">
 						<i class="icon-m icon-m-sc left"></i>
 						<!--<i class="icon-alert" v-if="systemInfoRead"></i>-->
-						<label>积分查询</label>
+						<label>积分兑换记录</label>
 						<i class="icon icon-right"></i>
 					</router-link>
 				</li>

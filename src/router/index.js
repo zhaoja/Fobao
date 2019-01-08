@@ -7,6 +7,8 @@ import Layout from '@/containers/Layout'
 import Status404 from '@/components/Status404'
 
 import Home from '@/containers/home'
+import Exchange from '@/containers/scoring/exchange'
+
 import Mine from '@/containers/mine/mine'
 
 import RumorCenter from '@/containers/rumorcenter/rumorCenter'
@@ -69,6 +71,14 @@ const router = new Router({
 			component: Login
 		},
 		{
+			path:"/scoring",
+//			name:"设置",
+			component:Set,
+			children:[
+				{path:"/scoring/exchange",name:"积分兑换",component:Exchange},
+			]
+		},
+		{
 			path:"/set",
 			name:"设置",
 			component:Set,
@@ -82,7 +92,7 @@ const router = new Router({
 				{path:"/set/adressMes",name:"地址管理",component:AdressMes},
 				{path:"/set/adressMesDt",name:"地址管理",component:AdressMesDtails},
 				
-				{path:"/set/scoreMes",name:"积分查询",component:ScoreMes},
+				{path:"/set/scoreMes",name:"积分兑换记录",component:ScoreMes},
 				
 				{path:"/set/sysMes",name:"系统消息",component:SysMes},
 				{path:"/set/sysMesDt",name:"系统消息详情",component:SysMesDtails},

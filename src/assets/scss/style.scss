@@ -819,6 +819,7 @@ $font18:18px;
 
 .set {
     margin-top: 65px;
+    
     .sysMesList {
         width: 100%;
         background: $colf5;
@@ -1027,6 +1028,12 @@ $font18:18px;
            text-align: right;
        }
        
+   }
+   .scoreList{
+       li{
+           background: $white;
+           margin: 15px 15px 0;
+       }
    }
 }
 
