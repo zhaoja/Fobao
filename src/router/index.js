@@ -32,8 +32,9 @@ import AdressMesDtails from '@/containers/mine/adressMesDtails'
   
 import SetUser from '@/containers/mine/setUser'
 import SetUserUpdate from '@/containers/mine/setUserUpdate'
+import SetUserPhone from '@/containers/mine/setUserPhone'
 import SetUserHead from '@/containers/mine/setUserHead'
- 
+  
 // 
 import CardApply from '@/containers/govtservice/cardApply'
 import CardApply1 from '@/containers/govtservice/cardApply_p1'
@@ -52,7 +53,7 @@ import Location from '@/containers/other/location'
 Vue.use(Router)
 
 const router = new Router({
-	mode: 'history',
+		mode: 'history',
   	routes: [
 		{path:"*",name:"404",component:Status404},
 		{
@@ -91,6 +92,7 @@ const router = new Router({
 			children:[
 				{path:"/set/user",name:"编辑资料",component:SetUser},
 				{path:"/set/update",name:"修改个人信息",component:SetUserUpdate},	
+				{path:"/set/updatephone",name:"修改手机号",component:SetUserPhone},	
 				
 				{path:"/set/orderMes",name:"订单管理",component:OrderMes},
 				{path:"/set/orderMesDt",name:"订单管理详情",component:OrderMesDtails},

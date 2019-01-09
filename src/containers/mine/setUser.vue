@@ -18,7 +18,7 @@
 					</router-link>
 				</li>
 				<li>
-					<router-link :to="{path:'update',name:'修改个人信息' ,params:{name:'phone',cname:'手机号'}}">
+					<router-link :to="{path:'updatephone',name:'修改手机号'}">
 						<label>手机号</label>
 						<span>{{userInfo.phone}}</span>
 						<i class="icon icon-right"></i>
