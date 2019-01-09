@@ -7,7 +7,12 @@ import Layout from '@/containers/Layout'
 import Status404 from '@/components/Status404'
 
 import Home from '@/containers/home'
+
 import Exchange from '@/containers/scoring/exchange'
+import Getdetails from '@/containers/scoring/getdetails'
+import WinResults from '@/containers/scoring/winResults'
+import ScoreMes from '@/containers/scoring/scoreMes'
+
 
 import Mine from '@/containers/mine/mine'
 
@@ -24,10 +29,7 @@ import OrderMesDtails from '@/containers/mine/orderMesDtails'
 import AdressMes from '@/containers/mine/adressMes'
 import AdressMesDtails from '@/containers/mine/adressMesDtails'
 
-import ScoreMes from '@/containers/mine/scoreMes'
   
-
-
 import SetUser from '@/containers/mine/setUser'
 import SetUserUpdate from '@/containers/mine/setUserUpdate'
 import SetUserHead from '@/containers/mine/setUserHead'
@@ -50,7 +52,7 @@ import Location from '@/containers/other/location'
 Vue.use(Router)
 
 const router = new Router({
-//	mode: 'history',
+	mode: 'history',
   	routes: [
 		{path:"*",name:"404",component:Status404},
 		{
@@ -76,6 +78,10 @@ const router = new Router({
 			component:Set,
 			children:[
 				{path:"/scoring/exchange",name:"积分兑换",component:Exchange},
+				{path:"/scoring/getdetails",name:"领取详情",component:Getdetails},
+				
+				{path:"/scoring/winresults",name:"中将结果",component:WinResults},
+				
 			]
 		},
 		{

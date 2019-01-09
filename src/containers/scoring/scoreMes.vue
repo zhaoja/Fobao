@@ -3,12 +3,11 @@
 		<ul class="scoreList">
 			<li v-for="li in systemInfoList">
 				<img src="../../assets/images/score/sh.png"/><strong>商户名称</strong>
-				<div class="inner">
-					<div>积分余额  <span>200</span></div>
-					<div class="center">彩票数量   <span>2</span></div>
-					<div><button class="buny" @click="getLottery()">领取</button></div>
-				</div>
-				 
+				<hr />
+				<ul>
+				 	<li><label>彩票号码</label><span>G0457-13125-0050802</span></li>
+				 	<li><label>领取时间</label><span>2018-12-2  08:20:15</span></li>
+				</ul>	
 			</li>
 		</ul>
 	</div>   

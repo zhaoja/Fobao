@@ -17,7 +17,7 @@ $font18:18px;
     font-size: $font16;
     color: $col3;
     font-family: "Microsoft YaHei";
-    letter-spacing:1px;
+    letter-spacing: 1px;
     ul li {
         margin: 0;
         padding: 0;
@@ -39,8 +39,8 @@ $font18:18px;
         -moz-user-focus: none;
         -moz-user-select: none;
     }
-    input{
-        outline: none;//去掉浏览器默认的选中框
+    input {
+        outline: none; //去掉浏览器默认的选中框
     }
     .indent {
         text-indent: 35px;
@@ -51,6 +51,9 @@ $font18:18px;
     }
     .mt15 {
         margin-top: -15px;
+    }
+    .center {
+        text-align: center;
     }
 }
 
@@ -394,9 +397,9 @@ $font18:18px;
                 background-position-x: 78px;
                 background-position-y: -101px;
             }
-			.icon-m-location{
-				background-position: -72px -127px;
-			}
+            .icon-m-location {
+                background-position: -72px -127px;
+            }
         }
         .active {
             color: #fe4c40;
@@ -416,9 +419,9 @@ $font18:18px;
                 background-position-x: 44px;
                 background-position-y: -101px;
             }
-			.icon-m-location{
-				background-position: -127px -127px;
-			}
+            .icon-m-location {
+                background-position: -127px -127px;
+            }
         }
         div {
             height: 24px;
@@ -431,12 +434,12 @@ $font18:18px;
         display: inline-block;
         background-size: 370px;
     }
-	.icon-m {
-		height: 22px;
-		width: 22px;
-		display: inline-block;
-		background-size: 220px;
-	}
+    .icon-m {
+        height: 22px;
+        width: 22px;
+        display: inline-block;
+        background-size: 220px;
+    }
 }
 
 .home {
@@ -471,7 +474,7 @@ $font18:18px;
             }
         }
     }
-    .paragraph{
+    .paragraph {
         margin-top: 10px;
         padding: 15px 0;
         background: #ffffff;
@@ -484,135 +487,115 @@ $font18:18px;
             font-size: 16px;
             color: #333333;
         }
-        ul{
+        ul {
             display: flex;
-            flex-wrap:wrap;
+            flex-wrap: wrap;
             width: 100%;
-            li{
+            li {
                 width: 25%;
                 text-align: center;
-                a{display: block;}
+                a {
+                    display: block;
+                }
                 span {
                     display: inline-block;
                     font-size: 14px,
                 }
                 .icon-m {
                     margin-top: 20px;
-                    
                 }
             }
         }
-  
     }
-     
 }
+
 //service net
 .location {
-	.search-header {
-		background-color: #fe4c40;
-		height: 65px;
-		display: flex;
-
-		input {
-			flex: 1;
-			height: 30px;
-			border-radius: 15px;
-			background-color: #ffffff;
-			margin-top: 27px; 
-			margin-left: 15px;
-			padding: 0 15px;
-		}
-
-		button {
-			margin-top: 34px;
-			width: 50px;
-			height: 16px;
-			font-size: 17px;
-			line-height: 10px;
-			color: #ffffff;
-			background: #fe4c40;
-		}
-	}
-	
-	
-	.location-nav {
-		height: 40px;
-		line-height: 40px;
-		display: flex;
-		background: #ffffff;
-
-		li {
-			flex: 1;
-			text-align: center;
-		}
-
-		.active {
-			color: #fe4c40;
-		}
-
-	}
-	#container {
-		width: 100%;
-		height: calc( 100vh - 150px );
-	}
-	 
-	.amap-icon img{
-		top: -5px;
-		left: -2px;
-		width: 25px;
-		height: 35px;
-	}
-	.amap-icon {
-		//width: 30px !important;
-	}
-
-	.wkbtn,
-	.rdbtn,
-	.bsbtn {
-		color: #fff;
-		font-size: 15px;
-		padding: 3px 15px;
-	}
-
-	.wkbtn {
-		background: #3891f7;
-		margin-right: 10px;
-	}
-
-	.rdbtn {
-		background: #33b166;
-	}
-
-	.bsbtn {
-		background: #d66969;
-	}
-
-	.btn-group {
-		width: 50%;
-		margin: 0 auto;
-	}
-	
-	#panel {
-		margin-bottom: 55px;
-
-		.plan {
-			padding: 0 15px;
-
-		}
-
-		.amap-lib-transfer span.line .beforespan {
-			left: -24px !important;
-		}
-
-		.amap-lib-transfer span.subwayline {
-			margin-left: 20px !important;
-		}
-
-		.amap-lib-transfer span.busline {
-			margin-left: 22px;
-		}
-		
-	}
+    .search-header {
+        background-color: #fe4c40;
+        height: 65px;
+        display: flex;
+        input {
+            flex: 1;
+            height: 30px;
+            border-radius: 15px;
+            background-color: #ffffff;
+            margin-top: 27px;
+            margin-left: 15px;
+            padding: 0 15px;
+        }
+        button {
+            margin-top: 34px;
+            width: 50px;
+            height: 16px;
+            font-size: 17px;
+            line-height: 10px;
+            color: #ffffff;
+            background: #fe4c40;
+        }
+    }
+    .location-nav {
+        height: 40px;
+        line-height: 40px;
+        display: flex;
+        background: #ffffff;
+        li {
+            flex: 1;
+            text-align: center;
+        }
+        .active {
+            color: #fe4c40;
+        }
+    }
+    #container {
+        width: 100%;
+        height: calc( 100vh - 150px);
+    }
+    .amap-icon img {
+        top: -5px;
+        left: -2px;
+        width: 25px;
+        height: 35px;
+    }
+    .amap-icon {
+        //width: 30px !important;
+    }
+    .wkbtn,
+    .rdbtn,
+    .bsbtn {
+        color: #fff;
+        font-size: 15px;
+        padding: 3px 15px;
+    }
+    .wkbtn {
+        background: #3891f7;
+        margin-right: 10px;
+    }
+    .rdbtn {
+        background: #33b166;
+    }
+    .bsbtn {
+        background: #d66969;
+    }
+    .btn-group {
+        width: 50%;
+        margin: 0 auto;
+    }
+    #panel {
+        margin-bottom: 55px;
+        .plan {
+            padding: 0 15px;
+        }
+        .amap-lib-transfer span.line .beforespan {
+            left: -24px !important;
+        }
+        .amap-lib-transfer span.subwayline {
+            margin-left: 20px !important;
+        }
+        .amap-lib-transfer span.busline {
+            margin-left: 22px;
+        }
+    }
 }
 
 .capply {
@@ -735,7 +718,8 @@ $font18:18px;
                 span {
                     font-size: 18px;
                     color: #ffffff;
-                }label {
+                }
+                label {
                     font-size: 10px;
                     color: #ffffff;
                 }
@@ -746,7 +730,7 @@ $font18:18px;
         .line1 li {
             label {
                 margin-left: 60px;
-								font-size: 16px;
+                font-size: 16px;
             }
             .span-alert {
                 position: absolute;
@@ -814,12 +798,10 @@ $font18:18px;
             }
         }
     }
-    
 }
 
 .set {
     margin-top: 65px;
-    
     .sysMesList {
         width: 100%;
         background: $colf5;
@@ -854,8 +836,8 @@ $font18:18px;
                             position: absolute;
                             right: 15px;
                         }
-                        .text2{
-                             position: absolute;
+                        .text2 {
+                            position: absolute;
                             right: 15px;
                         }
                     }
@@ -887,7 +869,7 @@ $font18:18px;
             display: block;
             display: flex;
             align-items: center;
-            .listText{
+            .listText {
                 flex: 1;
                 padding-left: 15px;
                 height: 50px;
@@ -904,16 +886,16 @@ $font18:18px;
                         margin-left: 30px;
                         margin-right: 10px;
                     }
-                    .btn{
+                    .btn {
                         font-size: 12px;
                         width: 40px;
                         height: 16px;
                         background: rgba(254, 76, 64, 0.15);
-                        color:#fe4c40;
+                        color: #fe4c40;
                         padding: 0 3px;
                     }
                 }
-                 .text {
+                .text {
                     font-size: $font14;
                     color: $col9;
                     margin-top: 3px;
@@ -921,14 +903,13 @@ $font18:18px;
                     height: 20px;
                     line-height: 20px;
                 }
-               
             }
             button {
                 width: 63px;
                 display: inline-block;
                 border: 0;
-                span{
-                    border-left:1px solid #e5e5e5;
+                span {
+                    border-left: 1px solid #e5e5e5;
                     height: 31px;
                     font-size: 14px;
                     color: $col6;
@@ -940,7 +921,6 @@ $font18:18px;
                 .listIcon {
                     margin: 12px 15px;
                 }
-                
             }
         }
     }
@@ -975,66 +955,165 @@ $font18:18px;
         }
     }
     .order {
-       .head{
-           text-align: center;
-           background: $white;
-           padding: 20px 0;
-           h1{
-               font-size: 18px;
-               font-weight: 400;
-               margin-top: 10px;
-               strong{
-                  font-size: 24px; 
-               }
-           }
+        .head {
+            text-align: center;
+            background: $white;
+            padding: 20px 0;
+            h1 {
+                font-size: 18px;
+                font-weight: 400;
+                margin-top: 10px;
+                strong {
+                    font-size: 24px;
+                }
+            }
+            .ewimg {
+                width: 170px;
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+            .note {
+                color: $col6;
+                font-size: $font14;
+                margin-top: 13px;
+                margin-bottom: 10px;
+            }
         }
-        .body{
+        .body {
             background: $white;
             margin-top: 10px;
             padding: 20px 0px;
-            hr{
+            .title {
+                margin: 0 15px 15px 15px;
+                height: 25px;
+                font-weight: 600;
+                border-bottom: 1px solid $colf5;
+                line-height: 10px;
+            }
+            hr {
                 border-bottom: 2px solid $colf5;
                 margin-bottom: 15px;
                 margin-top: 10px;
             }
-            ul li{
+            ul li {
+                min-height: 30px;
+                position: relative;
                 width: 100%;
-                padding: 0 15px;
-                height: 30px;
-                span{
+                label {
+                    position: absolute;
+                    left: 15px;
                     color: $col6;
                     display: inline-block;
                     width: 90px;
                 }
+                span {
+                    position: absolute;
+                    padding-left: 100px;
+                    color: $col6;
+                    display: inline-block;
+                    width: calc(100% - 100px);
+                }
             }
-        } 
+        }
     }
-   .longLines{
-       label{
-           display: inline-block;
-           min-width: 110px;
-           .mint-switch{float: right; margin-right: 15px;}
-           .mint-switch-label{
-               margin-left: 100px;
-           }
-           .mint-switch-core{
+    .longLines {
+        label {
+            display: inline-block;
+            min-width: 110px;
+            .mint-switch {
+                float: right;
+                margin-right: 15px;
+            }
+            .mint-switch-label {
+                margin-left: 100px;
+            }
+            .mint-switch-core {
                 margin-top: 10px;
                 margin-right: 8px;
-           }
-       }
-       input{
-           height: 100%;
-           width: calc(100% - 140px);
-           text-align: right;
-       }
-       
-   }
-   .scoreList{
-       li{
-           background: $white;
-           margin: 15px 15px 0;
-       }
-   }
+            }
+        }
+        input {
+            height: 100%;
+            width: calc(100% - 140px);
+            text-align: right;
+        }
+    }
+    .scoreList {
+        li {
+            width: calc(100% - 30px);
+            background: $white;
+            margin: 15px 15px 0;
+            border-radius: 5px;
+            padding: 18px 0px;
+            img {
+                width: 20px;
+                height: 20px;
+                margin-right: 10px;
+                margin-left: 20px;
+                line-height: 10px;
+                float: left;
+            }
+            .inner {
+                display: flex;
+                font-weight: 400;
+                margin-top: 20px;
+                padding: 0 20px;
+                div {
+                    flex: 1;
+                    color: $col9;
+                    font-size: $font15;
+                    position: relative;
+                    span {
+                        display: inline-block;
+                        width: 100%;
+                        color: $col3;
+                        padding-top: 20px;
+                        font-size: 24px;
+                        line-height: 10px;
+                    }
+                    button {
+                        position: absolute;
+                        right: 0px;
+                        bottom: 0;
+                        width: 80px;
+                        height: 30px;
+                        color: $white;
+                        border-radius: 15px;
+                        font-size: 15px;
+                    }
+                    .buny {
+                        background: $orange;
+                    }
+                    .bunn {
+                        background: $grey;
+                    }
+                }
+            }
+            hr{
+                height: 15px;
+                border-bottom: 1px dashed $colf5;
+                margin: 0 15px;
+            }
+            ul li {
+                position: relative;
+                margin: 0;
+                label {
+                    position: absolute;
+                    left: 15px;
+                    color: $col6;
+                    display: inline-block;
+                    width: 90px;
+                }
+                span {
+                    position: absolute;
+                    padding-left: 100px;
+                    color: $col6;
+                    display: inline-block;
+                    width: calc(100% - 100px);
+                }
+            }
+        }
+    }
 }
 
 .news {
@@ -1162,6 +1241,90 @@ $font18:18px;
         .longbtn2 {
             background: $orange;
             color: $white;
+        }
+    }
+}
+
+.imgpage {
+    text-align: center;
+    background: $white;
+    height: 100vh;
+    .nofind {
+        padding-top: 190px;
+        text-align: center;
+        img {
+            width: 138px;
+            height: 132px;
+        }
+        .note1 {
+            margin-top: 20px;
+            font-size: 17px;
+        }
+        .note2 {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #999999;
+        }
+        button {
+            margin-top: 50px;
+            width: 110px;
+            height: 35px;
+            border-radius: 18px;
+            border: 1px solid #fe4c40;
+            font-size: 16px;
+            line-height: 24px;
+            color: #fe4c40;
+            background: $white;
+        }
+    }
+    .fail {
+        .img-fali {
+            margin-top: 220px;
+            width: 270px;
+            margin-bottom: 30px;
+        }
+    }
+    .win {
+        .img-win1 img {
+            width: 190px;
+            height: 30px;
+            margin-top: 105px;
+        }
+        .img-win2 {
+            margin-bottom: 100px;
+            img {
+                width: 220px;
+                height: 45px;
+                margin-top: 20px;
+            }
+            div {
+                height: 45px;
+                line-height: 45px;
+                margin-top: -49px;
+                font-size: 20px;
+                color: $white;
+                span {
+                    font-size: 30px;
+                    color: $white;
+                }
+            }
+        }
+        .img-win3 {
+            margin-top: 100px;
+            text-align: left;
+            background: rgba(252, 111, 7, 0.1);
+            margin: 45px;
+            color: #fc6f07;
+            padding: 75px 20px 20px;
+            line-height: 24px;
+            border-radius: 5px;
+            div {
+                text-align: center;
+                margin-top: -136px;
+                img {
+                    width: 130px;
+                }
+            }
         }
     }
 }
@@ -1342,29 +1505,73 @@ $font18:18px;
     border-radius: 10px;
 }
 
-.icon-m{
+.icon-m {
     display: inline-block;
     background-size: 220px;
     width: 45px;
     height: 45px;
 }
-.icon-m1{background-position: -5px -5px;}       
-.icon-m2{background-position: -60px -5px;}      
-.icon-m3{background-position: -115px -5px;}     
-.icon-m4{background-position: -170px -5px;} 
-    
-.icon-m5{background-position: -5px -60px;}      
-.icon-m6{background-position: -60px -60px;}     
-.icon-m7{background-position: -115px -60px;}        
-.icon-m8{background-position: -170px -60px;}  
-      
-.icon-m9{background-position: -5px -115px;}  
-.icon-m-od{background-position: -170px -115px;} 
-  
-.icon-m-ad{background-position: -5px -170px;}   
-.icon-m-sc{background-position: -60px -170px;}  
-.icon-m-bell{background-position: -115px -170px;}   
-.icon-m-card{background-position: -170px -170px;} 
-  
-.icon-m-set{background-position: -5px -225px;}  
-.icon-m-cir-od{background-position: -60px -225px;}   
+
+.icon-m1 {
+    background-position: -5px -5px;
+}
+
+.icon-m2 {
+    background-position: -60px -5px;
+}
+
+.icon-m3 {
+    background-position: -115px -5px;
+}
+
+.icon-m4 {
+    background-position: -170px -5px;
+}
+
+.icon-m5 {
+    background-position: -5px -60px;
+}
+
+.icon-m6 {
+    background-position: -60px -60px;
+}
+
+.icon-m7 {
+    background-position: -115px -60px;
+}
+
+.icon-m8 {
+    background-position: -170px -60px;
+}
+
+.icon-m9 {
+    background-position: -5px -115px;
+}
+
+.icon-m-od {
+    background-position: -170px -115px;
+}
+
+.icon-m-ad {
+    background-position: -5px -170px;
+}
+
+.icon-m-sc {
+    background-position: -60px -170px;
+}
+
+.icon-m-bell {
+    background-position: -115px -170px;
+}
+
+.icon-m-card {
+    background-position: -170px -170px;
+}
+
+.icon-m-set {
+    background-position: -5px -225px;
+}
+
+.icon-m-cir-od {
+    background-position: -60px -225px;
+}

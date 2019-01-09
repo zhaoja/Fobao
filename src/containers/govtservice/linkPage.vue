@@ -45,8 +45,7 @@
  
  
 </script>
-
-<style>
+ <style>
 	.formData{
 	    width: 100%;
 	    height: 100vh; 
@@ -74,11 +73,12 @@
 		margin-top: -30px;
        	width: 1024px;
 		height: 1340px;
-		transform: scale(0.48 ,0.9);
+		transform: scale(0.48 ,1);
      	transform-origin: -223px 0px 0px;
 	}
  	.ifr0{
  		margin-top: -90px;
+ 		height: 1440px;
  	} 
 	.ifr1,.ifr2{
         height: 380px;

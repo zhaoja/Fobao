@@ -9,18 +9,18 @@
 	  
 			<div class="body">
 				 <ul>
-				 	<li><span>当前状态</span>支付成功</li>
-				 	<li><span>商品</span>北京通手机卡</li>
-				 	<li><span>支付时间</span>2018-12-2  08:20:15</li>
-				 	<li><span>支付方式</span>银联云闪付</li>
-				 	<li><span>交易单号</span>42000100002000504344572</li>
+				 	<li><label>当前状态</label><span>支付成功</span></li>
+				 	<li><label>商品</label><span>北京通手机卡</span></li>
+				 	<li><label>支付时间</label><span>2018-12-2  08:20:15</span></li>
+				 	<li><label>支付方式</label><span>银联云闪付</span></li>
+				 	<li><label>交易单号</label><span>42000100002000504344572</span></li>
 				 </ul>
 				 <hr />
 				  <ul>
-				 	<li><span>收件人</span>张三</li>
-				 	<li><span>收件地址</span>北京市海淀区甘露园南里1号楼321</li>
-				 	<li><span>联系方式</span>18611714595</li>
-				 	<li><span>订单状态</span>配送中</li>
+				 	<li><label>收件人</label><span>张三</span></li>
+				 	<li><label>收件地址</label><span>北京市海淀区甘露园南里1号楼321</span></li>
+				 	<li><label>联系方式</label><span>18611714595</span></li>
+				 	<li><label>订单状态</label><span>配送中</span></li>
 				 </ul>
 			</div>
 		</div>
