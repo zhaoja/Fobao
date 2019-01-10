@@ -8,10 +8,16 @@
 				</router-link>
 			</li>
 			<li>
-				<!--account-->
-				<router-link to="" :class="{active: $route.path.match('account')}">
+				<!--scoring-->
+				<router-link to="scoring/exchange" :class="{active: $route.path.match('scoring')}">
 					<div><i class="icon icon-jifen"></i></div>
 					积分兑换
+				</router-link>
+			</li>
+			<li>
+				<router-link to="location" :class="{active: $route.path.match('location')}">
+					<div><i class="icon-m icon-m-location"></i></div>
+					服务网点
 				</router-link>
 			</li>
 			<li>

@@ -8,12 +8,12 @@
 					<i class="icon icon-go"></i>
 				</router-link>
 			</div>
-			<div class="topAccont">
+			<!--<div class="topAccont">
 				<div v-for="(a,c) in userInfo.accont">
 					<span>{{a}} </span> <label>元</label><br />
 					{{c}}
 				</div>
-			</div>
+			</div>-->
 			
 			<!--
 			<router-link to="login" v-if="logStatus==0">
@@ -22,9 +22,34 @@
 		</div>
 		<div class="longLines">
 			<ul class="line1">
-				<li @click="toSystemMes()">
+				<li> 	
+					<router-link to="set/orderMes">
+						<i class="icon-m icon-m-od left"></i>
+						<!--<i class="icon-alert" v-if="systemInfoRead"></i>-->
+						<label>订单管理</label>
+						<i class="icon icon-right"></i>
+					</router-link>
+				</li>
+				<li>
+					<router-link to="set/adressMes">
+						<i class="icon-m icon-m-ad left"></i>
+						<!--<i class="icon-alert" v-if="systemInfoRead"></i>-->
+						<label>地址管理</label>
+						<i class="icon icon-right"></i>
+					</router-link>
+				</li>
+				<li>
+					<router-link to="set/scoreMes">
+						<i class="icon-m icon-m-sc left"></i>
+						<!--<i class="icon-alert" v-if="systemInfoRead"></i>-->
+						<label>积分兑换记录</label>
+						<i class="icon icon-right"></i>
+					</router-link>
+				</li>
+				
+				<li @click="toSystemMes()" style="margin-top: 10px;">
 					<router-link to="set/sysMes">
-						<i class="icon icon-bell left"></i>
+						<i class="icon-m icon-m-bell left"></i>
 						<!--<i class="icon-alert" v-if="systemInfoRead"></i>-->
 						<label>系统消息</label>
 						<span class="span-alert" v-if="systemInfoRead">{{systemInfoRead}}</span>
@@ -33,13 +58,13 @@
 				</li>
 				<li>
 					<router-link to="set/aboutFB">
-						<i class="icon icon-card left"></i>
+						<i class="icon-m icon-m-card left"></i>
 						<label>关于福宝</label>
 						<i class="icon icon-right"></i>
 					</router-link>
 				</li>
 				<li>
-					<i class="icon icon-set left"></i>
+					<i class="icon-m icon-m-set left"></i>
 					<label>版本号</label>
 					<i class="num">3.0.2</i>
 				</li>

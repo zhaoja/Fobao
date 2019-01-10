@@ -14,6 +14,10 @@ import 'lib-flexible'
 import cardApply from './models/cardApply'
 import user from './models/user'
 import system from './models/system'
+import order from './models/order'
+import adress from './models/adress'
+
+import location from './models/location'
 /*  eslint-disable no-new */
 Vue.use(Vuex)
 
@@ -21,14 +25,21 @@ Vue.use(Vuex)
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 Vue.use(MintUI)
-
+ 
 //处理手机返回键
 import Mui from 'vue-awesome-mui';
 Vue.use(Mui);
-
-//import "./../static/tab-swiper-master/js/touch.min.js"
-//import "./../static/tab-swiper-master/js/tabSwiper.es5.min.js"
+ 
 import 'swiper/dist/css/swiper.css'
+
+import VueAMap from 'vue-amap';
+Vue.use(VueAMap)
+
+ VueAMap.initAMapApiLoader({
+  key: '4bbbadeab79ceb71d6310dacb8b5fa16',
+  plugin: ['AMap.Scale','AMap.ToolBar','AMap.Geocoder'],
+  uiVersion: '1.0.11' // 版本号
+});
 
 Vue.config.productionTip = false
  
@@ -38,6 +49,9 @@ Vue.config.productionTip = false
      cardApply: cardApply,
      user: user,
      system: system,
+     order:order,
+     adress:adress,
+	 location:location
  
    }
  })

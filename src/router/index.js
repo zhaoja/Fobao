@@ -7,20 +7,34 @@ import Layout from '@/containers/Layout'
 import Status404 from '@/components/Status404'
 
 import Home from '@/containers/home'
+
+import Exchange from '@/containers/scoring/exchange'
+import Getdetails from '@/containers/scoring/getdetails'
+import WinResults from '@/containers/scoring/winResults'
+import ScoreMes from '@/containers/scoring/scoreMes'
+
+
 import Mine from '@/containers/mine/mine'
 
 import RumorCenter from '@/containers/rumorcenter/rumorCenter'
 import RumorDetail from '@/containers/rumorcenter/rumorDetail'
 
 import Set from '@/containers/mine/set'
-import SysMes from '@/containers/mine/sysMes'
 import AboutFB from '@/containers/mine/aboutFb'
-import SysMesDtails from '@/containers/mine/sysMesDtails'
 
+import SysMes from '@/containers/mine/sysMes'
+import SysMesDtails from '@/containers/mine/sysMesDtails'
+import OrderMes from '@/containers/mine/orderMes'
+import OrderMesDtails from '@/containers/mine/orderMesDtails'
+import AdressMes from '@/containers/mine/adressMes'
+import AdressMesDtails from '@/containers/mine/adressMesDtails'
+
+  
 import SetUser from '@/containers/mine/setUser'
 import SetUserUpdate from '@/containers/mine/setUserUpdate'
+import SetUserPhone from '@/containers/mine/setUserPhone'
 import SetUserHead from '@/containers/mine/setUserHead'
- 
+  
 // 
 import CardApply from '@/containers/govtservice/cardApply'
 import CardApply1 from '@/containers/govtservice/cardApply_p1'
@@ -28,7 +42,7 @@ import CardApply2 from '@/containers/govtservice/cardApply_p2'
 import CardApply3 from '@/containers/govtservice/cardApply_p3'
 import CardApply4 from '@/containers/govtservice/cardApply_p4'
 import Function from '@/containers/govtservice/function'
-import PhoneCard from '@/containers/govtservice/phoneCard'
+import LinkPage from '@/containers/govtservice/linkPage'
 // 
 
 import yidong from '@/containers/yidong/moveApp'
@@ -38,8 +52,8 @@ import Location from '@/containers/other/location'
 
 Vue.use(Router)
 
-export default new Router({
-	mode: 'history',
+const router = new Router({
+		mode: 'history',
   	routes: [
 		{path:"*",name:"404",component:Status404},
 		{
@@ -49,8 +63,9 @@ export default new Router({
 			children:[
 				{path:"",redirect:'/index'},
 				{path:"/index",name:"首页",component:Home},
-				{path:"/information",name:"资讯",component:RumorCenter},
-				{path:"/mine",name:"我的",component:Mine}
+				{path:"/information",name:"资讯",component:RumorCenter },
+				{path:"/mine",name:"我的",component:Mine }, 
+				{path:"/location",name:"高德地图",component:Location}
 			]
 		},
 		{
@@ -59,12 +74,34 @@ export default new Router({
 			component: Login
 		},
 		{
+			path:"/scoring",
+//			name:"设置",
+			component:Set,
+			children:[
+				{path:"/scoring/exchange",name:"积分兑换",component:Exchange},
+				{path:"/scoring/getdetails",name:"领取详情",component:Getdetails},
+				
+				{path:"/scoring/winresults",name:"中将结果",component:WinResults},
+				
+			]
+		},
+		{
 			path:"/set",
 			name:"设置",
 			component:Set,
 			children:[
 				{path:"/set/user",name:"编辑资料",component:SetUser},
-				{path:"/set/update",name:"修改个人信息",component:SetUserUpdate},				
+				{path:"/set/update",name:"修改个人信息",component:SetUserUpdate},	
+				{path:"/set/updatephone",name:"修改手机号",component:SetUserPhone},	
+				
+				{path:"/set/orderMes",name:"订单管理",component:OrderMes},
+				{path:"/set/orderMesDt",name:"订单管理详情",component:OrderMesDtails},
+
+				{path:"/set/adressMes",name:"地址管理",component:AdressMes},
+				{path:"/set/adressMesDt",name:"地址管理",component:AdressMesDtails},
+				
+				{path:"/set/scoreMes",name:"积分兑换记录",component:ScoreMes},
+				
 				{path:"/set/sysMes",name:"系统消息",component:SysMes},
 				{path:"/set/sysMesDt",name:"系统消息详情",component:SysMesDtails},
 				{path:"/set/aboutFB",name:"关于福宝",component:AboutFB}
@@ -89,9 +126,13 @@ export default new Router({
 			component:Function,
 		},
 		{      
-			path:"/phoneCard",
-			name:"北京通手机卡",
-			component:PhoneCard,
+			path:"/linkPage",
+			name:"外部链接",
+			component:LinkPage,
+			meta: {
+				title:"教师详情",
+				content: "width=device-width, initial-scale=auto, minimum-scale=0, maximum-scale=10, user-scalable=yes"
+			}
 		},
 		{
 			path:"/rumorCenter/rumorDt",
@@ -102,14 +143,13 @@ export default new Router({
 			path:"/yidong",
 			name:"移动H5+",
 			component:yidong 
-		}, 
-		{
-			path:"/location",
-			name:"高德地图",
-			component:Location 
 		}
-  ],
+	],
+	
 	scrollBehavior (to, from, savedPosition) {
 			return { x: 0, y: 0 }
 	}
 })
+
+export default router
+

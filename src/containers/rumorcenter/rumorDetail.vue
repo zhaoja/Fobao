@@ -23,7 +23,6 @@
 <script>
 	import { mapState } from 'vuex'
 	import Header from '../../components/Header.vue'
-
 	export default {
 		computed: {
 			...mapState({
@@ -48,7 +47,6 @@
 </script>
 
 <style lang="scss" >
-
 	.list1 {
 		.title {
 			float: left;

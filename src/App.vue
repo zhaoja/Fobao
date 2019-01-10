@@ -18,6 +18,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #333333;
+  min-height: 667px;
 }
 ul {
   list-style-type: none;

@@ -125,24 +125,6 @@
 						mescroll: null,
 						list: [],
 						isListInit: false
-					},
-					{
-						name: '老人福利',
-						mescroll: null,
-						list: [],
-						isListInit: false
-					},
-					{
-						name: '老人福利',
-						mescroll: null,
-						list: [],
-						isListInit: false
-					},
-					{
-						name: '老人福利',
-						mescroll: null,
-						list: [],
-						isListInit: false
 					}
 				],
 				tabWidth: 80, // 每个tab的宽度
@@ -184,7 +166,7 @@
 			},
 			// mescroll上拉加载的配置
 			getMescrollUp(tabIndex) {
-				console.log(tabIndex)
+				// console.log(tabIndex)
 				let emptyWarpId = 'dataList' + tabIndex;
 				return {
 					auto: false,
