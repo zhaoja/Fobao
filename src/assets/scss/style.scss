@@ -6,6 +6,7 @@ $col3:#333333;
 $col6:#666666;
 $col9:#999999;
 $colf5:#f5f5f5;
+$colc:#cccccc;
 $font13:13px;
 $font14:14px;
 $font15:15px;
@@ -227,7 +228,7 @@ $font18:18px;
     background: #FE4C40;
     padding-top: 20px;
     line-height: 45px;
-    // height: 64px;
+    height: 45px;
     color: #ffffff;
     text-align: center;
     font-size: $font18;
@@ -599,8 +600,10 @@ $font18:18px;
 }
 
 .capply {
-    margin-top: 85px;
+    background: $white;
+    height: 100vh;
     color: #333333;
+    padding-top: 85px;
     ul {
         li span {
             margin-left: 22px;
@@ -623,10 +626,11 @@ $font18:18px;
     }
     li {
         display: flex;
+        position: relative;
         span {
             min-width: 80px;
         }
-        input,
+        input[type='text'],
         select {
             flex: 1;
             height: 35px;
@@ -634,23 +638,35 @@ $font18:18px;
             margin-right: 20px;
             padding-left: 10px;
         }
+        input[type='button']{
+            position: absolute;
+            width: 110px;
+            right: 0;
+            top: 15px;
+            color: #fe4c40;
+            border-left: 1px solid #ccc;
+            height: 20px;
+            line-height: 20px;
+        }
+        
         button {
-            background: #FE4C40;
+//          background: #FE4C40;
             color: #ffffff;
             border-radius: 4px;
         }
-        select {
-            background: $white;
+//      select {
+//          background: $white;
+//      }
+    }
+    p {
+        margin: 5px 15px ;
+        span {
+            color: $orange;
         }
     }
-    .grayb {
-        margin: 20px 15px;
-        p {
-            margin-bottom: 20px;
-            span {
-                color: $orange;
-            }
-        }
+    .grayb { 
+        margin: 20px 15px ;
+
         li {
             line-height: 50px;
             background: rgba(245, 245, 245, 1);
@@ -1044,7 +1060,7 @@ $font18:18px;
             background: $white;
             margin: 15px 15px 0;
             border-radius: 5px;
-            padding: 18px 0px;
+            padding: 15px 0px;
             img {
                 width: 20px;
                 height: 20px;
@@ -1091,12 +1107,13 @@ $font18:18px;
             }
             hr{
                 height: 15px;
-                border-bottom: 1px dashed $colf5;
-                margin: 0 15px;
+                border-bottom: 1px dashed $colc;
+                margin: 0 15px 10px 15px;
             }
             ul li {
                 position: relative;
                 margin: 0;
+                padding: 5px 0px;
                 label {
                     margin-left: 15px;
                     color: $col6;
@@ -1223,7 +1240,7 @@ $font18:18px;
             background: #f5f5f5;
             border-bottom: 2px solid red;
             outline: none;
-            //          cursor: pointer;
+//          cursor: pointer;
         }
         div {
             color: $orange;
@@ -1352,13 +1369,14 @@ $font18:18px;
         }
         
     }
-    .alert{
+
+    .MessageBox{
          background: rgba(0, 0, 0, 0.6); 
          height: 100vh;
          width: 100%;
          position: absolute;
          top: 0;
-         left: 0;  
+         left: 0; 
         .inner{
             width: 300px;
             height: 250px;
@@ -1367,7 +1385,7 @@ $font18:18px;
             left: 50%;
             margin-top: -125px;
             margin-left: -150px;
-            border-radius: 5;
+            border-radius: 5px;
             background-color: $white;
             div:nth-child(1){
                 margin-top: 25px;
@@ -1377,24 +1395,39 @@ $font18:18px;
                 margin-top: 20px;
             }
             div:nth-child(3){
-                margin-top: 50px;
+                margin-top: 30px;
                 input{
-                    width: 155px;
                     height: 40px;
+                    font-size: 15px;
+                    border-radius: 2px;
+                }
+                input[type='text']{
+                    width: 155px;
                     background: $colf5;
+                    padding-left: 10px;
+                }
+                input[type='button']{
+                    width: 95px;
+                    margin-left: 10px;
+                    background: $orange;
+                    color: $white;
                 }
             }
             div:nth-child(4){
-                margin-top: 10px;
+                margin-top: 43px;
                 button{
-                    width: 49%;
+                    width: 150px;
                     float: left;
                     height: 49px;
-                    background: $white;
-                    border-top: 1px solid $colf5;
-                    border-right: 1px solid $colf5;
+                    background: transparent;
+                    border-top: 1px solid $colc;
                 }
-               
+                button:nth-child(1){
+                    border-right: 1px solid $colc;
+                }
+                button:nth-child(2){
+                   color: $orange;
+                }
             }
         }
     }
@@ -1646,3 +1679,49 @@ $font18:18px;
 .icon-m-cir-od {
     background-position: -60px -225px;
 }
+
+
+//@keyframes action_skew{
+//  0%{transform: skew(-40deg);opacity: 0;}
+//  50%{ transform: skew(40deg);opacity: 0.2;}
+//  100%{ transform: skew(0deg);opacity: 1;}
+//}
+// 
+//@keyframes action_rotateY{
+//  0%{transform: rotateY(0deg);opacity: 0;}
+//  50%{ transform: rotateY(180deg);opacity: 0.2;}
+//  100%{ transform: rotateY(360deg);opacity: 1;}
+//}
+// 
+//@keyframes action_translateY{
+//  0%{transform: translateY(50px);opacity: 0;}
+//  100%{ transform: translateY(0px);opacity: 1;}
+//}
+// 
+@keyframes action_scale{
+    0%{transform: scale(0.2);opacity: 0;}
+    100%{ transform: scale(1);opacity: 1;}
+}
+/*---淡出----*/
+ 
+//@keyframes action_skewOut{
+//  0%{transform: skew(40deg);opacity: 1;}
+//  50%{ transform: skew(-40deg);opacity: 0.2;}
+//  100%{ transform: skew(0deg);opacity: 0;}
+//}
+// 
+//@keyframes action_rotateYOut{
+//  0%{transform: rotateY(360deg);opacity: 1;}
+//  50%{ transform: rotateY(180deg);opacity: 0.2;}
+//  100%{ transform: rotateY(0deg);opacity: 0;}
+//}
+// 
+//@keyframes action_translateYOut{
+//  0%{transform: translateY(0px);opacity: 1;}
+//  100%{ transform: translateY(50px);opacity: 0;}
+//}
+ 
+@keyframes action_scaleOut{
+    0%{transform: scale(1);opacity: 1;}
+    100%{ transform: scale(0.2);opacity: 0;}
+}             

@@ -9,7 +9,7 @@
 			</li>
 			<li>
 				<!--scoring-->
-				<router-link to="scoring/exchange" :class="{active: $route.path.match('scoring')}">
+				<router-link to="scoringex" :class="{active: $route.path.match('scoring')}">
 					<div><i class="icon icon-jifen"></i></div>
 					积分兑换
 				</router-link>

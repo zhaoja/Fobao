@@ -3,7 +3,7 @@
 		<div class="top">
 			<button @click="logout()" v-if="logStatus!=0">退出登录</button>
 			<div class="topSelf">
-				<div><img src="../../assets/images/person.png" alt="" />{{userInfo.phone}}</div>
+				<div><img src="../../assets/images/person.png" alt="" />{{userInfo.phoneNo}}</div>
 				<router-link to="set/user" v-if="logStatus!=0">
 					<i class="icon icon-go"></i>
 				</router-link>
@@ -74,14 +74,12 @@
 </template>
 
 <script>
-	import {
-		mapState
-	} from "vuex";
+	import { mapState } from "vuex";
 
 	export default {
 		computed: {
 			...mapState({
-				userInfo: state => state.user.userInfo,
+				userInfo: state => state.user.user.userInfo,
 				logStatus: state => state.user.logStatus,
 				systemInfoRead: state => state.system.systemInfo.unread,
 			}),
@@ -94,7 +92,13 @@
 				logStatusMes: "",
 			}
 		},
+		created(){
+			this.mine();
+		},
 		methods: {
+			mine(){
+				this.$store.dispatch('getUser');
+			},
 			logout() {
 				this.$router.push({
 					path: '/login'

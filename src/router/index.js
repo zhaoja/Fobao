@@ -16,8 +16,8 @@ import ScoreMes from '@/containers/scoring/scoreMes'
 
 import Mine from '@/containers/mine/mine'
 
-import RumorCenter from '@/containers/rumorcenter/rumorCenter'
-import RumorDetail from '@/containers/rumorcenter/rumorDetail'
+import NewsCenter from '@/containers/news/newsCenter'
+import NewsDetail from '@/containers/news/newsDetail'
 
 import Set from '@/containers/mine/set'
 import AboutFB from '@/containers/mine/aboutFb'
@@ -33,6 +33,7 @@ import AdressMesDtails from '@/containers/mine/adressMesDtails'
 import SetUser from '@/containers/mine/setUser'
 import SetUserUpdate from '@/containers/mine/setUserUpdate'
 import SetUserPhone from '@/containers/mine/setUserPhone'
+import SetUserPhone2 from '@/containers/mine/setUserPhone2'
 import SetUserHead from '@/containers/mine/setUserHead'
   
 // 
@@ -48,7 +49,7 @@ import LinkPage from '@/containers/govtservice/linkPage'
 import yidong from '@/containers/yidong/moveApp'
 
 //移动定位
-import Location from '@/containers/other/location'
+import Location from '@/containers/servernet/location'
 
 Vue.use(Router)
 
@@ -63,9 +64,10 @@ const router = new Router({
 			children:[
 				{path:"",redirect:'/index'},
 				{path:"/index",name:"首页",component:Home},
-				{path:"/information",name:"资讯",component:RumorCenter },
+				{path:"/scoringex",name:"积分兑换",component:Exchange},
+				{path:"/information",name:"资讯",component:NewsCenter },
 				{path:"/mine",name:"我的",component:Mine }, 
-				{path:"/location",name:"高德地图",component:Location}
+				{path:"/location",name:"服务网点",component:Location}
 			]
 		},
 		{
@@ -78,27 +80,26 @@ const router = new Router({
 //			name:"设置",
 			component:Set,
 			children:[
-				{path:"/scoring/exchange",name:"积分兑换",component:Exchange},
 				{path:"/scoring/getdetails",name:"领取详情",component:Getdetails},
-				
 				{path:"/scoring/winresults",name:"中将结果",component:WinResults},
 				
 			]
 		},
 		{
 			path:"/set",
-			name:"设置",
+//			name:"设置",
 			component:Set,
 			children:[
 				{path:"/set/user",name:"编辑资料",component:SetUser},
 				{path:"/set/update",name:"修改个人信息",component:SetUserUpdate},	
 				{path:"/set/updatephone",name:"修改手机号",component:SetUserPhone},	
+				{path:"/set/updatephone2",name:"修改手机号",component:SetUserPhone2},	
 				
 				{path:"/set/orderMes",name:"订单管理",component:OrderMes},
 				{path:"/set/orderMesDt",name:"订单管理详情",component:OrderMesDtails},
 
 				{path:"/set/adressMes",name:"地址管理",component:AdressMes},
-				{path:"/set/adressMesDt",name:"地址管理",component:AdressMesDtails},
+				{path:"/set/adressMesDt",name:"编辑地址",component:AdressMesDtails},
 				
 				{path:"/set/scoreMes",name:"积分兑换记录",component:ScoreMes},
 				
@@ -135,9 +136,9 @@ const router = new Router({
 			}
 		},
 		{
-			path:"/rumorCenter/rumorDt",
+			path:"/news/newsDt",
 			name:"辟谣详情",
-			component:RumorDetail 
+			component:NewsDetail 
 		}, 
 		{
 			path:"/yidong",

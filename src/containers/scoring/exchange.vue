@@ -1,5 +1,6 @@
 <template>
 	<div class="mine set">
+		<Header :topName="topName" />
 		<ul class="scoreList">
 			<li v-for="li in systemInfoList">
 				<img src="../../assets/images/score/sh.png"/><strong>商户名称</strong>
@@ -15,13 +16,15 @@
 </template>
 <script>
 	import { mapState } from 'vuex'
+	import Header from '../../components/Header.vue'
+
 	export default {
 		components: {
-
+			Header
 		},
 		data() {
 			return {
-			 
+			  topName:"积分兑换"
 			}
 		},
 		computed: {

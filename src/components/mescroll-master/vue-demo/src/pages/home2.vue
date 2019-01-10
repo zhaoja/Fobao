@@ -22,7 +22,7 @@
 				<mescroll-vue ref="mescroll0" :down="getMescrollDown(0)" :up="getMescrollUp(0)" @init="mescrollInit(0,arguments)">
 					<ul id="dataList0">
 						<li v-for="n in newslist1.list" class="list" :key="n.id">
-							<router-link to="rumorCenter/rumorDt">
+							<router-link to="news/newsDt">
 								<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
 								<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
 									<img :src="p" v-for="p in n.picUrl" :key="p" />
@@ -39,7 +39,7 @@
 				<mescroll-vue ref="mescroll1" :up="getMescrollUp(1)" @init="mescrollInit(1,arguments)">
 					<ul id="dataList1">
 						<li v-for="n in newslist2.list" class="list" :key="n.id">
-							<router-link to="rumorCenter/rumorDt">
+							<router-link to="news/newsDt">
 								<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
 								<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
 									<img :src="p" v-for="p in n.picUrl" :key="p" />
@@ -56,7 +56,7 @@
 				<mescroll-vue ref="mescroll2" :up="getMescrollUp(2)" @init="mescrollInit(2,arguments)">
 					<ul id="dataList2">
 						<li v-for="n in newslist3.list" class="list" :key="n.id">
-							<router-link to="rumorCenter/rumorDt">
+							<router-link to="news/newsDt">
 								<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
 								<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
 									<img :src="p" v-for="p in n.picUrl" :key="p" />
@@ -73,7 +73,7 @@
 				<mescroll-vue ref="mescroll3" :up="getMescrollUp(3)" @init="mescrollInit(3,arguments)">
 					<ul id="dataList3">
 						<li v-for="n in newslist4.list" class="list" :key="n.id">
-							<router-link to="rumorCenter/rumorDt">
+							<router-link to="news/newsDt">
 								<div :class="'pic'+n.picUrl.length">{{n.title}}</div>
 								<div v-if="n.picUrl" :class="'picList'+n.picUrl.length">
 									<img :src="p" v-for="p in n.picUrl" :key="p" />
@@ -127,7 +127,7 @@
 						isListInit: false
 					}
 				],
-				tabWidth: 80, // 每个tab的宽度
+				tabWidth: 93, // 每个tab的宽度
 				barWidth: 40, // tab底部红色线的宽度
 				curIndex: 0, // 当前tab的下标
 				tabScrollLeft: 0, // 菜单滚动条的位置

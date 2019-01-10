@@ -7,6 +7,7 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 Vue.prototype.$http = axios
+
 import '@/assets/scss/image.scss'
 
 import 'lib-flexible'
@@ -25,52 +26,51 @@ Vue.use(Vuex)
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 Vue.use(MintUI)
- 
+
 //处理手机返回键
 import Mui from 'vue-awesome-mui';
 Vue.use(Mui);
- 
+
 import 'swiper/dist/css/swiper.css'
 
 import VueAMap from 'vue-amap';
 Vue.use(VueAMap)
 
- VueAMap.initAMapApiLoader({
-  key: '4bbbadeab79ceb71d6310dacb8b5fa16',
-  plugin: ['AMap.Scale','AMap.ToolBar','AMap.Geocoder'],
-  uiVersion: '1.0.11' // 版本号
+VueAMap.initAMapApiLoader({
+	key: '4bbbadeab79ceb71d6310dacb8b5fa16',
+	plugin: ['AMap.Scale', 'AMap.ToolBar', 'AMap.Geocoder'],
+	uiVersion: '1.0.11' // 版本号
 });
 
 Vue.config.productionTip = false
- 
- 
- const store = new Vuex.Store({
-   modules: {
-     cardApply: cardApply,
-     user: user,
-     system: system,
-     order:order,
-     adress:adress,
-	 location:location
- 
-   }
- })
- //路由跳转后保持在最顶部
- router.beforeEach((to, from, next) => {    
-    // chrome
-    document.body.scrollTop = 0
-    // firefox
-    document.documentElement.scrollTop = 0
-    // safari
-    window.pageYOffset = 0
-    next()
+
+const store = new Vuex.Store({
+	modules: {
+		cardApply: cardApply,
+		user: user,
+		system: system,
+		order: order,
+		adress: adress,
+		location: location
+
+	}	 
+})
+//路由跳转后保持在最顶部
+router.beforeEach((to, from, next) => {
+	// chrome
+	document.body.scrollTop = 0
+	// firefox
+	document.documentElement.scrollTop = 0
+	// safari
+	window.pageYOffset = 0
+	next()
 })
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>',
+	el: '#app',
+	router,
+	components: { App },
+	template: '<App/>',
 	store
 })

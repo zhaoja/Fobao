@@ -20,7 +20,7 @@
 				<li>
 					<router-link :to="{path:'updatephone',name:'修改手机号'}">
 						<label>手机号</label>
-						<span>{{userInfo.phone}}</span>
+						<span>{{userInfo.phoneNo}}</span>
 						<i class="icon icon-right"></i>
 					</router-link>
 				</li>
@@ -29,14 +29,14 @@
 				<li>
 					<router-link :to="{path:'update',name:'修改个人信息' ,params:{name:'idCard',cname:'身份证号'}}">
 						<label>身份证号</label>
-						<span>{{this.userInfo.idCard == ""?'未认证':'已认证'}}</span>
+						<span>{{this.userInfo.idNo == ""?'未认证':'已认证'}}</span>
 						<i class="icon icon-right"></i>
 					</router-link>
 				</li>
 				<li>
 					<router-link :to="{path:'update',name:'修改个人信息' ,params:{name:'oddCard',cname:'养老助残卡号'}}">
 						<label>养老助残卡号</label>
-						<span>{{this.userInfo.oddCard == ""?'未认证':'已认证'}}</span>
+						<span>{{this.userInfo.disabledCard == ""?'未认证':'已认证'}}</span>
 						<i class="icon icon-right"></i>
 					</router-link>
 				</li>
@@ -51,9 +51,10 @@
 	export default {
 		computed: {
 			...mapState({
-				userInfo: state => state.user.userInfo,
+				userInfo: state => state.user.user.userInfo,
 			}),
 		},
+		
 		data() {
 			return {
 			 

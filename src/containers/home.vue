@@ -28,9 +28,15 @@
 			<div class="title">养老助残卡业务</div>
 			<div class="module">
 				<ul>
-					<li v-for="li in serve1_list" :key="li.icon">
+					<!--<li v-for="li in serve1_list" :key="li.icon">
 						<router-link v-if="li.icon!='icon-m7'&&li.icon!='icon-m8'" :to="{path:'linkPage',name: '外部链接', 
 							query: {id:li.id, url: li.url, name:li.name, content:li.content }}"><i class="icon-m" :class="li.icon"></i><span>{{li.name}}</span></router-link>
+						<a href="tel:96198" v-if="li.icon=='icon-m7'"><i class="icon-m" :class="li.icon"></i><span>{{li.name}}</span></a>
+						<router-link v-if="li.icon=='icon-m8'" to="function"><i class="icon-m" :class="li.icon"></i><span>{{li.name}}</span></router-link>
+					</li>-->
+					<li v-for="li in serve1_list" :key="li.icon">
+						<router-link v-if="li.icon!='icon-m7'&&li.icon!='icon-m8'" :to="{path:'linkPage',name: '外部链接', 
+							query: {id:li.id}}"><i class="icon-m" :class="li.icon"></i><span>{{li.name}}</span></router-link>
 						<a href="tel:96198" v-if="li.icon=='icon-m7'"><i class="icon-m" :class="li.icon"></i><span>{{li.name}}</span></a>
 						<router-link v-if="li.icon=='icon-m8'" to="function"><i class="icon-m" :class="li.icon"></i><span>{{li.name}}</span></router-link>
 					</li>
