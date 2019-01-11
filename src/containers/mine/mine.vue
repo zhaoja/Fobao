@@ -80,6 +80,7 @@
 		computed: {
 			...mapState({
 				userInfo: state => state.user.user.userInfo,
+				
 				logStatus: state => state.user.logStatus,
 				systemInfoRead: state => state.system.systemInfo.unread,
 			}),

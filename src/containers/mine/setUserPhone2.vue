@@ -1,16 +1,16 @@
 <template>
 	<div class="capply">
 		<p>输入新号码后，下次可使用新手机号登录。</p>
-		<p>当前手机号为：18611714595</p>
+		<p>当前手机号为：{{userInfo.phoneNo}}</p>
 		<ul class="grayb">
 			 
 			<li>
 				<span>手机号: </span>
-				<input type="text" placeholder="请输入新手机号" v-model="certificate.number" />
+				<input type="text" placeholder="请输入新手机号" v-model="userInfo.number" />
 			</li>
 			<li>
 				<span>验证码: </span>
-				<input type="text" placeholder="请输入验证码" v-model="certificate.number" />
+				<input type="text" placeholder="请输入验证码" v-model="VerificationCode" />
 				<input type="button" value="获取验证码" @click="getVerificationCode()"></input>
 			</li>
  
@@ -18,7 +18,7 @@
 				<label>{{alert}}</label>
 			</li>
 			<li class="mt10">
-				<button type="primary" @click="sendVerificationCode(certificate)">下一步</button>
+				<button type="primary" @click="sendVerificationCode()">下一步</button>
 			</li>
 		</ul>
 
@@ -26,33 +26,36 @@
 </template>
 
 <script>
-	import { mapState } from 'vuex'
-
+	import { mapState } from "vuex";
+	import { Http } from '@/server/index.js'
+	import { MessageBox , Toast } from 'mint-ui';
+	import '@/utils/validation.js';
+ 
 	export default {
-		components: {
-
-		},
 		computed: {
 			...mapState({
-				certificate: state => state.cardApply.certificate,
-				certificateType: state => state.cardApply.certificateType
+				userInfo: state => state.user.user.userInfo
 			})
-		},
+		} ,
+		  
 		data() {
 			return {
-				alert:'',
+			 	show:"hidebox",
+			 	VerificationCode:'',
+			 	alert:'',
 				ifshow:false,
-				
 			}
 		},
-		created() {
-			 
+ 		created(){
+			this.$store.dispatch('getUser');
 		},
+		 
 		methods: {
-			getVerificationCode(){
-				 
+			 
+			sendVerificationCode (){
+				validation.getVerificationCode("15645054811");				
+
 			},
-			sendVerificationCode (){},
 			certificateChange(a){
 				 
 				if(a=='内地居民身份证'){

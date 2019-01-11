@@ -10,9 +10,10 @@ service.interceptors.response.use(
     // 请求正常则返回,这里返回了所有的请求头和请求体信息
     let data = {
     	code:response.data.meta.code,
+    	desc:response.data.meta.desc,
     	data:response.data.data
     }
-  
+
     return Promise.resolve(data)
   },
   function(error) {

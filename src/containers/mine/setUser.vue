@@ -54,7 +54,9 @@
 				userInfo: state => state.user.user.userInfo,
 			}),
 		},
-		
+		created(){
+			this.$store.dispatch('getUser');
+		},
 		data() {
 			return {
 			 

@@ -1,4 +1,4 @@
-import { getTest } from '../server/index.js'
+import { Http } from '../server/index.js'
  
 //用户注册和登录
 export default {
@@ -25,24 +25,23 @@ export default {
 		}
 	},
 	actions: {
+		//获取用户基本信息
 		getUser({ commit, state }){
-			var param ={
-			  "head": {
-			    "channel": 1,
-			    "token": "MQ=="
-			  }
-			}
-			getTest({url: '/api/user/getUser', data: JSON.stringify(param)})
+			 
+			Http({url: '/api/user/getUser', data: {}})
             .then(data => {
               	if (data.code === 1) {
-              		console.log( data.data,3333)
 			 		commit("getUserSuccess", data.data)
               	}
             }).catch(function (error) {
 			    console.log(error);
 		  	});
- 
-		}
+		},
+		//编辑用户信息
+//		updateUser({commit, state}, param ){
+//			 
+//			
+//		}
 //		newUser({ commit, state },param){
 //			alert(2)
 //			commit("newUserSuccess", param)
@@ -51,12 +50,12 @@ export default {
 	mutations: {
 		getUserSuccess(state,data){
 			state.user.userInfo = data;
-		}
-//		 newUserSuccess(state, data){
+		},
+//		updateUserSuccess(state, data){
 //		 	console.log(data,2)
-//		 	state.userInfo = data
+////		 	state.userInfo = data
 ////		 	state.userInfo.uid = ndata;
-//		 }
+//		}
 	}
 	
 }
