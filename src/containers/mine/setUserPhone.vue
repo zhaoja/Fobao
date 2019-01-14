@@ -1,7 +1,7 @@
 <template>
 	<div class="imgpage">
 		<div class="upphone">
-			<img src="../../assets/images/mine/phone.png" class="ewimg"/>
+			<img src="../../assets/images/mine/phone.png" class="ewimg" />
 			<h1><strong>您的手机号：{{userInfo.phoneNo}}</strong></h1>
 			<button class="btn1" @click="showMessageBox()">更换手机号</button>
 			<p>更换手机号后，登录时手机号将变为新手机号</p>
@@ -26,50 +26,50 @@
 <script>
 	import { mapState } from "vuex";
 	import { Http } from '@/server/index.js'
-	import { MessageBox , Toast } from 'mint-ui';
-	import validation  from '@/utils/validation.js';
- 
+	import { MessageBox, Toast } from 'mint-ui';
+	import validation from '@/utils/validation.js';
+
 	export default {
 		computed: {
 			...mapState({
 				userInfo: state => state.user.user.userInfo
 			})
-		} ,
-		  
+		},
+
 		data() {
 			return {
-			 	show:"hidebox",
-			 	VerificationCode:'',
-			 	codeText:'获取验证码',
-			 	disabled:false,
-			 	disabledClass:''
+				show: "hidebox",
+				VerificationCode: '',
+				codeText: '获取验证码',
+				disabled: false,
+				disabledClass: ''
 			}
 		},
- 		created(){
+		created() {
 			this.$store.dispatch('getUser');
 		},
-		mounted() { 
-			
+		mounted() {
+
 		},
 		methods: {
 			//显示弹窗
-			showMessageBox(){
+			showMessageBox() {
 				this.show = "showbox";
-			}, 
-			closeMessageBox(){
+			},
+			closeMessageBox() {
 				this.show = "hidebox";
 			},
 			//获取验证码
-			getVCode(){
+			getVCode() {
 				var _this = this;
 				var countdown = 60;
-				var timer = setInterval(function(){
+				var timer = setInterval(function() {
 					if (countdown == 0) {
 						_this.codeText = "获取验证码";
 						_this.disabled = false;
 						_this.disabledClass = "";
 						countdown = 60;
-						clearInterval(timer); 
+						clearInterval(timer);
 						return;
 					} else {
 						_this.disabled = true;
@@ -78,45 +78,58 @@
 						countdown--;
 					}
 				}, 1000);
-				validation.getVerificationCode(this.userInfo.phoneNo);				
+				validation.getVerificationCode(this.userInfo.phoneNo);
 			},
 			//验证码校验
-			sendVerificationCode(){
-				Http({url: '/api/user/validatePhone',data:{
-					"param": {
-//					    "deviceId": "string",
-					    "phoneNo": this.userInfo.phoneNo,
-					    "sendcode": this.VerificationCode
-					}
-				}})
-	            .then(data => {
-	              	if (data.code === 1) {	
-						Toast({ message: '验证成功', position: 'bottom'});
-	              		this.$router.push({ path: '/set/updatephone2' })
+			sendVerificationCode() {
+				Http({
+						url: '/api/user/validatePhone',
+						data: {
+							"param": {
+								//					    "deviceId": "string",
+								"phoneNo": this.userInfo.phoneNo,
+								"sendcode": this.VerificationCode
+							}
+						}
+					})
+					.then(data => {
+						if (data.code === 1) {
+							Toast({
+								message: '验证成功',
+								position: 'bottom'
+							});
+							this.$router.push({
+								path: '/set/updatephone2'
+							})
 
-	              	}else{
-	              		Toast({ message: data.desc , position: 'bottom'});
-	              	}
-	            }).catch(function (error) {
-				    console.log(error,1);
-		  		});	
-			} 
+						} else {
+							Toast({
+								message: data.desc,
+								position: 'bottom'
+							});
+						}
+					}).catch(function(error) {
+						console.log(error, 1);
+					});
+			}
 		}
 	}
 </script>
 
 <style scoped="scoped">
+	.showbox .inner {
+		animation: action_scale 0.3s;
+	}
 
-.showbox .inner{
-    animation:action_scale 0.3s ;
-}
-.hidebox .inner{
-    animation:action_scaleOut 3.3s ;
-}
-.mint-toast span{
-	color: #fff !important;
-}
-.disabled{
-	background: rgba(254, 76, 64, 0.32) !important;
-}
+	.hidebox .inner {
+		animation: action_scaleOut 3.3s;
+	}
+
+	.mint-toast span {
+		color: #fff !important;
+	}
+
+	.disabled {
+		background: rgba(254, 76, 64, 0.32) !important;
+	}
 </style>
