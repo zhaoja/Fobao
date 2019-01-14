@@ -15,6 +15,7 @@ import 'lib-flexible'
 import cardApply from './models/cardApply'
 import user from './models/user'
 import system from './models/system'
+import news from './models/news'
 import order from './models/order'
 import adress from './models/adress'
 
@@ -49,6 +50,7 @@ const store = new Vuex.Store({
 		cardApply: cardApply,
 		user: user,
 		system: system,
+		news: news,
 		order: order,
 		adress: adress,
 		location: location

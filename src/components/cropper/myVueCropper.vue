@@ -4,9 +4,9 @@
 			<div class="model-show" @click="model = false">
 				<img :src="modelSrc" alt="" @click="model = false">
 			</div>
-			<div class="test-save" style="margin-bottom: 15px;">	
+			<!--<div class="test-save" style="margin-bottom: 15px;">	
 				<button @click="save" class="btnsave">保存</button>
-			</div>
+			</div>-->
 		</div>
 		<div class="content">
 			 
@@ -37,6 +37,8 @@
 			  
 				</div>
 				
+			<form id="formTag1" enctype="multipart/form-data">
+
 				<div class="test-button">
 					<!--<button @click="finish('base64')" class="btn">预览(base64)</button>-->
 					<!--<button @click="finish('blob')" class="btn">预览(blob)</button>-->
@@ -54,7 +56,11 @@
 				<div class="test-save">	
 					<button @click="save" class="btnsave">保存</button>
 				</div>
+				
+			</form>
+			
 			</div>
+		
  		</div>
 	</div>
 </template>
@@ -63,6 +69,8 @@
 	import VueCropper from "./vue-cropper/vue-cropper";
 	import codes from "./code";
 	
+	const Url = "http://192.168.0.130"
+
 	import img from '@/../static/images/person.png'
 
 	export default {
@@ -212,6 +220,7 @@
 				//上传图片
 				// this.option.img
 				var file = e.target.files[0];
+				console.log(file,111111111111)
 				if(!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(e.target.value)) {
 					alert("图片类型必须是.gif,jpeg,jpg,png,bmp中的一种");
 					return false;
@@ -225,7 +234,6 @@
 					} else {
 						data = e.target.result;
 					}
-					console.log()
 					if(num === 1) {
 						this.option.img = data;
 					} else if(num === 2) {
@@ -236,6 +244,7 @@
 				// reader.readAsDataURL(file)
 				// 转化为blob
 				reader.readAsArrayBuffer(file);
+				 
 			},
 			imgLoad(msg) {
 				console.log(msg);
@@ -244,9 +253,32 @@
 			cropMoving(data) {
 				this.option.cropData = data;
 			},
-			save(){
-				alert("已上传头像，尚未连接后台，暂不支持更新")
-				this.$router.push({path:"/set/user"})
+			save(e){
+				
+				
+//				var file = document.getElementById("uploads").files[0];
+//				console.log(file,222222)
+//				var formData = new FormData();
+////				 this.modelSrc
+//				formData.append('img',file);// 通过append向form对象添加数据,可以通过append继续添加数据
+//				let config = {
+//				    headers:{'Content-Type':'multipart/form-data'}
+//				};  
+//				this.$http(Url + '/api/file/upload',formData, config).then(data => {
+////	              	if (data.code === 1) {	
+////						Toast({ message: '验证成功', position: 'bottom'});
+////	              		this.$router.push({ path: '/set/updatephone2' })
+////
+////	              	}else{
+////	              		Toast({ message: data.desc , position: 'bottom'});
+////	              	}
+//	            }).catch(function (error) {
+//				    console.log(error,1);
+//		  		});	
+//				
+				
+//				alert("已上传头像，尚未连接后台，暂不支持更新")
+//				this.$router.push({path:"/set/user"})
 			}
 		},
 

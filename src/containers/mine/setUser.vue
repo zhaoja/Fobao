@@ -27,14 +27,14 @@
 			</ul>
 			<ul class="line2">
 				<li>
-					<router-link :to="{path:'update',name:'修改个人信息' ,params:{name:'idCard',cname:'身份证号'}}">
+					<router-link :to="{path:'update',name:'修改个人信息' ,params:{name:'idNo',cname:'身份证号'}}">
 						<label>身份证号</label>
 						<span>{{this.userInfo.idNo == ""?'未认证':'已认证'}}</span>
 						<i class="icon icon-right"></i>
 					</router-link>
 				</li>
 				<li>
-					<router-link :to="{path:'update',name:'修改个人信息' ,params:{name:'oddCard',cname:'养老助残卡号'}}">
+					<router-link :to="{path:'update',name:'修改个人信息' ,params:{name:'disabledCard',cname:'养老助残卡号'}}">
 						<label>养老助残卡号</label>
 						<span>{{this.userInfo.disabledCard == ""?'未认证':'已认证'}}</span>
 						<i class="icon icon-right"></i>

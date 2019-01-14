@@ -62,7 +62,7 @@
 		computed: {
 			...mapState({
 //				adressInfoList: state => state.adress.adressInfo.list,
-				userInfo: state => state.user.userInfo,
+				userInfo: state => state.user.user.userInfo,
 			})
 		},
 		mounted() {

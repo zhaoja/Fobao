@@ -12,7 +12,7 @@
 				<div>请输入{{userInfo.phoneNo}}收到的验证码</div>
 				<div>
 					<input type="text" v-model="VerificationCode" placeholder="请输入验证码" />
-					<input type="button" value="获取验证码" @click="getVCode()">
+					<input :class="disabledClass" :disabled="disabled" type="button" :value="codeText" @click="getVCode()">
 				</div>
 				<div>
 					<button @click="closeMessageBox()">取消</button>
@@ -39,7 +39,10 @@
 		data() {
 			return {
 			 	show:"hidebox",
-			 	VerificationCode:''
+			 	VerificationCode:'',
+			 	codeText:'获取验证码',
+			 	disabled:false,
+			 	disabledClass:''
 			}
 		},
  		created(){
@@ -47,31 +50,44 @@
 		},
 		mounted() { 
 			
-
 		},
-		 
 		methods: {
 			//显示弹窗
 			showMessageBox(){
 				this.show = "showbox";
-			},
+			}, 
 			closeMessageBox(){
 				this.show = "hidebox";
 			},
 			//获取验证码
 			getVCode(){
-//				this.userInfo.phoneNo
-				validation.getVerificationCode("15645054811");				
+				var _this = this;
+				var countdown = 60;
+				var timer = setInterval(function(){
+					if (countdown == 0) {
+						_this.codeText = "获取验证码";
+						_this.disabled = false;
+						_this.disabledClass = "";
+						countdown = 60;
+						clearInterval(timer); 
+						return;
+					} else {
+						_this.disabled = true;
+						_this.disabledClass = "disabled";
+						_this.codeText = "重新发送(" + countdown + ")";
+						countdown--;
+					}
+				}, 1000);
+				validation.getVerificationCode(this.userInfo.phoneNo);				
 			},
 			//验证码校验
-			sendVerificationCode(a){
-//				console.log(this.VerificationCode)
+			sendVerificationCode(){
 				Http({url: '/api/user/validatePhone',data:{
-					 "param": {
+					"param": {
 //					    "deviceId": "string",
 					    "phoneNo": this.userInfo.phoneNo,
 					    "sendcode": this.VerificationCode
-					 }
+					}
 				}})
 	            .then(data => {
 	              	if (data.code === 1) {	
@@ -84,15 +100,12 @@
 	            }).catch(function (error) {
 				    console.log(error,1);
 		  		});	
-//				this.$router.push("updatephone2")
 			} 
-			 
 		}
 	}
 </script>
 
-<style>
-
+<style scoped="scoped">
 
 .showbox .inner{
     animation:action_scale 0.3s ;
@@ -102,5 +115,8 @@
 }
 .mint-toast span{
 	color: #fff !important;
+}
+.disabled{
+	background: rgba(254, 76, 64, 0.32) !important;
 }
 </style>
