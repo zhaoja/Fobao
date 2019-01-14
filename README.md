@@ -43,33 +43,15 @@ mac恢复隐藏命令：defaults write com.apple.finder AppleShowAllFiles -bool 
 # 积分兑换：#/account(暂时空着)
 # 资讯：#/information
 # 我的：#/mine 
-
-需要补充字段的选择项：
-
-1.发证机关
-2.证件类型
-3.户籍区
-4.户籍街道
-5.户籍社区
-6.居住区
-7.居住街道
-8.居住社区
-9.居住状况
-10.文化程度
-11.经济来源
-12.月收入
-13.医保类型
-14.自理情况
  
  
  学习[swagger](http://lubanapi.kabuzhu.com/ui/dist/#/yunpeng/post_api_ali_pay_alpay)
-
+https://tower.im/join?t=c8f580b7cca9df113a50878cafe31fd5
  --host 0.0.0.0搭建远程服务
- 深浅拷贝
- 深拷贝loadesh()  json.parse(json.string())	
- 浅拷贝dessign()
- 
-mode:"history";  
-mode:"hash";  #
+ 涉及到的拷贝：深浅拷贝：深拷贝loadesh()  json.parse(json.string())	；浅拷贝dessign()
+ 路由模式：mode:"history";  mode:"hash";  #
 https://www.jb51.net/article/144341.htm
-//后端配置的例子https://router.vuejs.org/zh/guide/essentials/history-mode.html#%E5%90%8E%E7%AB%AF%E9%85%8D%E7%BD%AE%E4%BE%8B%E5%AD%90
+后端配置的例子：https://router.vuejs.org/zh/guide/essentials/history-mode.html#%E5%90%8E%E7%AB%AF%E9%85%8D%E7%BD%AE%E4%BE%8B%E5%AD%90
+tower： https://tower.im/join?t=c8f580b7cca9df113a50878cafe31fd5
+http://192.168.0.19:10010
+192.168.0.35/swagger-ui.html
