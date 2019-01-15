@@ -1,38 +1,32 @@
-//news
+/*
+ * 咨询页面
+ * news
+ */
+import { Http } from '../server/index.js'
+
 export default {
 	state: {
-		
 		news:{
 			rumorCenter:{
-//				program:[
-//					{id:1,cname:'辟谣1232131'} ,
-//					{id:2,cname:'养老政策'} ,
-//					{id:3,cname:'舆情'} ,
-//					{id:4,cname:'老人福利'} 
-//				],
 				program:[{
 						name: '辟谣',
-						mescroll: null,
-						list: [],
-						isListInit: false
+//						mescroll: null,
+//						isListInit: false
 					},
 					{
 						name: '养老政策',
-						mescroll: null,
-						list: [],
-						isListInit: false
+//						mescroll: null,
+//						isListInit: false
 					},
 					{
 						name: '舆情',
-						mescroll: null,
-						list: [],
-						isListInit: false
+//						mescroll: null,
+//						isListInit: false
 					},
 					{
 						name: '老人福利',
-						mescroll: null,
-						list: [],
-						isListInit: false
+//						mescroll: null,
+//						isListInit: false
 					}
 				],
 				programContentList1:{
@@ -102,7 +96,24 @@ export default {
 	},
 	actions: {
 		getNewsTitle({ commit, state }){
-			console.log(111111)
+//			var "param" = {
+//			    "column": "string",
+//			    "columnId": 0,
+//			    "pageno": 0,
+//			    "pagesize": 0,
+//			    "publishend": "",
+//			    "publishstart": "2019-01-15T01:22:00.499Z"
+//			}'
+			Http({url: '/web/information/getcolumn', data: {}})
+            .then(data => {
+              	if (data.code === 1) {
+			 		commit("getNewsTitleSuccess", data.data)
+              	}else{
+              		console.log()
+              	}
+            }).catch(function (error) {
+			    console.log(error);
+		  	});		 
 		}
 //		newUser({ commit, state },param){
 //			alert(2)
@@ -110,11 +121,11 @@ export default {
 //		}
 	},
 	mutations: {
-//		 newUserSuccess(state, data){
-//		 	console.log(data,2)
-//		 	state.userInfo = data
-////		 	state.userInfo.uid = ndata;
-//		 }
+		 getNewsTitleSuccess(state, data){
+		 	console.log(data,2)
+		 	state.news.rumorCenter.program = data
+//		 	state.userInfo.uid = ndata;
+		 }
 	}
 	
 }

@@ -1,32 +1,72 @@
-//import $http from '../utils/http.js';
-//import HtmlUtil from '../utils/HtmlUtil.js';
-//const url = "http://minsadmin.gksharedmall.com";
+/*
+ * 地址管理
+ * adress
+ */
+import { Http } from '../server/index.js'
 //系统system
 export default {
 	state: {
 		adressInfo:{
-			list:[
-				{title:"王一民",time:'18010422849',text:"北京市丰台区西局后街兴隆小区1号楼2单元302",status:0},
-				{title:"王一民",time:'18010422849',text:"北京市丰台区西局后街兴隆小区1号楼2单元302",status:0},
-				{title:"王一民",time:'18010422849',text:"北京市丰台区西局后街兴隆小区1号楼2单元302",status:0},
-			],
+			list:[{
+				address: "",
+				id: "",
+				name: "",
+				phoneNo: "",
+				sex: "男",
+			}],
+			adress:{
+				address: "",
+				id: "",
+				name: "",
+				phoneNo: "",
+				sex: "男",
+				isDefault: '0',
+			}
 		},
 	},
 	actions: {
-		UpdateAdress({ commit, state },param){
+		getAdress({ commit, state }){
+			Http({url: '/api/address/getAddress', data: {}})
+            .then(data => {
+              	if (data.code === 1) {
+			 		commit("getAdressSuccess", data.data)
+              	}else{
+              		console.log(data.desc)
+              	}
+            }).catch(function (error) {
+			    console.log(error);
+		  	});		 
+		},
+		//新增地址
+		addAdress({ commit, state },param){
+			Http({url: '/api/address/addAddress', data: param})
+            .then(data => {
+              	if (data.code === 1) {
+              		console.log(data.data)
+			 		commit("addAdressSuccess", data.data)
+              	}else{
+              		console.log()
+              	}
+            }).catch(function (error) {
+			    console.log(error);
+		  	});	
 			// alert(2)
 			// commit("UpdateAdressSuccess", param)
-			
-			
+		},
+		updateAdress({ commit, state },param){
+			// alert(2)
+			// commit("UpdateAdressSuccess", param)
 		}
 	},
 	mutations: {
-		UpdateAdressSuccess(state, data){
-		 	// console.log(data,2)
-// 		 	state.adressInfo.list = data
+		getAdressSuccess(state, data){
+   		 	state.adressInfo.list = data
 // 		 	state.adressInfo.success = 2
 //		 	state.userInfo.uid = ndata;
-		}
+		},
+		addAdressSuccess(state, data){
+   		 	state.adressInfo.list = data
+		},
 	}
 	
 }

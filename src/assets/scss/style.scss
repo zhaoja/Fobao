@@ -878,7 +878,7 @@ $font18:18px;
     .adressList {
         width: 100%;
         background: $colf5;
-        position: absolute;
+//      position: absolute;
         li {
             min-height: 85px;
             width: 100%;
@@ -924,7 +924,7 @@ $font18:18px;
                 }
             }
             button {
-                width: 63px;
+                width: 50px;
                 display: inline-block;
                 border: 0;
                 span {
@@ -1424,7 +1424,7 @@ $font18:18px;
                     height: 49px;
                     background: transparent;
                     border-top: 1px solid $colc;
-                }
+                 }
                 button:nth-child(1){
                     border-right: 1px solid $colc;
                 }
@@ -1435,7 +1435,32 @@ $font18:18px;
         }
     }
 }
-
+.set{
+    .add {
+        text-align: center;
+//      position: absolute;
+        bottom: 50px;
+        width: 100%;
+    }
+     button{    
+        width: 275px;
+        height: 40px;
+        border-radius: 20px;
+        background: transparent;
+    } 
+    .submit1{
+        border: 1px solid #fe4c40;
+        color: #fe4c40;
+    }
+    .submit2{
+        background: #FE4C40;
+        color: #ffffff;
+        border-radius: 4px;
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+    }
+}
 // 小图标
 .icon-horm {
     width: 25px;

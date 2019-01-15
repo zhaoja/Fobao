@@ -102,31 +102,7 @@
 		props: ['newsprogram', 'newslist1', 'newslist2', 'newslist3', 'newslist4'],
 		data() {
 			return {
-				tabs: [{
-						name: '辟谣',
-						mescroll: null,
-						list: [],
-						isListInit: false
-					},
-					{
-						name: '养老政策',
-						mescroll: null,
-						list: [],
-						isListInit: false
-					},
-					{
-						name: '舆情',
-						mescroll: null,
-						list: [],
-						isListInit: false
-					},
-					{
-						name: '老人福利',
-						mescroll: null,
-						list: [],
-						isListInit: false
-					}
-				],
+				tabs: this.newsprogram,
 				tabWidth: 93, // 每个tab的宽度
 				barWidth: 40, // tab底部红色线的宽度
 				curIndex: 0, // 当前tab的下标
