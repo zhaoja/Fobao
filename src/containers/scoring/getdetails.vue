@@ -9,10 +9,8 @@
 			</div>
 	  
 			<div class="body">
-				<div class="title">
-					订单详情
-				</div>
-			  	<ul>
+				<div class="title">订单详情</div>
+			  <ul>
 				 	<li><label>订单标识</label><span>49162120181100</span></li>
 				 	<li><label>彩票数量</label><span>2</span></li>
 				 	<li><label>领取网店</label><span>圣达罗市爱丽丝区塞比亚特大厦14号</span></li>

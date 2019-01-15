@@ -117,7 +117,7 @@
 				this.clearPanel();
 				//发送请求
 				// document.getElementById("panel").style.top = "500px"
-				document.getElementById("panel").style.top = "300px"
+				document.getElementById("panel").style.top = "80%"
 				
 				this.location5 = this.location3;
 				this.createMap(this.location3);
@@ -444,10 +444,10 @@
 	#panel {
 		position: absolute;
 		background: #ffffff;
-		width: 100%;
 		z-index: 200;
 		width: 100%;
-  
+    height: 100%;
+    overflow: auto;
 		.active2 {
 			background-color: #f5f5f5;
 		}

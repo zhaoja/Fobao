@@ -1,23 +1,29 @@
 <template>
-	<div class="mine set">
+	<div class="set">
+		
 		<ul class="adressList">
-			<li v-for="(li,index) in adressInfoList">
+			<div class="no-adressList">暂无收获地址</div>
+			<li v-for="(li,index) in adressInfoList" v-if="li.id">
 				<div class="listText">
 					<div class="title">
 						{{li.name}}
-						<span class="text1">{{li.phoneNo}}</span>
+						<span class="text1">
+						{{li.phoneNo}}
+						</span>
 						<span class="btn" v-if="index==0">默认</span>
 					</div>
 					<div class="text">
 						 {{li.address}}
 					</div>
 				</div>
+				<div class="opration"></div>
 				<button @click="adMesDt(li,index)">
-					<span>编辑</span>
+					<span class="right">编辑</span>
 				</button>
 				<button @click="deleteDt(li.id)">
-					<span>删除</span>
+					<span class="left">删除</span>
 				</button>
+				
 			</li>
 		</ul>
 		
@@ -34,9 +40,7 @@
 	import validation from '@/utils/validation.js';
 	
 	export default {
-		components: {
-
-		},
+		 
 		data() {
 			return {
 			 value:""
@@ -63,9 +67,7 @@
 				}else{
 					//添加地址
 					this.$router.push({path: '/set/adressMesDt' ,name:'编辑地址'})
-
 				}
-				
 			},
 			deleteDt(id){
 				var param ={
@@ -93,7 +95,3 @@
 		}
 	}
 </script>
-
-<style lang="scss">
-	
-</style>

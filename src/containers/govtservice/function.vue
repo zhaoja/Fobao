@@ -65,18 +65,11 @@
 </template>
 
 <script>
-	import {
-		mapState
-	} from 'vuex'
+	import { mapState } from 'vuex'
 	import Header from '../../components/Header.vue'
 
 	export default {
-		components: {
-			Header
-		}
+		components: { Header }
 	}
 </script>
 
-<style lang="scss">
-	
-</style>

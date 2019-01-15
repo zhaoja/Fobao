@@ -1,5 +1,5 @@
 <template>
-	<div class="mine set">
+	<div class="set">
 		<Header :topName="topName" />
 		<ul class="scoreList">
 			<li v-for="li in systemInfoList">
@@ -9,11 +9,27 @@
 					<div class="center">彩票数量   <span>2</span></div>
 					<div><button class="buny" @click="getLottery()">领取</button></div>
 				</div>
-				 
+			</li>
+			<li v-for="li in systemInfoList">
+				<img src="../../assets/images/score/sh.png"/><strong>商户名称</strong>
+				<div class="inner">
+					<div>积分余额  <span>200</span></div>
+					<div class="center">彩票数量   <span>2</span></div>
+					<div><button class="buny" @click="getLottery()">领取</button></div>
+				</div>
+			</li>
+			<li v-for="li in systemInfoList">
+				<img src="../../assets/images/score/sh.png"/><strong>商户名称</strong>
+				<div class="inner">
+					<div>积分余额  <span>200</span></div>
+					<div class="center">彩票数量   <span>2</span></div>
+					<div><button class="buny" @click="getLottery()">领取</button></div>
+				</div>
 			</li>
 		</ul>
 	</div>   
 </template>
+
 <script>
 	import { mapState } from 'vuex'
 	import Header from '../../components/Header.vue'
@@ -32,11 +48,6 @@
 				systemInfoList: state => state.system.systemInfo.list,
 			})
 		},
-		mounted() {
-			 
-
-		},
-		 
 		methods: {
 			cardnext() {
 				// this.$store.dispatch('cardapplyNext',a);

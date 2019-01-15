@@ -178,8 +178,24 @@
 	    	font-size: 16px;
 	    	line-height: 34px;
 	    }
+		.mint-radiolist-label .mint-radio .mint-radio-core{
+				right: 22px !important;
+		}
+		.mint-radiolist .mint-cell {
+			width: 90px!important;
+			position: absolute;
+		}
+		.mint-cell-wrapper,.mint-cell:last-child{
+			background-image:none!important;
+		}
+		.mint-cell:nth-child(2){
+			right: -15px;
+		}
+		.mint-cell:nth-child(3){
+			right: 75px;
+		}
 	 	.mint-cell-title{
- 		    height: 50px;
+ 		   height: 50px;
 			line-height: 20px;
 			width: 60px;
 	 	}
