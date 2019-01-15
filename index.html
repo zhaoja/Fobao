@@ -29,31 +29,47 @@
 				background: #f5f5f5;
 			}
 		</style>
-<script>
-(function(a,h,c,b,f,g){a["UdeskApiObject"]=f;a[f]=a[f]||function(){(a[f].d=a[f].d||[]).push(arguments)};g=h.createElement(c);g.async=1;g.charset="utf-8";g.src=b;c=h.getElementsByTagName(c)[0];c.parentNode.insertBefore(g,c)})(window,document,"script","https://assets-cli.udesk.cn/im_client/js/udeskApi.js","ud");
-ud({
- 	"code": "2b2b0j1e",
-    "link": "https://kafuwuzhongxin.udesk.cn/im_client/?web_plugin_id=59039",
- 	"isInvite": true,
-    "mode": "inner",
-	"panel": {
-        "css": {
-            "top": "0",
-            "left": "0"
-        }
-    }
-});
-</script>
+		<script>
+		(function(a,h,c,b,f,g){a["UdeskApiObject"]=f;a[f]=a[f]||function(){(a[f].d=a[f].d||[]).push(arguments)};g=h.createElement(c);g.async=1;g.charset="utf-8";g.src=b;c=h.getElementsByTagName(c)[0];c.parentNode.insertBefore(g,c)})(window,document,"script","https://assets-cli.udesk.cn/im_client/js/udeskApi.js","ud");
+		ud({
+		 	"code": "2b2b0j1e",
+		    "link": "https://kafuwuzhongxin.udesk.cn/im_client/?web_plugin_id=59039",
+		 	"isInvite": true,
+		    "mode": "inner",
+			"panel": {
+		        "css": {
+		            "top": "0",
+		            "left": "0"
+		        }
+		    }
+		});
+		</script>
  	</head>
 	<body>
 		<div id="app"></div>
+		 <!--<div id="button_div" onclick="getToken" style="z-index: 1000;position: absolute;top:100px;">
+    		点击调用OC方法
+        </div>-->
 		<!-- built files will be auto injected -->
 		<script>
+			//js文件中实现点击事件
+			function receiveToken(message) {
+			    alert(message);
+			    
+			    //存储Token
+			};
+			window.onload=function(){
+//				alert(1)
+			 	window.webkit.messageHandlers.communicationToken.postMessage({
+			        "body": "buttonActionMessage"
+			    });	
+			}
+ 
+			
 			//提供给Android调用的方法  
 			function getQRcode(result){  
 				document.getElementById("result").innerText= result;
 			}  
-	
 	
 			mui.init({
 				keyEventBind: {
@@ -79,7 +95,6 @@ ud({
 			};
 		</script>
 		<!-- 引入组件库 -->
-
 	 	<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.11&key=4bbbadeab79ceb71d6310dacb8b5fa16"></script> 		
 		<script src="//webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
 	</body>
