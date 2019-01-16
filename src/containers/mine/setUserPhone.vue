@@ -83,34 +83,35 @@
 			//验证码校验
 			sendVerificationCode() {
 				Http({
-						url: '/api/user/validatePhone',
-						data: {
-							"param": {
-								//					    "deviceId": "string",
-								"phoneNo": this.userInfo.phoneNo,
-								"sendcode": this.VerificationCode
-							}
+					url: '/api/user/validatePhone',
+					data: {
+						"param": {
+							//					    "deviceId": "string",
+							"phoneNo": this.userInfo.phoneNo,
+							"sendcode": this.VerificationCode
 						}
-					})
-					.then(data => {
-						if (data.code === 1) {
-							Toast({
-								message: '验证成功',
-								position: 'bottom'
-							});
-							this.$router.push({
-								path: '/set/updatephone2'
-							})
+					}
+				})
+				.then(data => {
+					if (data.code === 1) {
+						Toast({
+							message: '验证成功',
+							position: 'bottom'
+						});
+						this.$router.push({
+							path: '/set/updatephone2'
+						})
 
-						} else {
-							Toast({
-								message: data.desc,
-								position: 'bottom'
-							});
-						}
-					}).catch(function(error) {
-						console.log(error, 1);
-					});
+					} else {
+						Toast({
+							message: data.desc,
+							position: 'bottom'
+						});
+					}
+				})
+				.catch(function(error) {
+					console.log(error, 1);
+				});
 			}
 		}
 	}

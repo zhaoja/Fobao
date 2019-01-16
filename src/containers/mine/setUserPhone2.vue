@@ -3,7 +3,6 @@
 		<p>输入新号码后，下次可使用新手机号登录。</p>
 		<p>当前手机号为：{{userInfo.phoneNo}}</p>
 		<ul class="grayb">
-			 
 			<li>
 				<span>手机号: </span>
 				<input type="text" placeholder="请输入新手机号" v-model="newPhone" />
@@ -12,9 +11,7 @@
 				<span>验证码: </span>
 				<input type="text" placeholder="请输入验证码" v-model="VerificationCode" />
 				<input :class="disabledClass" :disabled="disabled" type="button" :value="codeText" @click="getVerificationCode()">
-
 			</li>
- 
 			<!--<li class="alert-inline">
 				<label>{{alert}}</label>
 			</li>-->

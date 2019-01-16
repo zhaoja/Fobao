@@ -1,5 +1,5 @@
 import request from './axios.js'
-console.log(localStorage.token)
+//console.log(localStorage.token)
 export function Http(axiosData) {
 	//参数加入必要的携带参数
 	axiosData.data.head = {

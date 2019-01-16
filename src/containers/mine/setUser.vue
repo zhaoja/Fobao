@@ -6,7 +6,7 @@
 				<li>
 					<router-link to="head">
 						<label>头像</label>
-						<img src="../../assets/images/person.png" alt="">
+						<img :src="userInfo.headUrl" alt="">
 						<i class="icon icon-right"></i>
 					</router-link>
 				</li>

@@ -3,7 +3,7 @@
 		<div class="top">
 			<button @click="logout()" v-if="logStatus!=0">退出登录</button>
 			<div class="topSelf">
-				<div><img src="../../assets/images/person.png" alt="" />{{userInfo.phoneNo}}</div>
+				<div><img :src="userInfo.headUrl" alt="" />{{userInfo.phoneNo}}</div>
 				<router-link to="set/user" v-if="logStatus!=0">
 					<i class="icon icon-go"></i>
 				</router-link>

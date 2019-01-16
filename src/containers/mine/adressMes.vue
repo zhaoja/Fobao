@@ -2,7 +2,7 @@
 	<div class="set">
 		
 		<ul class="adressList">
-			<div class="no-adressList">暂无收获地址</div>
+			<div class="no-adressList" v-for="(li,index) in adressInfoList" v-if="!li.id">暂无收获地址</div>
 			<li v-for="(li,index) in adressInfoList" v-if="li.id">
 				<div class="listText">
 					<div class="title">

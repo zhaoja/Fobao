@@ -23,9 +23,6 @@
 		created(){
 			this.$store.dispatch('getUser');
 		},
-		mounted() {
-			 
-		},
 		methods:{
 			//修改用户信息
 			verification(name, param){

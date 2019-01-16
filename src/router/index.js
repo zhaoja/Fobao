@@ -96,7 +96,7 @@ const router = new Router({
 				{path:"/set/updatephone2",name:"修改手机号",component:SetUserPhone2},	
 				
 				{path:"/set/orderMes",name:"订单管理",component:OrderMes},
-				{path:"/set/orderMesDt",name:"订单管理详情",component:OrderMesDtails},
+				{path:"/set/orderMesDt",name:"订单详情",component:OrderMesDtails},
 
 				{path:"/set/adressMes",name:"地址管理",component:AdressMes},
 				{path:"/set/adressMesDt",name:"编辑地址",component:AdressMesDtails},

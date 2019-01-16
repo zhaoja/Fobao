@@ -8,11 +8,11 @@
 				</div>
 				<div class="listText">
 					<div class="title">
-						{{li.title}}
-						<span class="text2">{{li.text}}</span>
+						{{li.commodityName}}
+						<span class="text2">-{{li.payTotalAmount}}</span>
 					</div>
 					<div class="text">
-						 {{li.time}}
+						 {{li.payTime}}
 					</div>
 				</div>
 				</router-link>
@@ -39,9 +39,10 @@
 		},
 		mounted() {
 			 
-
 		},
-		 
+		created(){
+			this.$store.dispatch('getOrder');
+		},
 		methods: {
 			cardnext() {
 				// this.$store.dispatch('cardapplyNext',a);

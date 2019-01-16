@@ -54,15 +54,12 @@
 		<script>
 			//js文件中实现点击事件
 			function receiveToken(message) {
-			    // alert(message);
-					var token = message;
-					localStorage.setItem("token", token);
-
-			    
+				var token = message;
+//				localStorage.setItem("token", token);
 			    //存储Token
 			};
 			window.onload=function(){
-				receiveToken(111);
+//				receiveToken(111);
 // 			 	window.webkit.messageHandlers.communicationToken.postMessage({
 // 						"body": "buttonActionMessage"
 // 				});	
@@ -93,7 +90,6 @@
 						plus.runtime.quit(); //那么就退出app
 					}
 				}
-				
 			};
 		</script>
 		<!-- 引入组件库 -->
