@@ -1,7 +1,6 @@
 <template>
 
 	<div class="location">
-
 		<div class="search-header">
 			<input v-model="value" placeholder="请输入关键字" />
 			<button @click="search(value)">搜索</button>
@@ -16,7 +15,10 @@
 			<button @click="returnMe();"><img src="../../assets/images/map/clear3.png"/></button>
 			<button @click="clearRouter();"><img src="../../assets/images/map/clear1.png"/></button>
 		</div>
-		<div id="panel">
+		<div id="panel" ref='panelMove'
+			@touchstart='touchStart' 
+            @touchend='touchEnd' :class="isTop">
+            
 			<div class="nearby" v-for="(lo,ind) in location5" :key="ind" v-if="location5" @click="searchMap1(ind)" :class="{active2:(indexs2==ind)}">
 				<img class="pos-img" src="https://webapi.amap.com/theme/v1.3/markers/b/mark_bs.png" alt="">
 				<div class="nearname">{{lo.name}} <span>10km</span></div>
@@ -26,9 +28,7 @@
 	</div>
 </template>
 <script>
-	import {
-		mapState
-	} from 'vuex'
+	import { mapState } from 'vuex'
 	import AMap from 'AMap'
 	import newpoint from '@/assets/images/map/p2.png'
 	import point from '@/assets/images/map/p1.png'
@@ -61,6 +61,15 @@
 				geocoder: null,
 				freeMarker: null,
 				location5: {},
+				
+				//////
+			 	isTop:'',//is-bottom
+
+                startY:0,//开始触摸的位置
+                moveX:0,//滑动时的位置
+                endY:0,//结束触摸的位置
+                disY:0,//移动距离
+ 
 			}
 		},
 		mounted: function() {
@@ -70,9 +79,34 @@
 			this.clickPoint(); //点击地图生成点
 			this.getLocation();
 		},
+	  	created(){
+	  		
+	  	},
 		methods: {
-
-			//分类搜索
+	     	touchStart:function(ev) {
+                ev = ev || event;
+//              ev.preventDefault();
+                if(ev.touches.length == 1) {    //tounches类数组，等于1时表示此时有只有一只手指在触摸屏幕
+                    this.startY = ev.touches[0].clientY; // 记录开始位置
+                }
+            },
+ 
+            touchEnd:function(ev){
+                ev = ev || event;
+//              ev.preventDefault();
+                let panelMove = this.$refs.panelMove.offsetWidth;
+                if(ev.changedTouches.length == 1) {
+                    let endY = ev.changedTouches[0].clientY;
+                    this.disY = endY-this.startY;
+                    console.log(this.disY,'this.disY')
+                    if(this.disY < -10) {
+						this.isTop = "is-top"
+                    }else if(this.disY > 10){
+                    	this.isTop = "is-bottom"
+                    }
+                }
+            }, 
+            //
 			searchMap(str) {
 
 				this.clearPanel();
@@ -116,8 +150,7 @@
 				this.clearPoint();
 				this.clearPanel();
 				//发送请求
-				// document.getElementById("panel").style.top = "500px"
-				document.getElementById("panel").style.top = "80%"
+				this.isTop = "is-middle"
 				
 				this.location5 = this.location3;
 				this.createMap(this.location3);
@@ -271,6 +304,7 @@
 								_this.walkingRouter.search(a, b, function(status, result) {
 									if (status == 'complete') {
 										console.log("路线绘制完成")
+										_this.isTop = "is-middle"
 									} else {
 										if (result == 'OVER_DIRECTION_RANGE') {
 											alert("起点终点距离过长，请选择其他出行方式")
@@ -441,17 +475,23 @@
 	    line-height: 19px;
 	    box-shadow: 2px -1px 9px #928e8e;
 	}
+	
+ 	.location{
+ 		height: 100%;
+	    position: absolute;
+	    width: 100%;
+	    overflow: hidden;
+ 	}
 	#panel {
 		position: absolute;
 		background: #ffffff;
 		z-index: 200;
 		width: 100%;
-    height: 100%;
-    overflow: auto;
+	    /*height: 100%;*/
+	    overflow: auto;
 		.active2 {
 			background-color: #f5f5f5;
 		}
-
 		.nearby {
 			padding: 5px 0px;
 			width: 100%;
@@ -467,8 +507,7 @@
 			}
 
 			.nearname {
-				font-size: 18px;
-
+				font-size: 16px;
 				span {
 					float: right;
 					margin-right: 10px;
@@ -480,5 +519,20 @@
 				color: #555;
 			}
 		}
+	}
+	.is-top{
+		transition:top 0.5s;
+		top:65px;
+		height:100%;
+	}
+	.is-middle{
+		transition:top 0.5s;
+ 	 	top:80%;
+		height:100%;
+	}
+	.is-bottom{
+		transition:top 0.5s;
+ 	 	top:80%;
+		height:100%;
 	}
 </style>

@@ -2,7 +2,7 @@
 	<div class="mine set">
 		<ul class="sysMesList">
 			<li v-for="li in systemInfoList">
-				<router-link to="orderMesDt">
+				<router-link to="sysMesDt">
 				<div class="listIcon">
 					<i class="icon" :class="li.status==0?'icon-bgbell-red':'icon-bgbell'"></i>
 				</div>
