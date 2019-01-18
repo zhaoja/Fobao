@@ -76,11 +76,11 @@ $font18:18px;
         text-align: center;
         color: $col9;
     }
-    .all-loding{
+    .all-loding {
         text-align: center;
         color: $colc;
         font-size: $font14;
-        span{
+        span {
             display: inline-block;
             margin-right: 10px;
         }
@@ -613,6 +613,7 @@ $font18:18px;
 
 //service net
 .location {
+    //搜索
     .search-header {
         background-color: #fe4c40;
         height: 65px;
@@ -636,6 +637,7 @@ $font18:18px;
             background: #fe4c40;
         }
     }
+    //导航
     .location-nav {
         height: 40px;
         line-height: 40px;
@@ -653,50 +655,90 @@ $font18:18px;
         width: 100%;
         height: calc( 100vh - 150px);
     }
+    //右侧按钮
+    .btns {
+        position: absolute;
+        top: 120px;
+        right: 5px;
+        width: 60px;
+        z-index: 200;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        button {
+            margin-bottom: 1px;
+            background: rgba(255, 255, 255, 0.7);
+            ;
+            width: 100%;
+            img {
+                width: 51px;
+                height: 52px;
+                margin: 5px;
+            }
+        }
+    }
+    //下面的弹出层
+    #panel {
+        position: absolute;
+        background: #ffffff;
+        z-index: 200;
+        width: 100%;
+        overflow: auto;
+        .active2 {
+            background-color: #f5f5f5;
+        }
+        .nearby {
+            padding: 5px 0px;
+            width: 100%;
+            border-bottom: 1px solid #f5f5f5;
+            .pos-img {
+                float: left;
+                height: 30px;
+                width: 20px;
+                margin-right: 10px;
+                margin-top: 6px;
+                margin-left: 10px;
+            }
+            .nearname {
+                font-size: 16px;
+                span {
+                    float: right;
+                    margin-right: 10px;
+                }
+            }
+            .nearposi {
+                font-size: 12px;
+                color: #555;
+            }
+        }
+    }
     .amap-icon img {
         top: -5px;
         left: -2px;
         width: 25px;
         height: 35px;
     }
-    .amap-icon {
-        //width: 30px !important;
-    }
-    .wkbtn,
-    .rdbtn,
-    .bsbtn {
-        color: #fff;
-        font-size: 15px;
-        padding: 3px 15px;
-    }
-    .wkbtn {
-        background: #3891f7;
-        margin-right: 10px;
-    }
-    .rdbtn {
-        background: #33b166;
-    }
-    .bsbtn {
-        background: #d66969;
-    }
-    .btn-group {
-        width: 50%;
-        margin: 0 auto;
-    }
-    #panel {
-        .plan {
-            padding: 0 15px;
+    .amap-info-content{
+        width: 200px;
+        padding-right: 10px !important;
+        .wkbtn,
+        .rdbtn,
+        .bsbtn {
+            color: #fff;
+            font-size: 15px;
+            padding: 3px 15px;
         }
-        .amap-lib-transfer span.line .beforespan {
-            left: -24px !important;
+        .wkbtn {
+            background: #3891f7;
+            margin-right: 10px;
         }
-        .amap-lib-transfer span.subwayline {
-            margin-left: 20px !important;
+        .rdbtn {
+            background: #33b166;
         }
-        .amap-lib-transfer span.busline {
-            margin-left: 22px;
+        .bsbtn {
+            background: #d66969;
         }
     }
+    
 }
 
 .capply {

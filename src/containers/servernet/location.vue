@@ -12,13 +12,14 @@
 		<div id="container"></div>
 		<div class="btns">
 			<button @click="clearPoint();"><img src="../../assets/images/map/clear2.png"/></button>
-			<button @click="returnMe();"><img src="../../assets/images/map/clear3.png"/></button>
-			<button @click="clearRouter();"><img src="../../assets/images/map/clear1.png"/></button>
+			<!--<button @click="returnMe();"><img src="../../assets/images/map/clear3.png"/></button>
+--><button @click="clearRouter();"><img src="../../assets/images/map/clear1.png"/></button>
 		</div>
-		<div id="panel" ref='panelMove'
-			@touchstart='touchStart' 
-            @touchend='touchEnd' :class="isTop">
-            
+		<div id="panel" ref='panelMove' @touchstart='touchStart' @touchend='touchEnd' :class="isTop">
+			<div class="center" style="background: #f5f5f5;padding: 3px;">
+				<img src="../../assets/images/map/up.png" v-if="isTop!='is-top'" style="width: 30px"/>
+				<img src="../../assets/images/map/down.png" v-if="isTop=='is-top'" style="width: 30px"/>
+			</div>
 			<div class="nearby" v-for="(lo,ind) in location5" :key="ind" v-if="location5" @click="searchMap1(ind)" :class="{active2:(indexs2==ind)}">
 				<img class="pos-img" src="https://webapi.amap.com/theme/v1.3/markers/b/mark_bs.png" alt="">
 				<div class="nearname">{{lo.name}} <span>10km</span></div>
@@ -61,15 +62,15 @@
 				geocoder: null,
 				freeMarker: null,
 				location5: {},
-				
-				//////
-			 	isTop:'',//is-bottom
 
-                startY:0,//开始触摸的位置
-                moveX:0,//滑动时的位置
-                endY:0,//结束触摸的位置
-                disY:0,//移动距离
- 
+				//////
+				isTop: '', //is-bottom
+
+				startY: 0, //开始触摸的位置
+				moveX: 0, //滑动时的位置
+				endY: 0, //结束触摸的位置
+				disY: 0, //移动距离
+
 			}
 		},
 		mounted: function() {
@@ -79,34 +80,34 @@
 			this.clickPoint(); //点击地图生成点
 			this.getLocation();
 		},
-	  	created(){
-	  		
-	  	},
+		created() {
+
+		},
 		methods: {
-	     	touchStart:function(ev) {
-                ev = ev || event;
-//              ev.preventDefault();
-                if(ev.touches.length == 1) {    //tounches类数组，等于1时表示此时有只有一只手指在触摸屏幕
-                    this.startY = ev.touches[0].clientY; // 记录开始位置
-                }
-            },
- 
-            touchEnd:function(ev){
-                ev = ev || event;
-//              ev.preventDefault();
-                let panelMove = this.$refs.panelMove.offsetWidth;
-                if(ev.changedTouches.length == 1) {
-                    let endY = ev.changedTouches[0].clientY;
-                    this.disY = endY-this.startY;
-                    console.log(this.disY,'this.disY')
-                    if(this.disY < -10) {
+			touchStart: function(ev) {
+				ev = ev || event;
+				//              ev.preventDefault();
+				if(ev.touches.length == 1) { //tounches类数组，等于1时表示此时有只有一只手指在触摸屏幕
+					this.startY = ev.touches[0].clientY; // 记录开始位置
+				}
+			},
+
+			touchEnd: function(ev) {
+				ev = ev || event;
+				//              ev.preventDefault();
+				let panelMove = this.$refs.panelMove.offsetWidth;
+				if(ev.changedTouches.length == 1) {
+					let endY = ev.changedTouches[0].clientY;
+					this.disY = endY - this.startY;
+					//                  console.log(this.disY,'this.disY')
+					if(this.disY < -10) {
 						this.isTop = "is-top"
-                    }else if(this.disY > 10){
-                    	this.isTop = "is-bottom"
-                    }
-                }
-            }, 
-            //
+					} else if(this.disY > 10) {
+						this.isTop == "is-top" ? this.isTop = "is-middle" : this.isTop = "is-bottom"
+					}
+				}
+			},
+			//
 			searchMap(str) {
 
 				this.clearPanel();
@@ -115,17 +116,17 @@
 
 				this.indexs = str;
 
-				if (str == 0) {
+				if(str == 0) {
 					loactionLists = this.location
-				} else if (str == 1) {
+				} else if(str == 1) {
 					loactionLists = this.location1
-				} else if (str == 2) {
+				} else if(str == 2) {
 					loactionLists = this.location2
-				} else if (str == 3) {
+				} else if(str == 3) {
 					loactionLists = this.location3
-				} else if (str == 4) {
+				} else if(str == 4) {
 					loactionLists = this.location4
-				} else if (str == 5) {
+				} else if(str == 5) {
 					loactionLists = this.location2
 				}
 				this.createMap(loactionLists);
@@ -147,11 +148,14 @@
 
 			//搜索2
 			search(value) {
+				console.log(value,111)
 				this.clearPoint();
 				this.clearPanel();
 				//发送请求
-				this.isTop = "is-middle"
-				
+				if (value) {
+					this.isTop = "is-middle"
+				}
+
 				this.location5 = this.location3;
 				this.createMap(this.location3);
 				this.indexs = null;
@@ -167,7 +171,8 @@
 				AMap.plugin(['AMap.ToolBar', 'AMap.Scale'], function() {
 					mymap.addControl(new AMap.ToolBar({
 						position: ' LT',
-						ruler: true,
+						ruler: false,
+
 						locate: true,
 					}))
 					mymap.addControl(new AMap.Scale())
@@ -178,7 +183,7 @@
 			//地理定位
 			getLocation() {
 
-				if (navigator.geolocation) {
+				if(navigator.geolocation) {
 					navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
 				} else {
 					alert("浏览器不支持地理定位。");
@@ -208,7 +213,7 @@
 				let lag = position.coords.longitude; //经度 
 				let lat = position.coords.latitude; //纬度 
 
-				if (lag && lat) {
+				if(lag && lat) {
 					this.lnglat = [lag, lat]
 				}
 				//绘制我的定位
@@ -231,7 +236,6 @@
 			},
 			//默认检索
 			createMap(loactionLists) {
-
 				let _this = this;
 
 				let startMarker = _this.lnglat;
@@ -241,25 +245,26 @@
 
 				AMapUI.loadUI(['overlay/SimpleInfoWindow'], function(SimpleInfoWindow) {
 
-					if (loactionLists) {
-						for (let i = 0, marker; i < loactionLists.length; i++) {
+					if(loactionLists) {
+						for(let i = 0, marker; i < loactionLists.length; i++) {
 							var marker = new AMap.Marker({
 								position: [loactionLists[i].y, loactionLists[i].x],
 								map: mymap,
+							 	icon: point,
 							});
 
-							marker.content = 
-								'<div style="color: #000000;">'+loactionLists[i].name +'<span style="font-size:11px;color:#3e93fa;">(318km)</span></div>'+
-								'<div style="font-size:14px;">电话:'+loactionLists[i].phone+"</div>"+
-								'<div style="font-size:14px;">地址: '+loactionLists[i].location+"</div>"+
+							marker.content =
+								'<div style="color: #000000;">' + loactionLists[i].name + '<span style="font-size:11px;color:#3e93fa;">(318km)</span></div>' +
+								'<div style="font-size:14px;">电话:' + loactionLists[i].phone + "</div>" +
+								'<div style="font-size:14px;">地址: ' + loactionLists[i].location + "</div>" +
 								`<div style="margin-top: 5px;"><button class="wkbtn" id="id${i}">步行导航<button>` +
 								`<button class="bsbtn" id="idt${i}">公交导航<button></div>`;
 
 							marker.on('click', markerClick);
 							//默认打开
-							// 							marker.emit('click', {
-							// 								target: marker
-							// 							});
+// 							marker.emit('click', {
+// 								target: marker
+// 							});
 
 							_this.getLocation(); //重绘我的位置
 
@@ -289,24 +294,24 @@
 				setTimeout(function(index) {
 					var ids = document.getElementById("id" + index);
 					var idts = document.getElementById("idt" + index);
-					if (ids) {
+					if(ids) {
 						ids.onclick = function() {
 							_this.clearPanel();
 							// 清除已有的公交导航
-							if (_this.transferRouter) {
+							if(_this.transferRouter) {
 								_this.transferRouter.clear();
 							}
 							AMap.service('AMap.Walking', function() { //回调函数
 
-								if (!_this.walkingRouter) {
+								if(!_this.walkingRouter) {
 									_this.walkingRouter = new AMap.Walking(mapParam);
 								}
 								_this.walkingRouter.search(a, b, function(status, result) {
-									if (status == 'complete') {
+									if(status == 'complete') {
 										console.log("路线绘制完成")
 										_this.isTop = "is-middle"
 									} else {
-										if (result == 'OVER_DIRECTION_RANGE') {
+										if(result == 'OVER_DIRECTION_RANGE') {
 											alert("起点终点距离过长，请选择其他出行方式")
 										}
 									}
@@ -316,25 +321,26 @@
 						}
 					};
 
-					if (idts) {
+					if(idts) {
 						idts.onclick = function() {
 							_this.clearPanel();
 							// 清除已有的公导航
 							console.log("进入公交导航")
-							if (_this.walkingRouter) {
+							if(_this.walkingRouter) {
 								_this.walkingRouter.clear();
 							}
 							AMap.service('AMap.Transfer', function() { //回调函数
 
-								if (!_this.transferRouter) {
+								if(!_this.transferRouter) {
 									_this.transferRouter = new AMap.Transfer(mapParam);
 								}
 								//根据起、终点坐标查询公交换乘路线
 
 								_this.transferRouter.search(new AMap.LngLat(a[0], a[1]), new AMap.LngLat(b.lng, b.lat),
 									function(status, result) {
-										if (status === 'complete') {
+										if(status === 'complete') {
 											console.log('绘制公交路线完成')
+											_this.isTop = "is-middle"
 										} else {
 											console.log('公交路线数据查询失败' + result)
 										}
@@ -361,14 +367,14 @@
 				let _this = this;
 				AMap.plugin(['AMap.Geocoder'], function() {
 
-					if (!mymap.geocoder) {
+					if(!mymap.geocoder) {
 						mymap.geocoder = new AMap.Geocoder({
 							city: "010", //城市设为北京，默认：“全国”
 							radius: 1000, //范围，默认：500
 						});
 					};
 
-					if (!_this.freeMarker) {
+					if(!_this.freeMarker) {
 
 						_this.freeMarker = new AMap.Marker({
 							icon: newpoint,
@@ -379,7 +385,7 @@
 					_this.freeMarker.setPosition(lnglat);
 
 					mymap.geocoder.getAddress(lnglat, function(status, result) {
-						if (status === 'complete' && result.regeocode) {
+						if(status === 'complete' && result.regeocode) {
 							var address = result.regeocode.formattedAddress;
 							//请求数据 要传给后台一个type
 							_this.createMap(_this.location1)
@@ -399,11 +405,12 @@
 			},
 			//清除下边的panel
 			clearPanel() {
+				this.isTop = "";
 				this.location5 = {};
-				if (this.walkingRouter) {
+				if(this.walkingRouter) {
 					this.walkingRouter.clear();
 				}
-				if (this.transferRouter) {
+				if(this.transferRouter) {
 					this.transferRouter.clear();
 				}
 			},
@@ -413,12 +420,12 @@
 				this.freeMarker = null;
 				// this.clearPanel();
 			},
- 			//清除路线
+			//清除路线
 			clearRouter() {
-				if (this.walkingRouter) {
+				if(this.walkingRouter) {
 					this.walkingRouter.clear();
 				}
-				if (this.transferRouter) {
+				if(this.transferRouter) {
 					this.transferRouter.clear();
 				}
 			}
@@ -426,113 +433,104 @@
 
 	}
 </script>
- 
-<style lang="scss">
-	.btns {
-		position: absolute;
-		top: 120px;
-		right: 5px;
-		width: 60px;
-		z-index: 200;
-		border-radius:5px ;
-		box-shadow:0px 0px 5px rgba(0, 0, 0, 0.3);
-	
-		button {
-			margin-bottom: 1px;
-			background: rgba(255, 255, 255, 0.7);;
-			width: 100%;
-			img{
-				width: 51px;
-				height: 52px;
-				margin: 5px;
-			}
-		}
-	}
 
+<style lang="scss">
 	.amap-controls {
 		margin-top: 80px;
 	}
-
+	
 	.amap-copyright,
 	.amap-call,
-	.amap-logo ,.amap-touch-toolbar .amap-geo{
+	.amap-logo,
+	.amap-zoomcontrol {
 		display: none !important;
 	}
-	.amap-info-content{
-		width: 200px;
-		padding-right: 10px !important;
-	}
-	.amap-info-close{
+	
+	.amap-info-close {
 		right: -2px !important;
-	    top: -7px;
-	    background: #fff;
-	    display: inline-block;
-	    width: 22px;
-	    height: 22px;
-	    border-radius: 22px;
-	    font-size: 18px !important;
-	    text-align: center;
-	    line-height: 19px;
-	    box-shadow: 2px -1px 9px #928e8e;
+		top: -7px;
+		background: #fff;
+		display: inline-block;
+		width: 22px;
+		height: 22px;
+		border-radius: 22px;
+		font-size: 18px !important;
+		text-align: center;
+		line-height: 19px;
+		box-shadow: 2px -1px 9px #928e8e;
 	}
 	
- 	.location{
- 		height: 100%;
-	    position: absolute;
-	    width: 100%;
-	    overflow: hidden;
- 	}
-	#panel {
+	.location {
+		height: 100%;
 		position: absolute;
-		background: #ffffff;
-		z-index: 200;
 		width: 100%;
-	    /*height: 100%;*/
-	    overflow: auto;
-		.active2 {
-			background-color: #f5f5f5;
+		overflow: hidden;
+	}
+	
+	.is-top {
+		transition: top 0.5s;
+		top: 65px;
+		height: 100%;
+	}
+	
+	.is-middle {
+		transition: top 0.5s;
+		top: 80%;
+		height: 100%;
+	}
+	
+	.is-bottom {
+		transition: top 0.5s;
+		top: 100%;
+		height: 100%;
+	}
+	#panel {
+		/*列表*/
+	     .plan {
+	         padding: 0 15px;
+	     }
+	     .amap-lib-transfer span.line .beforespan {
+	         left: -24px !important;
+	     }
+	     .amap-lib-transfer span.subwayline {
+	         margin-left: 20px !important;
+	     }
+	     .amap-lib-transfer span.busline {
+	         margin-left: 22px;
+	     }
+	     /*路线*/
+	    .amap-lib-transfer .planTitle h3,.amap-lib-transfer .planTitle p{
+	    	padding-left: 15px;
+	    }
+	    .amap-lib-transfer span.subwayline,.amap-lib-transfer span.busline{
+	    	margin-right:20px;
+	    }
+	    .amap-lib-transfer .planTitle h3 span .afterspan{
+	    	right: -12px;
+	    }
+	 }
+	/*.amap-controls{
+ 		.amap-touch-toolbar .amap-geo{
+			width: 51px !important;
+		    height: 52px !important;
+		    border: 1px solid #ccc !important;
+		    border-radius: 3px !important;
+		    right: 4px !important;
+		    left: 5px !important;
+		    top: 0px !important;
+		    background-size: 100% !important;	
 		}
-		.nearby {
-			padding: 5px 0px;
-			width: 100%;
-			border-bottom: 1px solid #f5f5f5;
-
-			.pos-img {
-				float: left;
-				height: 30px;
-				width: 20px;
-				margin-right: 10px;
-				margin-top: 6px;
-				margin-left: 10px;
-			}
-
-			.nearname {
-				font-size: 16px;
-				span {
-					float: right;
-					margin-right: 10px;
-				}
-			}
-
-			.nearposi {
-				font-size: 12px;
-				color: #555;
-			}
+		.amap-toolbar-geo-secc{
+			background:#fff url('src/assets/images/map/clear2.png') no-repeat !important;
+	
 		}
-	}
-	.is-top{
-		transition:top 0.5s;
-		top:65px;
-		height:100%;
-	}
-	.is-middle{
-		transition:top 0.5s;
- 	 	top:80%;
-		height:100%;
-	}
-	.is-bottom{
-		transition:top 0.5s;
- 	 	top:80%;
-		height:100%;
-	}
+		.amap-locate-loading{
+		    background:#fff url('src/assets/images/map/clear1.png') no-repeat !important;
+		    background-size: 100% !important;
+		}
+		.amap-touch-toolbar .amap-geo {
+		    background:#fff url('src/assets/images/map/clear3.png')no-repeat;
+		}
+	
+ 	}*/
 </style>
