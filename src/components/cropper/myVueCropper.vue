@@ -1,54 +1,36 @@
 <template>
 	<div class="wrapper">
-	 <div class="model" v-show="model">
+		<div class="model" v-show="model">
 			<div class="model-show" @click="model = false">
 				<img :src="modelSrc" alt="" @click="model = false">
 			</div>
-			<div class="test-save" style="margin-bottom: 15px;">	
+			<div class="test-save" style="margin-bottom: 15px;">
 				<button @click="save" class="btnsave">保存</button>
 			</div>
 		</div>
-		
 		<div class="content">
 			<div class="show-info">
 				<div class="test">
-					<vueCropper 
-						ref="cropper" 
-						:img="option.img" 
-						:outputSize="option.size" 
-						:outputType="option.outputType" 
-						:info="true" 
-						:full="option.full" 
-						:canMove="option.canMove" 
-						:canMoveBox="option.canMoveBox" 
-						:fixed="option.fixed" 
-						:fixedBox="option.fixedBox" 
-						:original="option.original" 
-						:autoCrop="option.autoCrop" 
-						:autoCropWidth="option.autoCropWidth" 
-						:autoCropHeight="option.autoCropHeight" 
-						:centerBox="option.centerBox" 
-						:high="option.high" 
-						:infoTrue="option.infoTrue" 
-						@realTime="realTime" 
-						@imgLoad="imgLoad" 
-						@cropMoving="cropMoving" 
-						:enlarge="option.enlarge"></vueCropper>
+					<vueCropper ref="cropper" :img="option.img" :outputSize="option.size" :outputType="option.outputType" :info="true"
+					 :full="option.full" :canMove="option.canMove" :canMoveBox="option.canMoveBox" :fixed="option.fixed" :fixedBox="option.fixedBox"
+					 :original="option.original" :autoCrop="option.autoCrop" :autoCropWidth="option.autoCropWidth" :autoCropHeight="option.autoCropHeight"
+					 :centerBox="option.centerBox" :high="option.high" :infoTrue="option.infoTrue" @realTime="realTime" @imgLoad="imgLoad"
+					 @cropMoving="cropMoving" :enlarge="option.enlarge"></vueCropper>
 				</div>
 				<div class="test-button">
 					<label class="btn" for="uploads">更换</label>
-					<input type="file" id="uploads"  style="position:absolute; clip:rect(0 0 0 0);" accept="image/*" @change="uploadImg($event, 1)" >
+					<input type="file" id="uploads" style="position:absolute; clip:rect(0 0 0 0);" accept="image/*" @change="uploadImg($event, 1)">
 					<button @click="finish('base64')" class="btn" style="margin-right: 15px;">预览</button>
 				</div>
-				<div class="test-save">	
-			      <input type="button" class="btn btn-blue" value="上传头像" @click="finish('blob')">
+				<div class="test-save">
+					<input type="button" class="btn btn-blue" value="上传头像" @click="finish()">
 
 					<button @click="submitForm($event)" class="btnsave">保存</button>
 				</div>
 			</div>
- 		</div>
+		</div>
 	</div>
-	 
+
 </template>
 
 <script>
@@ -62,6 +44,7 @@
 	import img from '@/../static/images/person.png'
 	import codes from "./code";
 	const URL = 'http://192.168.0.35';
+		
 	export default {
 		components: {
 			VueCropper,
@@ -71,30 +54,31 @@
 			...mapState({
 				userInfo: state => state.user.user.userInfo
 			})
-		} ,
-		created(){
+		},
+		created() {
 			this.$store.dispatch('getUser');
 			this.changeImg();
 		},
 		data: function() {
 			return {
-		        file: '',
+				file: '',
 				model: false,
 				modelSrc: "",
 				crap: false,
 				previews: {},
-//				lists: [
-//					{
-//						img: "https://avatars2.githubusercontent.com/u/15681693?s=460&v=4"
-//					} 
-//				],
+				fileName:'',
+				//				lists: [
+				//					{
+				//						img: "https://avatars2.githubusercontent.com/u/15681693?s=460&v=4"
+				//					} 
+				//				],
 				option: {
 					img: '',
 					size: 1,
 					full: false,
 					outputType: "png",
 					canMove: false,
-//					fixedBox: false,
+					//					fixedBox: false,
 					original: false,
 					canMoveBox: true,
 					canScale: true,
@@ -102,8 +86,8 @@
 					// 只有自动截图开启 宽度高度才生效
 					autoCropWidth: 300,
 					autoCropHeight: 300,
-//					// 真实的输出宽高
-//					infoTrue: true,
+					//					// 真实的输出宽高
+					//					infoTrue: true,
 					fixed: true,
 					fixedNumber: [1, 1],
 					centerBox: true,
@@ -119,69 +103,116 @@
 		},
 		methods: {
 			changeImg() {
-//				this.option.img = this.lists[~~(Math.random() * this.lists.length)].img;
+				//				this.option.img = this.lists[~~(Math.random() * this.lists.length)].img;
 				this.option.img = this.userInfo.headUrl
 			},
-			 
+
 			rotateLeft() {
 				this.$refs.cropper.rotateLeft();
 			},
 			rotateRight() {
 				this.$refs.cropper.rotateRight();
 			},
-			 //上传图片（点击上传按钮）
-		      finish(type) { 
-		        console.log('finish')
-		        let _this = this;
-		        let formData = new FormData();
-		        // 输出 
-		        if (type === 'blob') { 
-		          this.$refs.cropper.getCropBlob((data) => { 
-		            let img = window.URL.createObjectURL(data) 
-		            this.model = true; 
-		            this.modelSrc = img; 
-		            formData.append("file", data, this.fileName);
-		            this.$http.post(Api.uploadSysHeadImg.url, formData, {contentType: false, processData: false, headers:{'Content-Type': 'application/x-www-form-urlencoded'}})
-		            .then((response)=>{
-		              var res = response.data;
-		              if(res.success == 1){
-		                $('#btn1').val('');
-		                _this.imgFile = '';
-		                _this.headImg = res.realPathList[0];  //完整路径
-		                _this.uploadImgRelaPath = res.relaPathList[0];  //非完整路径
-		                _this.$message({　　//element-ui的消息Message消息提示组件
-		                  type: 'success',
-		                  message: '上传成功'
-		                });
-		              }
-		            })
-		          }) 
-		        } else { 
-		          this.$refs.cropper.getCropData((data) => { 
-		            this.model = true; 
-		            this.modelSrc = data; 
-		          }) 
-		        } 
-		      }, 
-      
-//			finish(type) {
-//				// 输出
-//				// var test = window.open('about:blank')
-//				// test.document.body.innerHTML = '图片生成中..'
-//				if(type === "blob") {
-//					this.$refs.cropper.getCropBlob(data => {
-//						console.log(data,11111111)
-//						var img = window.URL.createObjectURL(data);
-//						this.model = true;
-//						this.modelSrc = img;
-//					});
-//				} else {
-//					this.$refs.cropper.getCropData(data => {
-//						this.model = true;
-//						this.modelSrc = data;
-//					});
-//				} 
-//			},
+			
+			//上传图片（点击上传按钮）
+			finish(type) {
+				let _this = this;
+				let formData = new FormData();
+				
+// 				this.fileurl = window.URL.createObjectURL(this.file)
+// 				 console.log( 222222)
+				// 输出 
+				if (type === 'blob') {
+					this.$refs.cropper.getCropBlob((data) => {
+						let img = window.URL.createObjectURL(data)
+						this.model = true;
+						this.modelSrc = img;
+						
+						console.log(data,6666)
+						formData.append("file", data, this.fileName);
+						this.$http.post(URL+'/api/user/editUser', formData, {
+								contentType: false,
+								processData: false,
+								headers: {
+									'Content-Type': 'application/x-www-form-urlencoded'
+								}
+							})
+						.then((response) => {
+							var res = response.data;
+							if (res.success == 1) {
+								$('#btn1').val('');
+								_this.imgFile = '';
+								_this.headImg = res.realPathList[0]; //完整路径
+								_this.uploadImgRelaPath = res.relaPathList[0]; //非完整路径
+								_this.$message({ //element-ui的消息Message消息提示组件
+									type: 'success',
+									message: '上传成功'
+								});
+							}
+						})
+					})
+				} else {
+						this.$refs.cropper.getCropData((data) => {
+						this.model = true;
+						this.modelSrc = data;
+ 						
+						var newImgFileData = this.dataURLtoFile(data, this.file.name)
+						let img = window.URL.createObjectURL(newImgFile);
+						
+						formData.append("file", newImgFileData, this.file.name);
+						
+						this.$http.post(URL+'/api/user/editUser', formData, {
+								contentType: false,
+								processData: false,
+								headers: {
+									'Content-Type': 'application/x-www-form-urlencoded'
+								}
+							})
+						.then((response) => {
+							var res = response.data;
+							if (res.success == 1) {
+								$('#btn1').val('');
+								_this.imgFile = '';
+								_this.headImg = res.realPathList[0]; //完整路径
+								_this.uploadImgRelaPath = res.relaPathList[0]; //非完整路径
+								_this.$message({ //element-ui的消息Message消息提示组件
+									type: 'success',
+									message: '上传成功'
+								});
+							}
+						})
+						
+						
+					})		
+				}
+			},
+			dataURLtoFile(dataurl, filename) {//将base64转换为文件
+        var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new File([u8arr], filename, {type:mime});
+			},
+
+			//			finish(type) {
+			//				// 输出
+			//				// var test = window.open('about:blank')
+			//				// test.document.body.innerHTML = '图片生成中..'
+			//				if(type === "blob") {
+			//					this.$refs.cropper.getCropBlob(data => {
+			//						console.log(data,11111111)
+			//						var img = window.URL.createObjectURL(data);
+			//						this.model = true;
+			//						this.modelSrc = img;
+			//					});
+			//				} else {
+			//					this.$refs.cropper.getCropData(data => {
+			//						this.model = true;
+			//						this.modelSrc = data;
+			//					});
+			//				} 
+			//			},
 			// 实时预览函数
 			realTime(data) {
 				var previews = data;
@@ -221,10 +252,10 @@
 			down(type) {
 				// event.preventDefault()
 				// 输出
-				if(type === "blob") {
+				if (type === "blob") {
 					this.$refs.cropper.getCropBlob(data => {
 						this.downImg = window.URL.createObjectURL(data);
-						if(window.navigator.msSaveBlob) {
+						if (window.navigator.msSaveBlob) {
 							var blobObject = new Blob([data]);
 							window.navigator.msSaveBlob(blobObject, "demo.png");
 						} else {
@@ -236,7 +267,7 @@
 				} else {
 					this.$refs.cropper.getCropData(data => {
 						this.downImg = data;
-						if(window.navigator.msSaveBlob) {
+						if (window.navigator.msSaveBlob) {
 							var blobObject = new Blob([data]);
 							window.navigator.msSaveBlob(blobObject, "demo.png");
 						} else {
@@ -252,31 +283,31 @@
 				//上传图片
 				// this.option.img
 				var file = e.target.files[0];
-				if(!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(e.target.value)) {
+				if (!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(e.target.value)) {
 					alert("图片类型必须是.gif,jpeg,jpg,png,bmp中的一种");
 					return false;
 				}
 				var reader = new FileReader();
 				reader.onload = e => {
 					let data;
-					if(typeof e.target.result === "object") {
+					if (typeof e.target.result === "object") {
 						// 把Array Buffer转化为blob 如果是base64不需要
 						data = window.URL.createObjectURL(new Blob([e.target.result]));
 					} else {
 						data = e.target.result;
 					}
-					if(num === 1) {
+					if (num === 1) {
 						this.option.img = data;
-					} else if(num === 2) {
+					} else if (num === 2) {
 						this.example2.img = data;
 					}
-					
+
 				};
 				// 转化为base64
 				// reader.readAsDataURL(file)
 				// 转化为blob
 				reader.readAsArrayBuffer(file);
-				
+
 				this.file = event.target.files[0];
 			},
 			imgLoad(msg) {
@@ -286,76 +317,84 @@
 			cropMoving(data) {
 				this.option.cropData = data;
 			},
-		  	save(){
-//				alert("已上传头像，尚未连接后台，暂不支持更新")
-//				this.$router.push({path:"/set/user"})
+			save() {
+				//				alert("已上传头像，尚未连接后台，暂不支持更新")
+				//				this.$router.push({path:"/set/user"})
 			},
-          	submitForm(event) {
-          		var _this = this;
-	            event.preventDefault();
-	            let formData = new FormData();
-	            formData.append('file', this.file);
-	            
-	          
- 				console.log(this.file,11111111111111)
-	            let config = {
-	              headers: {
-	                'Content-Type': 'multipart/form-data'
-	              }
-	            }
-	            this.$http.post(URL + '/file/upload', formData, config).then(function (response) {
-	              	if (response.status === 200) {
-		                if(response.data.meta.code == 1){
-		                	//alert("上传成功")
-		                	//回显
-		                	_this.option.img = response.data.data.resourceUri;
-		                	_this.userInfo.headUrl = response.data.data.id;
-		                	//
-		                	_this.setUpdate(_this.userInfo) 
-		                	
-		                }else{
-		                	alert(response.data.meta.desc)
-		                }
-	              	}else{
-	              		console.log("上传失败")
-	              	}
-	            })
+			//提交保存
+			submitForm(event) {
+				var _this = this;
+				event.preventDefault();
+				let formData = new FormData();
+				
+				console.log(this.file, 2222)
+				
+				formData.append('file', this.file);
+
+				let config = {
+					headers: {
+						'Content-Type': 'multipart/form-data'
+					}
+				}
+				this.$http.post(URL+'/file/upload', formData, config).then(function(response) {
+					if (response.status === 200) {
+						if (response.data.meta.code == 1) {
+							//alert("上传成功")
+							//回显
+							_this.option.img = response.data.data.resourceUri;
+							_this.userInfo.headUrl = response.data.data.id;
+							//
+							_this.setUpdate(_this.userInfo)
+
+						} else {
+							alert(response.data.meta.desc)
+						}
+					} else {
+						console.log("上传失败")
+					}
+				})
 			},
 			//更新数据
-			setUpdate(param){
-				MessageBox.confirm('确定执行此操作？').then( confirmAction => {
+			setUpdate(param) {
+				MessageBox.confirm('确定执行此操作？').then(confirmAction => {
 					if (confirmAction === 'confirm') {
-						Http({url: '/api/user/editUser',data: {"param":param} })
-			            .then(data => {
-			              	if (data.code === 1) {	
-			              		MessageBox.alert('操作成功').then( alertAction => {
-								  	if (alertAction === 'confirm') {
-								  		this.$router.push({ path: '/set/user' })
-								  	}
-								});
-			              	}else{
-			              		console.log(error);
-			              	}
-			            }).catch(function (error) {
-						    console.log(error);
-				  		});					
-					} else{
+						Http({
+								url: '/api/user/editUser',
+								data: {
+									"param": param
+								}
+							})
+							.then(data => {
+								if (data.code === 1) {
+									MessageBox.alert('操作成功').then(alertAction => {
+										if (alertAction === 'confirm') {
+											this.$router.push({
+												path: '/set/user'
+											})
+										}
+									});
+								} else {
+									console.log(error);
+								}
+							}).catch(function(error) {
+								console.log(error);
+							});
+					} else {
 						return false
 					}
 				});
 			}
- 
+
 		},
 
 		mounted() {
-			
+
 			// hljs.configure({useBR: true})
 			var list = [].slice.call(document.querySelectorAll("pre code"));
 			list.forEach((val, index) => {
 				hljs.highlightBlock(val);
 			});
-			 
+
 		}
 	};
 </script>
- 
