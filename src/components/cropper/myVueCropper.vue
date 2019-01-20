@@ -157,7 +157,7 @@
 						this.modelSrc = data;
  						
 						var newImgFileData = this.dataURLtoFile(data, this.file.name)
-						let img = window.URL.createObjectURL(newImgFile);
+						let img = window.URL.createObjectURL(newImgFileData);
 						
 						formData.append("file", newImgFileData, this.file.name);
 						
